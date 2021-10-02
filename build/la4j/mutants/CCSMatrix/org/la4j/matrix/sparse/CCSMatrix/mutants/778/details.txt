@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.sparse.CCSMatrix, method=maxInColumn, methodDesc=(I)D], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=CCSMatrix.java, block=180, lineNumber=681, description=Changed increment from 1 to -1, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

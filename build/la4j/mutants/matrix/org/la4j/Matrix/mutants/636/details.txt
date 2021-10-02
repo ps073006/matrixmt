@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=norm, methodDesc=()D], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator], filename=Matrix.java, block=119, lineNumber=851, description=removed call to org/la4j/Matrix::euclideanNorm, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

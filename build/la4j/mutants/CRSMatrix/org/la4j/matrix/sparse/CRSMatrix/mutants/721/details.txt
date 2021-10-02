@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.sparse.CRSMatrix, method=growUp, methodDesc=()V], indexes=[53], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=CRSMatrix.java, block=164, lineNumber=633, description=Replaced integer addition with subtraction, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

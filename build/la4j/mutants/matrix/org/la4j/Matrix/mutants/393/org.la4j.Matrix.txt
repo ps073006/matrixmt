@@ -1,0 +1,5601 @@
+// class version 52.0 (52)
+// access flags 0x421
+// signature Ljava/lang/Object;Ljava/lang/Iterable<Ljava/lang/Double;>;
+// declaration: org/la4j/Matrix implements java.lang.Iterable<java.lang.Double>
+public abstract class org/la4j/Matrix implements java/lang/Iterable  {
+
+  // compiled from: Matrix.java
+  // access flags 0x0
+  INNERCLASS org/la4j/Matrix$4 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/Matrix$3 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/Matrix$2 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/Matrix$1 null null
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$SolverFactory org/la4j/LinearAlgebra SolverFactory
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$InverterFactory org/la4j/LinearAlgebra InverterFactory
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$DecompositorFactory org/la4j/LinearAlgebra DecompositorFactory
+
+  // access flags 0x1A
+  private final static Ljava/lang/String; DEFAULT_ROWS_DELIMITER = "
+"
+
+  // access flags 0x1A
+  private final static Ljava/lang/String; DEFAULT_COLUMNS_DELIMITER = " "
+
+  // access flags 0x1A
+  private final static Ljava/text/NumberFormat; DEFAULT_FORMATTER
+
+  // access flags 0x1A
+  private final static [Ljava/lang/String; INDENTS
+
+  // access flags 0x4
+  protected I rows
+
+  // access flags 0x4
+  protected I columns
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 97 L0
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    INVOKESPECIAL org/la4j/Matrix.<init> (II)V
+   L1
+    LINENUMBER 98 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public <init>(II)V
+   L0
+    LINENUMBER 103 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L1
+    LINENUMBER 104 L1
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.ensureDimensionsAreCorrect (II)V
+   L2
+    LINENUMBER 105 L2
+    ALOAD 0
+    ILOAD 1
+    PUTFIELD org/la4j/Matrix.rows : I
+   L3
+    LINENUMBER 106 L3
+    ALOAD 0
+    ILOAD 2
+    PUTFIELD org/la4j/Matrix.columns : I
+   L4
+    LINENUMBER 107 L4
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE rows I L0 L5 1
+    LOCALVARIABLE columns I L0 L5 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x9
+  public static zero(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 114 L0
+    ILOAD 0
+    I2L
+    ILOAD 1
+    I2L
+    LMUL
+    LSTORE 2
+   L1
+    LINENUMBER 115 L1
+    LLOAD 2
+    LDC 1000
+    LCMP
+    IFLE L2
+    ILOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/matrix/SparseMatrix.zero (II)Lorg/la4j/matrix/SparseMatrix;
+    GOTO L3
+   L2
+   FRAME FULL [I I J] []
+    ILOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.zero (II)Lorg/la4j/matrix/DenseMatrix;
+   L3
+   FRAME FULL [I I J] [org/la4j/Matrix]
+    ARETURN
+   L4
+    LOCALVARIABLE rows I L0 L4 0
+    LOCALVARIABLE columns I L0 L4 1
+    LOCALVARIABLE size J L1 L4 2
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x9
+  public static constant(IID)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 122 L0
+    ILOAD 0
+    ILOAD 1
+    DLOAD 2
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.constant (IID)Lorg/la4j/matrix/DenseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    LOCALVARIABLE constant D L0 L1 2
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x9
+  public static diagonal(ID)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 130 L0
+    ILOAD 0
+    DLOAD 1
+    INVOKESTATIC org/la4j/matrix/SparseMatrix.diagonal (ID)Lorg/la4j/matrix/SparseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE size I L0 L1 0
+    LOCALVARIABLE diagonal D L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x9
+  public static unit(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 138 L0
+    ILOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.unit (II)Lorg/la4j/matrix/DenseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x9
+  public static identity(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 145 L0
+    ILOAD 0
+    INVOKESTATIC org/la4j/matrix/SparseMatrix.identity (I)Lorg/la4j/matrix/SparseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE size I L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static random(IILjava/util/Random;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 153 L0
+    ILOAD 0
+    ILOAD 1
+    ALOAD 2
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.random (IILjava/util/Random;)Lorg/la4j/matrix/DenseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    LOCALVARIABLE random Ljava/util/Random; L0 L1 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x9
+  public static randomSymmetric(ILjava/util/Random;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 160 L0
+    ILOAD 0
+    ALOAD 1
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.randomSymmetric (ILjava/util/Random;)Lorg/la4j/matrix/DenseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE size I L0 L1 0
+    LOCALVARIABLE random Ljava/util/Random; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x9
+  public static from1DArray(II[D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 168 L0
+    ILOAD 0
+    ILOAD 1
+    ALOAD 2
+    INVOKESTATIC org/la4j/matrix/dense/Basic1DMatrix.from1DArray (II[D)Lorg/la4j/matrix/dense/Basic1DMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    LOCALVARIABLE array [D L0 L1 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x9
+  public static from2DArray([[D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 176 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/matrix/dense/Basic2DMatrix.from2DArray ([[D)Lorg/la4j/matrix/dense/Basic2DMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE array [[D L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static block(Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 184 L0
+    ALOAD 0
+    ALOAD 1
+    ALOAD 2
+    ALOAD 3
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.block (Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;)Lorg/la4j/matrix/DenseMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE b Lorg/la4j/Matrix; L0 L1 1
+    LOCALVARIABLE c Lorg/la4j/Matrix; L0 L1 2
+    LOCALVARIABLE d Lorg/la4j/Matrix; L0 L1 3
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x9
+  public static fromCSV(Ljava/lang/String;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 195 L0
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 0
+    LDC "\n"
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;Ljava/lang/String;)V
+    ASTORE 1
+   L1
+    LINENUMBER 196 L1
+    BIPUSH 10
+    BIPUSH 10
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.zero (II)Lorg/la4j/matrix/DenseMatrix;
+    ASTORE 2
+   L2
+    LINENUMBER 197 L2
+    ICONST_0
+    ISTORE 3
+   L3
+    LINENUMBER 198 L3
+    ICONST_0
+    ISTORE 4
+   L4
+    LINENUMBER 200 L4
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I] []
+    ALOAD 1
+    INVOKEVIRTUAL java/util/StringTokenizer.hasMoreTokens ()Z
+    IFEQ L5
+   L6
+    LINENUMBER 201 L6
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ILOAD 3
+    IF_ICMPNE L7
+   L8
+    LINENUMBER 202 L8
+    ALOAD 2
+    ILOAD 3
+    ICONST_3
+    IMUL
+    ICONST_2
+    IDIV
+    ICONST_1
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfRows (I)Lorg/la4j/Matrix;
+    ASTORE 2
+   L7
+    LINENUMBER 205 L7
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I] []
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 1
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    LDC ", "
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;Ljava/lang/String;)V
+    ASTORE 5
+   L9
+    LINENUMBER 206 L9
+    ICONST_0
+    ISTORE 6
+   L10
+    LINENUMBER 207 L10
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I java/util/StringTokenizer I] []
+    ALOAD 5
+    INVOKEVIRTUAL java/util/StringTokenizer.hasMoreElements ()Z
+    IFEQ L11
+   L12
+    LINENUMBER 208 L12
+    ILOAD 6
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPNE L13
+   L14
+    LINENUMBER 209 L14
+    ALOAD 2
+    ILOAD 6
+    ICONST_3
+    IMUL
+    ICONST_2
+    IDIV
+    ICONST_1
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfColumns (I)Lorg/la4j/Matrix;
+    ASTORE 2
+   L13
+    LINENUMBER 212 L13
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I java/util/StringTokenizer I] []
+    ALOAD 5
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Double.parseDouble (Ljava/lang/String;)D
+    DSTORE 7
+   L15
+    LINENUMBER 213 L15
+    ALOAD 2
+    ILOAD 3
+    ILOAD 6
+    IINC 6 1
+    DLOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L16
+    LINENUMBER 214 L16
+    GOTO L10
+   L11
+    LINENUMBER 216 L11
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I java/util/StringTokenizer I] []
+    IINC 3 1
+   L17
+    LINENUMBER 217 L17
+    ILOAD 6
+    ILOAD 4
+    IF_ICMPLE L18
+    ILOAD 6
+    GOTO L19
+   L18
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I java/util/StringTokenizer I] []
+    ILOAD 4
+   L19
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I java/util/StringTokenizer I] [I]
+    ISTORE 4
+   L20
+    LINENUMBER 218 L20
+    GOTO L4
+   L5
+    LINENUMBER 220 L5
+   FRAME FULL [java/lang/String java/util/StringTokenizer org/la4j/Matrix I I] []
+    ALOAD 2
+    ILOAD 3
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L21
+    LOCALVARIABLE x D L15 L16 7
+    LOCALVARIABLE elements Ljava/util/StringTokenizer; L9 L20 5
+    LOCALVARIABLE j I L10 L20 6
+    LOCALVARIABLE csv Ljava/lang/String; L0 L21 0
+    LOCALVARIABLE lines Ljava/util/StringTokenizer; L1 L21 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L2 L21 2
+    LOCALVARIABLE rows I L3 L21 3
+    LOCALVARIABLE columns I L4 L21 4
+    MAXSTACK = 5
+    MAXLOCALS = 9
+
+  // access flags 0x9
+  public static fromMatrixMarket(Ljava/io/InputStream;)Lorg/la4j/Matrix; throws java/io/IOException 
+   L0
+    LINENUMBER 232 L0
+    NEW java/io/BufferedReader
+    DUP
+    NEW java/io/InputStreamReader
+    DUP
+    ALOAD 0
+    INVOKESPECIAL java/io/InputStreamReader.<init> (Ljava/io/InputStream;)V
+    INVOKESPECIAL java/io/BufferedReader.<init> (Ljava/io/Reader;)V
+    ASTORE 1
+   L1
+    LINENUMBER 234 L1
+    ALOAD 1
+    INVOKEVIRTUAL java/io/BufferedReader.readLine ()Ljava/lang/String;
+    ASTORE 2
+   L2
+    LINENUMBER 235 L2
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 2
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;)V
+    ASTORE 3
+   L3
+    LINENUMBER 237 L3
+    LDC "%%MatrixMarket"
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L4
+   L5
+    LINENUMBER 238 L5
+    NEW java/lang/IllegalArgumentException
+    DUP
+    LDC "Wrong input file format: can not read header '%%MatrixMarket'."
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L4
+    LINENUMBER 241 L4
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer] []
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    ASTORE 4
+   L6
+    LINENUMBER 242 L6
+    LDC "matrix"
+    ALOAD 4
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L7
+   L8
+    LINENUMBER 243 L8
+    NEW java/lang/IllegalArgumentException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Unexpected object: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L7
+    LINENUMBER 246 L7
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String] []
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    ASTORE 5
+   L9
+    LINENUMBER 247 L9
+    LDC "coordinate"
+    ALOAD 5
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L10
+    LDC "array"
+    ALOAD 5
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L10
+   L11
+    LINENUMBER 248 L11
+    NEW java/lang/IllegalArgumentException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Unknown format: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L10
+    LINENUMBER 251 L10
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String] []
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    ASTORE 6
+   L12
+    LINENUMBER 252 L12
+    LDC "real"
+    ALOAD 6
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L13
+   L14
+    LINENUMBER 253 L14
+    NEW java/lang/IllegalArgumentException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Unknown field type: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 6
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L13
+    LINENUMBER 256 L13
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String] []
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    ASTORE 7
+   L15
+    LINENUMBER 257 L15
+    ALOAD 7
+    LDC "general"
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFNE L16
+   L17
+    LINENUMBER 258 L17
+    NEW java/lang/IllegalArgumentException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Unknown symmetry type: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 7
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L16
+    LINENUMBER 261 L16
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String] []
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.hasMoreTokens ()Z
+    IFEQ L18
+    ALOAD 3
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    GOTO L19
+   L18
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String] []
+    LDC "row-major"
+   L19
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String] [java/lang/String]
+    ASTORE 8
+   L20
+    LINENUMBER 263 L20
+    ALOAD 1
+    INVOKEVIRTUAL java/io/BufferedReader.readLine ()Ljava/lang/String;
+    ASTORE 9
+   L21
+    LINENUMBER 264 L21
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String] []
+    ALOAD 9
+    LDC "%"
+    INVOKEVIRTUAL java/lang/String.startsWith (Ljava/lang/String;)Z
+    IFEQ L22
+   L23
+    LINENUMBER 265 L23
+    ALOAD 1
+    INVOKEVIRTUAL java/io/BufferedReader.readLine ()Ljava/lang/String;
+    ASTORE 9
+    GOTO L21
+   L22
+    LINENUMBER 268 L22
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String] []
+    LDC "coordinate"
+    ALOAD 5
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFEQ L24
+   L25
+    LINENUMBER 269 L25
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 9
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;)V
+    ASTORE 10
+   L26
+    LINENUMBER 271 L26
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.parseInt (Ljava/lang/String;)I
+    ISTORE 11
+   L27
+    LINENUMBER 272 L27
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.parseInt (Ljava/lang/String;)I
+    ISTORE 12
+   L28
+    LINENUMBER 273 L28
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.parseInt (Ljava/lang/String;)I
+    ISTORE 13
+   L29
+    LINENUMBER 275 L29
+    LDC "row-major"
+    ALOAD 8
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+    IFEQ L30
+    ILOAD 11
+    ILOAD 12
+    ILOAD 13
+   L31
+    LINENUMBER 276 L31
+    INVOKESTATIC org/la4j/matrix/RowMajorSparseMatrix.zero (III)Lorg/la4j/matrix/RowMajorSparseMatrix;
+    GOTO L32
+   L30
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I I] []
+    ILOAD 11
+    ILOAD 12
+    ILOAD 13
+   L33
+    LINENUMBER 277 L33
+    INVOKESTATIC org/la4j/matrix/ColumnMajorSparseMatrix.zero (III)Lorg/la4j/matrix/ColumnMajorSparseMatrix;
+   L32
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I I] [org/la4j/matrix/SparseMatrix]
+    ASTORE 14
+   L34
+    LINENUMBER 279 L34
+    ICONST_0
+    ISTORE 15
+   L35
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I I org/la4j/matrix/SparseMatrix I] []
+    ILOAD 15
+    ILOAD 13
+    IF_ICMPGE L36
+   L37
+    LINENUMBER 280 L37
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 1
+    INVOKEVIRTUAL java/io/BufferedReader.readLine ()Ljava/lang/String;
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;)V
+    ASTORE 10
+   L38
+    LINENUMBER 282 L38
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    ISTORE 16
+   L39
+    LINENUMBER 283 L39
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    ISTORE 17
+   L40
+    LINENUMBER 284 L40
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 18
+   L41
+    LINENUMBER 285 L41
+    ALOAD 14
+    ILOAD 16
+    ICONST_1
+    ISUB
+    ILOAD 17
+    ICONST_1
+    ISUB
+    DLOAD 18
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L42
+    LINENUMBER 279 L42
+    IINC 15 1
+    GOTO L35
+   L36
+    LINENUMBER 288 L36
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I I org/la4j/matrix/SparseMatrix I] []
+    ALOAD 14
+    ARETURN
+   L24
+    LINENUMBER 290 L24
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String] []
+    NEW java/util/StringTokenizer
+    DUP
+    ALOAD 9
+    INVOKESPECIAL java/util/StringTokenizer.<init> (Ljava/lang/String;)V
+    ASTORE 10
+   L43
+    LINENUMBER 292 L43
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    ISTORE 11
+   L44
+    LINENUMBER 293 L44
+    ALOAD 10
+    INVOKEVIRTUAL java/util/StringTokenizer.nextToken ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    ISTORE 12
+   L45
+    LINENUMBER 294 L45
+    ILOAD 11
+    ILOAD 12
+    INVOKESTATIC org/la4j/matrix/DenseMatrix.zero (II)Lorg/la4j/matrix/DenseMatrix;
+    ASTORE 13
+   L46
+    LINENUMBER 296 L46
+    ICONST_0
+    ISTORE 14
+   L47
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I org/la4j/matrix/DenseMatrix I] []
+    ILOAD 14
+    ILOAD 11
+    IF_ICMPGE L48
+   L49
+    LINENUMBER 297 L49
+    ICONST_0
+    ISTORE 15
+   L50
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I org/la4j/matrix/DenseMatrix I I] []
+    ILOAD 15
+    ILOAD 12
+    IF_ICMPGE L51
+   L52
+    LINENUMBER 298 L52
+    ALOAD 13
+    ILOAD 14
+    ILOAD 15
+    ALOAD 1
+    INVOKEVIRTUAL java/io/BufferedReader.readLine ()Ljava/lang/String;
+    INVOKESTATIC java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L53
+    LINENUMBER 297 L53
+    IINC 15 1
+    GOTO L50
+   L51
+    LINENUMBER 296 L51
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I org/la4j/matrix/DenseMatrix I I] []
+    IINC 14 1
+    GOTO L47
+   L48
+    LINENUMBER 302 L48
+   FRAME FULL [java/io/InputStream java/io/BufferedReader java/lang/String java/util/StringTokenizer java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/lang/String java/util/StringTokenizer I I org/la4j/matrix/DenseMatrix I] []
+    ALOAD 13
+    ARETURN
+   L54
+    LOCALVARIABLE i I L39 L42 16
+    LOCALVARIABLE j I L40 L42 17
+    LOCALVARIABLE x D L41 L42 18
+    LOCALVARIABLE k I L35 L36 15
+    LOCALVARIABLE lines Ljava/util/StringTokenizer; L26 L24 10
+    LOCALVARIABLE rows I L27 L24 11
+    LOCALVARIABLE columns I L28 L24 12
+    LOCALVARIABLE cardinality I L29 L24 13
+    LOCALVARIABLE result Lorg/la4j/Matrix; L34 L24 14
+    LOCALVARIABLE j I L50 L51 15
+    LOCALVARIABLE i I L47 L48 14
+    LOCALVARIABLE lines Ljava/util/StringTokenizer; L43 L54 10
+    LOCALVARIABLE rows I L44 L54 11
+    LOCALVARIABLE columns I L45 L54 12
+    LOCALVARIABLE result Lorg/la4j/Matrix; L46 L54 13
+    LOCALVARIABLE is Ljava/io/InputStream; L0 L54 0
+    LOCALVARIABLE body Ljava/io/BufferedReader; L1 L54 1
+    LOCALVARIABLE headerString Ljava/lang/String; L2 L54 2
+    LOCALVARIABLE header Ljava/util/StringTokenizer; L3 L54 3
+    LOCALVARIABLE object Ljava/lang/String; L6 L54 4
+    LOCALVARIABLE format Ljava/lang/String; L9 L54 5
+    LOCALVARIABLE field Ljava/lang/String; L12 L54 6
+    LOCALVARIABLE symmetry Ljava/lang/String; L15 L54 7
+    LOCALVARIABLE majority Ljava/lang/String; L20 L54 8
+    LOCALVARIABLE nextToken Ljava/lang/String; L21 L54 9
+    MAXSTACK = 5
+    MAXLOCALS = 20
+
+  // access flags 0x401
+  public abstract get(II)D
+
+  // access flags 0x401
+  public abstract set(IID)V
+
+  // access flags 0x401
+  public abstract getRow(I)Lorg/la4j/Vector;
+
+  // access flags 0x401
+  public abstract getColumn(I)Lorg/la4j/Vector;
+
+  // access flags 0x401
+  public abstract blankOfShape(II)Lorg/la4j/Matrix;
+
+  // access flags 0x401
+  public abstract copyOfShape(II)Lorg/la4j/Matrix;
+
+  // access flags 0x401
+  // signature <T:Ljava/lang/Object;>(Lorg/la4j/operation/MatrixOperation<TT;>;)TT;
+  // declaration: T apply<T>(org.la4j.operation.MatrixOperation<T>)
+  public abstract apply(Lorg/la4j/operation/MatrixOperation;)Ljava/lang/Object;
+
+  // access flags 0x401
+  // signature <T:Ljava/lang/Object;>(Lorg/la4j/operation/MatrixMatrixOperation<TT;>;Lorg/la4j/Matrix;)TT;
+  // declaration: T apply<T>(org.la4j.operation.MatrixMatrixOperation<T>, org.la4j.Matrix)
+  public abstract apply(Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+
+  // access flags 0x401
+  // signature <T:Ljava/lang/Object;>(Lorg/la4j/operation/MatrixVectorOperation<TT;>;Lorg/la4j/Vector;)TT;
+  // declaration: T apply<T>(org.la4j.operation.MatrixVectorOperation<T>, org.la4j.Vector)
+  public abstract apply(Lorg/la4j/operation/MatrixVectorOperation;Lorg/la4j/Vector;)Ljava/lang/Object;
+
+  // access flags 0x401
+  public abstract toBinary()[B
+
+  // access flags 0x401
+  public abstract toMatrixMarket(Ljava/text/NumberFormat;)Ljava/lang/String;
+
+  // access flags 0x1
+  public setAll(D)V
+   L0
+    LINENUMBER 425 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 427 L1
+   FRAME FULL [org/la4j/Matrix D org/la4j/iterator/MatrixIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 428 L3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    POP
+   L4
+    LINENUMBER 429 L4
+    ALOAD 3
+    DLOAD 1
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.set (D)V
+    GOTO L1
+   L2
+    LINENUMBER 431 L2
+   FRAME FULL [org/la4j/Matrix D org/la4j/iterator/MatrixIterator] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE value D L0 L5 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L5 3
+    MAXSTACK = 3
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public setRow(ID)V
+   L0
+    LINENUMBER 442 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfRow (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 4
+   L1
+    LINENUMBER 444 L1
+   FRAME FULL [org/la4j/Matrix I D org/la4j/iterator/VectorIterator] []
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 445 L3
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    POP
+   L4
+    LINENUMBER 446 L4
+    ALOAD 4
+    DLOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+    GOTO L1
+   L2
+    LINENUMBER 448 L2
+   FRAME FULL [org/la4j/Matrix I D org/la4j/iterator/VectorIterator] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    LOCALVARIABLE value D L0 L5 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L5 4
+    MAXSTACK = 3
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public setColumn(ID)V
+   L0
+    LINENUMBER 459 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfColumn (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 4
+   L1
+    LINENUMBER 461 L1
+   FRAME FULL [org/la4j/Matrix I D org/la4j/iterator/VectorIterator] []
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 462 L3
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    POP
+   L4
+    LINENUMBER 463 L4
+    ALOAD 4
+    DLOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+    GOTO L1
+   L2
+    LINENUMBER 465 L2
+   FRAME FULL [org/la4j/Matrix I D org/la4j/iterator/VectorIterator] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE j I L0 L5 1
+    LOCALVARIABLE value D L0 L5 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L5 4
+    MAXSTACK = 3
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public swapRows(II)V
+   L0
+    LINENUMBER 474 L0
+    ILOAD 1
+    ILOAD 2
+    IF_ICMPEQ L1
+   L2
+    LINENUMBER 475 L2
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    ASTORE 3
+   L3
+    LINENUMBER 476 L3
+    ALOAD 0
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    ASTORE 4
+   L4
+    LINENUMBER 478 L4
+    ALOAD 0
+    ILOAD 1
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L5
+    LINENUMBER 479 L5
+    ALOAD 0
+    ILOAD 2
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L1
+    LINENUMBER 481 L1
+   FRAME FULL [org/la4j/Matrix I I] []
+    RETURN
+   L6
+    LOCALVARIABLE ii Lorg/la4j/Vector; L3 L1 3
+    LOCALVARIABLE jj Lorg/la4j/Vector; L4 L1 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L6 0
+    LOCALVARIABLE i I L0 L6 1
+    LOCALVARIABLE j I L0 L6 2
+    MAXSTACK = 3
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public swapColumns(II)V
+   L0
+    LINENUMBER 490 L0
+    ILOAD 1
+    ILOAD 2
+    IF_ICMPEQ L1
+   L2
+    LINENUMBER 491 L2
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    ASTORE 3
+   L3
+    LINENUMBER 492 L3
+    ALOAD 0
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    ASTORE 4
+   L4
+    LINENUMBER 494 L4
+    ALOAD 0
+    ILOAD 1
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L5
+    LINENUMBER 495 L5
+    ALOAD 0
+    ILOAD 2
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L1
+    LINENUMBER 497 L1
+   FRAME FULL [org/la4j/Matrix I I] []
+    RETURN
+   L6
+    LOCALVARIABLE ii Lorg/la4j/Vector; L3 L1 3
+    LOCALVARIABLE jj Lorg/la4j/Vector; L4 L1 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L6 0
+    LOCALVARIABLE i I L0 L6 1
+    LOCALVARIABLE j I L0 L6 2
+    MAXSTACK = 3
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public rows()I
+   L0
+    LINENUMBER 505 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public columns()I
+   L0
+    LINENUMBER 514 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public transpose()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 523 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 1
+   L1
+    LINENUMBER 524 L1
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 2
+   L2
+    LINENUMBER 526 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 527 L4
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    POP
+   L5
+    LINENUMBER 528 L5
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 3
+   L6
+    LINENUMBER 529 L6
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 4
+   L7
+    LINENUMBER 530 L7
+    ALOAD 2
+    ALOAD 0
+    ILOAD 4
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.set (D)V
+   L8
+    LINENUMBER 531 L8
+    GOTO L2
+   L3
+    LINENUMBER 533 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 1
+    ARETURN
+   L9
+    LOCALVARIABLE i I L6 L8 3
+    LOCALVARIABLE j I L7 L8 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L9 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L2 L9 2
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public rotate()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 542 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 1
+   L1
+    LINENUMBER 543 L1
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 2
+   L2
+    LINENUMBER 545 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 546 L4
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    POP
+   L5
+    LINENUMBER 547 L5
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 3
+   L6
+    LINENUMBER 548 L6
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 4
+   L7
+    LINENUMBER 549 L7
+    ALOAD 2
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    ISUB
+    ILOAD 4
+    ISUB
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.set (D)V
+   L8
+    LINENUMBER 550 L8
+    GOTO L2
+   L3
+    LINENUMBER 552 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 1
+    ARETURN
+   L9
+    LOCALVARIABLE i I L6 L8 3
+    LOCALVARIABLE j I L7 L8 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L9 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L2 L9 2
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public power(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 563 L0
+    ILOAD 1
+    IFGE L1
+   L2
+    LINENUMBER 564 L2
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "The exponent should be positive: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L1
+    LINENUMBER 567 L1
+   FRAME FULL [org/la4j/Matrix I] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 2
+   L3
+    LINENUMBER 568 L3
+    ALOAD 0
+    ASTORE 3
+   L4
+    LINENUMBER 570 L4
+    ICONST_0
+    ISTORE 4
+   L5
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix org/la4j/Matrix I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 571 L7
+    ALOAD 2
+    ILOAD 4
+    ILOAD 4
+    DCONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L8
+    LINENUMBER 570 L8
+    IINC 4 1
+    GOTO L5
+   L6
+    LINENUMBER 574 L6
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix org/la4j/Matrix I] []
+    ILOAD 1
+    IFLE L9
+   L10
+    LINENUMBER 575 L10
+    ILOAD 1
+    ICONST_2
+    IREM
+    ICONST_1
+    IF_ICMPNE L11
+   L12
+    LINENUMBER 576 L12
+    ALOAD 2
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+    ASTORE 2
+   L11
+    LINENUMBER 579 L11
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix org/la4j/Matrix I] []
+    ILOAD 1
+    ICONST_2
+    IDIV
+    ISTORE 1
+   L13
+    LINENUMBER 580 L13
+    ALOAD 3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+    ASTORE 3
+    GOTO L6
+   L9
+    LINENUMBER 583 L9
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix org/la4j/Matrix I] []
+    ALOAD 2
+    ARETURN
+   L14
+    LOCALVARIABLE i I L5 L6 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L14 0
+    LOCALVARIABLE n I L0 L14 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L3 L14 2
+    LOCALVARIABLE that Lorg/la4j/Matrix; L4 L14 3
+    MAXSTACK = 5
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public multiply(D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 594 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.blank ()Lorg/la4j/Matrix;
+    ASTORE 3
+   L1
+    LINENUMBER 595 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 4
+   L2
+    LINENUMBER 597 L2
+   FRAME FULL [org/la4j/Matrix D org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 598 L4
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 5
+   L5
+    LINENUMBER 599 L5
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 7
+   L6
+    LINENUMBER 600 L6
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 8
+   L7
+    LINENUMBER 601 L7
+    ALOAD 3
+    ILOAD 7
+    ILOAD 8
+    DLOAD 5
+    DLOAD 1
+    DMUL
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L8
+    LINENUMBER 602 L8
+    GOTO L2
+   L3
+    LINENUMBER 604 L3
+   FRAME FULL [org/la4j/Matrix D org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 3
+    ARETURN
+   L9
+    LOCALVARIABLE x D L5 L8 5
+    LOCALVARIABLE i I L6 L8 7
+    LOCALVARIABLE j I L7 L8 8
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE value D L0 L9 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L9 3
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L2 L9 4
+    MAXSTACK = 7
+    MAXLOCALS = 9
+
+  // access flags 0x1
+  public multiply(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 615 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRIX_BY_VECTOR_MULTIPLICATION : Lorg/la4j/operation/MatrixVectorOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixVectorOperation;Lorg/la4j/Vector;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Vector
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Vector; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public multiply(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 626 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRICES_MULTIPLICATION : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public multiplyByItsTranspose()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 635 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRIX_BY_ITS_TRANSPOSE_MULTIPLICATION : Lorg/la4j/operation/MatrixOperation;
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixOperation;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public subtract(D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 646 L0
+    ALOAD 0
+    DLOAD 1
+    DNEG
+    INVOKEVIRTUAL org/la4j/Matrix.add (D)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE value D L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public subtract(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 657 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRICES_SUBTRACTION : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public add(D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 668 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 669 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.blank ()Lorg/la4j/Matrix;
+    ASTORE 4
+   L2
+    LINENUMBER 671 L2
+   FRAME FULL [org/la4j/Matrix D org/la4j/iterator/MatrixIterator org/la4j/Matrix] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 672 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 5
+   L5
+    LINENUMBER 673 L5
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 7
+   L6
+    LINENUMBER 674 L6
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 8
+   L7
+    LINENUMBER 675 L7
+    ALOAD 4
+    ILOAD 7
+    ILOAD 8
+    DLOAD 5
+    DLOAD 1
+    DADD
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L8
+    LINENUMBER 676 L8
+    GOTO L2
+   L3
+    LINENUMBER 678 L3
+   FRAME FULL [org/la4j/Matrix D org/la4j/iterator/MatrixIterator org/la4j/Matrix] []
+    ALOAD 4
+    ARETURN
+   L9
+    LOCALVARIABLE x D L5 L8 5
+    LOCALVARIABLE i I L6 L8 7
+    LOCALVARIABLE j I L7 L8 8
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE value D L0 L9 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L9 3
+    LOCALVARIABLE result Lorg/la4j/Matrix; L2 L9 4
+    MAXSTACK = 7
+    MAXLOCALS = 9
+
+  // access flags 0x1
+  public add(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 689 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRIX_ADDITION : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public insert(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 700 L0
+    ALOAD 0
+    ALOAD 1
+    ICONST_0
+    ICONST_0
+    ICONST_0
+    ICONST_0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    INVOKEVIRTUAL org/la4j/Matrix.insert (Lorg/la4j/Matrix;IIIIII)Lorg/la4j/Matrix;
+    IFNONNULL L1
+    NEW java/lang/RuntimeException
+    DUP
+    INVOKESPECIAL java/lang/RuntimeException.<init> ()V
+    ATHROW
+   L1
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix] []
+    ACONST_NULL
+    ARETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L2 1
+    MAXSTACK = 8
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public insert(Lorg/la4j/Matrix;II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 713 L0
+    ALOAD 0
+    ALOAD 1
+    ICONST_0
+    ICONST_0
+    ICONST_0
+    ICONST_0
+    ILOAD 2
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.insert (Lorg/la4j/Matrix;IIIIII)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    LOCALVARIABLE rows I L0 L1 2
+    LOCALVARIABLE columns I L0 L1 3
+    MAXSTACK = 8
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public insert(Lorg/la4j/Matrix;IIII)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 728 L0
+    ALOAD 0
+    ALOAD 1
+    ICONST_0
+    ICONST_0
+    ILOAD 2
+    ILOAD 3
+    ILOAD 4
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.insert (Lorg/la4j/Matrix;IIIIII)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    LOCALVARIABLE destRow I L0 L1 2
+    LOCALVARIABLE destColumn I L0 L1 3
+    LOCALVARIABLE rows I L0 L1 4
+    LOCALVARIABLE columns I L0 L1 5
+    MAXSTACK = 8
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public insert(Lorg/la4j/Matrix;IIIIII)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 745 L0
+    ILOAD 6
+    IFLT L1
+    ILOAD 7
+    IFGE L2
+   L1
+    LINENUMBER 746 L1
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Cannot have negative rows or columns: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 6
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "x"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 7
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L2
+    LINENUMBER 749 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 4
+    IFLT L3
+    ILOAD 5
+    IFGE L4
+   L3
+    LINENUMBER 750 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Cannot have negative destination position: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 753 L4
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGT L5
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLE L6
+   L5
+    LINENUMBER 754 L5
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Destination position out of bounds: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L6
+    LINENUMBER 757 L6
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 2
+    IFLT L7
+    ILOAD 3
+    IFGE L8
+   L7
+    LINENUMBER 758 L7
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Cannot have negative source position: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L8
+    LINENUMBER 761 L8
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 2
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGT L9
+    ILOAD 3
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLE L10
+   L9
+    LINENUMBER 762 L9
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Destination position out of bounds: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 3
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L10
+    LINENUMBER 765 L10
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 4
+    ILOAD 6
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGT L11
+    ILOAD 5
+    ILOAD 7
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLE L12
+   L11
+    LINENUMBER 766 L11
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Out of bounds: Cannot add "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 6
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " rows and "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 7
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " cols at "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " in a "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "x"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " matrix."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L12
+    LINENUMBER 770 L12
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ILOAD 2
+    ILOAD 6
+    IADD
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGT L13
+    ILOAD 3
+    ILOAD 7
+    IADD
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLE L14
+   L13
+    LINENUMBER 771 L13
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Out of bounds: Cannot get "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 6
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " rows and "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 7
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " cols at "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ", "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 3
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " from a "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "x"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 1
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC " matrix."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L14
+    LINENUMBER 775 L14
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I] []
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.copy ()Lorg/la4j/Matrix;
+    ASTORE 8
+   L15
+    LINENUMBER 777 L15
+    ICONST_0
+    ISTORE 9
+   L16
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I org/la4j/Matrix I] []
+    ILOAD 9
+    ILOAD 6
+    IF_ICMPGE L17
+   L18
+    LINENUMBER 778 L18
+    ICONST_0
+    ISTORE 10
+   L19
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I org/la4j/Matrix I I] []
+    ILOAD 10
+    ILOAD 7
+    IF_ICMPGE L20
+   L21
+    LINENUMBER 779 L21
+    ALOAD 8
+    ILOAD 9
+    ILOAD 4
+    IADD
+    ILOAD 10
+    ILOAD 5
+    IADD
+    ALOAD 1
+    ILOAD 9
+    ILOAD 2
+    IADD
+    ILOAD 10
+    ILOAD 3
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L22
+    LINENUMBER 778 L22
+    IINC 10 1
+    GOTO L19
+   L20
+    LINENUMBER 777 L20
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I org/la4j/Matrix I I] []
+    IINC 9 1
+    GOTO L16
+   L17
+    LINENUMBER 783 L17
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix I I I I I I org/la4j/Matrix I] []
+    ALOAD 8
+    ARETURN
+   L23
+    LOCALVARIABLE j I L19 L20 10
+    LOCALVARIABLE i I L16 L17 9
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L23 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L23 1
+    LOCALVARIABLE srcRow I L0 L23 2
+    LOCALVARIABLE srcColumn I L0 L23 3
+    LOCALVARIABLE destRow I L0 L23 4
+    LOCALVARIABLE destColumn I L0 L23 5
+    LOCALVARIABLE rows I L0 L23 6
+    LOCALVARIABLE columns I L0 L23 7
+    LOCALVARIABLE result Lorg/la4j/Matrix; L15 L23 8
+    MAXSTACK = 7
+    MAXLOCALS = 11
+
+  // access flags 0x1
+  public divide(D)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 794 L0
+    ALOAD 0
+    DCONST_1
+    DLOAD 1
+    DDIV
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (D)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE value D L0 L1 1
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public kroneckerProduct(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 805 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_KRONECKER_PRODUCT : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public trace()D
+   L0
+    LINENUMBER 819 L0
+    DCONST_0
+    DSTORE 1
+   L1
+    LINENUMBER 821 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/Matrix D I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 822 L4
+    DLOAD 1
+    ALOAD 0
+    ILOAD 3
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DADD
+    DSTORE 1
+   L5
+    LINENUMBER 821 L5
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 825 L3
+   FRAME FULL [org/la4j/Matrix D I] []
+    DLOAD 1
+    DRETURN
+   L6
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L6 0
+    LOCALVARIABLE result D L1 L6 1
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public diagonalProduct()D
+   L0
+    LINENUMBER 834 L0
+    GETSTATIC java/math/BigDecimal.ONE : Ljava/math/BigDecimal;
+    ASTORE 1
+   L1
+    LINENUMBER 836 L1
+    ICONST_0
+    ISTORE 2
+   L2
+   FRAME FULL [org/la4j/Matrix java/math/BigDecimal I] []
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 837 L4
+    ALOAD 1
+    ALOAD 0
+    ILOAD 2
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKESTATIC java/math/BigDecimal.valueOf (D)Ljava/math/BigDecimal;
+    INVOKEVIRTUAL java/math/BigDecimal.multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;
+    ASTORE 1
+   L5
+    LINENUMBER 836 L5
+    IINC 2 1
+    GOTO L2
+   L3
+    LINENUMBER 840 L3
+   FRAME FULL [org/la4j/Matrix java/math/BigDecimal I] []
+    ALOAD 1
+    GETSTATIC org/la4j/Matrices.ROUND_FACTOR : I
+    GETSTATIC java/math/RoundingMode.CEILING : Ljava/math/RoundingMode;
+    INVOKEVIRTUAL java/math/BigDecimal.setScale (ILjava/math/RoundingMode;)Ljava/math/BigDecimal;
+   L6
+    LINENUMBER 841 L6
+    INVOKEVIRTUAL java/math/BigDecimal.doubleValue ()D
+   L7
+    LINENUMBER 840 L7
+    DRETURN
+   L8
+    LOCALVARIABLE i I L2 L3 2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE result Ljava/math/BigDecimal; L1 L8 1
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public norm()D
+   L0
+    LINENUMBER 851 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.euclideanNorm ()D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public euclideanNorm()D
+   L0
+    LINENUMBER 860 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrices.mkEuclideanNormAccumulator ()Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public manhattanNorm()D
+   L0
+    LINENUMBER 869 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrices.mkManhattanNormAccumulator ()Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public infinityNorm()D
+   L0
+    LINENUMBER 878 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrices.mkInfinityNormAccumulator ()Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public product()D
+   L0
+    LINENUMBER 887 L0
+    ALOAD 0
+    DCONST_1
+    INVOKESTATIC org/la4j/Matrices.asProductAccumulator (D)Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public sum()D
+   L0
+    LINENUMBER 896 L0
+    ALOAD 0
+    DCONST_0
+    INVOKESTATIC org/la4j/Matrices.asSumAccumulator (D)Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public hadamardProduct(Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 907 L0
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.OO_PLACE_MATRIX_HADAMARD_PRODUCT : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE that Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public determinant()D
+   L0
+    LINENUMBER 921 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPEQ L1
+   L2
+    LINENUMBER 922 L2
+    NEW java/lang/IllegalStateException
+    DUP
+    LDC "Can not compute determinant of non-square matrix."
+    INVOKESPECIAL java/lang/IllegalStateException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L1
+    LINENUMBER 925 L1
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IFNE L3
+   L4
+    LINENUMBER 926 L4
+    DCONST_0
+    DRETURN
+   L3
+    LINENUMBER 927 L3
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    IF_ICMPNE L5
+   L6
+    LINENUMBER 928 L6
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DRETURN
+   L5
+    LINENUMBER 929 L5
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_2
+    IF_ICMPNE L7
+   L8
+    LINENUMBER 930 L8
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_0
+    ICONST_1
+   L9
+    LINENUMBER 931 L9
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DSUB
+   L10
+    LINENUMBER 930 L10
+    DRETURN
+   L7
+    LINENUMBER 932 L7
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_3
+    IF_ICMPNE L11
+   L12
+    LINENUMBER 933 L12
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_0
+    ICONST_1
+   L13
+    LINENUMBER 934 L13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    ALOAD 0
+    ICONST_0
+    ICONST_2
+   L14
+    LINENUMBER 935 L14
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    ALOAD 0
+    ICONST_0
+    ICONST_2
+   L15
+    LINENUMBER 936 L15
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DSUB
+    ALOAD 0
+    ICONST_0
+    ICONST_1
+   L16
+    LINENUMBER 937 L16
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DSUB
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+   L17
+    LINENUMBER 938 L17
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 0
+    ICONST_1
+    ICONST_2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    ALOAD 0
+    ICONST_2
+    ICONST_1
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DSUB
+   L18
+    LINENUMBER 933 L18
+    DRETURN
+   L11
+    LINENUMBER 941 L11
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.LU : Lorg/la4j/LinearAlgebra$DecompositorFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.withDecompositor (Lorg/la4j/LinearAlgebra$DecompositorFactory;)Lorg/la4j/decomposition/MatrixDecompositor;
+    ASTORE 1
+   L19
+    LINENUMBER 942 L19
+    ALOAD 1
+    INVOKEINTERFACE org/la4j/decomposition/MatrixDecompositor.decompose ()[Lorg/la4j/Matrix;
+    ASTORE 2
+   L20
+    LINENUMBER 944 L20
+    ALOAD 2
+    ICONST_1
+    AALOAD
+    ASTORE 3
+   L21
+    LINENUMBER 945 L21
+    ALOAD 2
+    ICONST_2
+    AALOAD
+    ASTORE 4
+   L22
+    LINENUMBER 947 L22
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.diagonalProduct ()D
+    DSTORE 5
+   L23
+    LINENUMBER 951 L23
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    NEWARRAY T_INT
+    ASTORE 7
+   L24
+    LINENUMBER 952 L24
+    ICONST_0
+    ISTORE 8
+   L25
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I] []
+    ILOAD 8
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L26
+   L27
+    LINENUMBER 953 L27
+    ICONST_0
+    ISTORE 9
+   L28
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I] []
+    ILOAD 9
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPGE L29
+   L30
+    LINENUMBER 954 L30
+    ALOAD 4
+    ILOAD 8
+    ILOAD 9
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFLE L31
+   L32
+    LINENUMBER 955 L32
+    ALOAD 7
+    ILOAD 8
+    ILOAD 9
+    IASTORE
+   L33
+    LINENUMBER 956 L33
+    GOTO L29
+   L31
+    LINENUMBER 953 L31
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I] []
+    IINC 9 1
+    GOTO L28
+   L29
+    LINENUMBER 952 L29
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I] []
+    IINC 8 1
+    GOTO L25
+   L26
+    LINENUMBER 961 L26
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I] []
+    ICONST_1
+    ISTORE 8
+   L34
+    LINENUMBER 962 L34
+    ICONST_0
+    ISTORE 9
+   L35
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I] []
+    ILOAD 9
+    ALOAD 7
+    ARRAYLENGTH
+    IF_ICMPGE L36
+   L37
+    LINENUMBER 963 L37
+    ILOAD 9
+    ICONST_1
+    IADD
+    ISTORE 10
+   L38
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I I] []
+    ILOAD 10
+    ALOAD 7
+    ARRAYLENGTH
+    IF_ICMPGE L39
+   L40
+    LINENUMBER 964 L40
+    ALOAD 7
+    ILOAD 10
+    IALOAD
+    ALOAD 7
+    ILOAD 9
+    IALOAD
+    IF_ICMPGE L41
+   L42
+    LINENUMBER 965 L42
+    ILOAD 8
+    ICONST_M1
+    IMUL
+    ISTORE 8
+   L41
+    LINENUMBER 963 L41
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I I] []
+    IINC 10 1
+    GOTO L38
+   L39
+    LINENUMBER 962 L39
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I I] []
+    IINC 9 1
+    GOTO L35
+   L36
+    LINENUMBER 970 L36
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix org/la4j/Matrix D [I I I] []
+    ILOAD 8
+    I2D
+    DLOAD 5
+    DMUL
+    DRETURN
+   L43
+    LOCALVARIABLE j I L28 L29 9
+    LOCALVARIABLE i I L25 L26 8
+    LOCALVARIABLE j I L38 L39 10
+    LOCALVARIABLE i I L35 L36 9
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L43 0
+    LOCALVARIABLE decompositor Lorg/la4j/decomposition/MatrixDecompositor; L19 L43 1
+    LOCALVARIABLE lup [Lorg/la4j/Matrix; L20 L43 2
+    LOCALVARIABLE u Lorg/la4j/Matrix; L21 L43 3
+    LOCALVARIABLE p Lorg/la4j/Matrix; L22 L43 4
+    LOCALVARIABLE result D L23 L43 5
+    LOCALVARIABLE permutations [I L24 L43 7
+    LOCALVARIABLE sign I L34 L43 8
+    MAXSTACK = 7
+    MAXLOCALS = 11
+
+  // access flags 0x1
+  public rank()I
+   L0
+    LINENUMBER 984 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IFEQ L1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IFNE L2
+   L1
+    LINENUMBER 985 L1
+   FRAME FULL [org/la4j/Matrix] []
+    ICONST_0
+    IRETURN
+   L2
+    LINENUMBER 992 L2
+   FRAME FULL [org/la4j/Matrix] []
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.SVD : Lorg/la4j/LinearAlgebra$DecompositorFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.withDecompositor (Lorg/la4j/LinearAlgebra$DecompositorFactory;)Lorg/la4j/decomposition/MatrixDecompositor;
+    ASTORE 1
+   L3
+    LINENUMBER 993 L3
+    ALOAD 1
+    INVOKEINTERFACE org/la4j/decomposition/MatrixDecompositor.decompose ()[Lorg/la4j/Matrix;
+    ASTORE 2
+   L4
+    LINENUMBER 995 L4
+    ALOAD 2
+    ICONST_1
+    AALOAD
+    ASTORE 3
+   L5
+    LINENUMBER 996 L5
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKESTATIC java/lang/Math.max (II)I
+    I2D
+    ALOAD 3
+    ICONST_0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    GETSTATIC org/la4j/Matrices.EPS : D
+    DMUL
+    DSTORE 4
+   L6
+    LINENUMBER 998 L6
+    ICONST_0
+    ISTORE 6
+   L7
+    LINENUMBER 999 L7
+    ICONST_0
+    ISTORE 7
+   L8
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix D I I] []
+    ILOAD 7
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L9
+   L10
+    LINENUMBER 1000 L10
+    ALOAD 3
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 4
+    DCMPL
+    IFLE L11
+   L12
+    LINENUMBER 1001 L12
+    IINC 6 1
+   L11
+    LINENUMBER 999 L11
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix D I I] []
+    IINC 7 1
+    GOTO L8
+   L9
+    LINENUMBER 1005 L9
+   FRAME FULL [org/la4j/Matrix org/la4j/decomposition/MatrixDecompositor [Lorg/la4j/Matrix; org/la4j/Matrix D I I] []
+    ILOAD 6
+    IRETURN
+   L13
+    LOCALVARIABLE i I L8 L9 7
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L13 0
+    LOCALVARIABLE decompositor Lorg/la4j/decomposition/MatrixDecompositor; L3 L13 1
+    LOCALVARIABLE usv [Lorg/la4j/Matrix; L4 L13 2
+    LOCALVARIABLE s Lorg/la4j/Matrix; L5 L13 3
+    LOCALVARIABLE tolerance D L6 L13 4
+    LOCALVARIABLE result I L7 L13 6
+    MAXSTACK = 5
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public setRow(ILorg/la4j/Vector;)V
+   L0
+    LINENUMBER 1015 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    IF_ICMPEQ L1
+   L2
+    LINENUMBER 1016 L2
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Wrong vector length: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ". Should be: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L1
+    LINENUMBER 1019 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ICONST_0
+    ISTORE 3
+   L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector I] []
+    ILOAD 3
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 1020 L5
+    ALOAD 0
+    ILOAD 1
+    ILOAD 3
+    ALOAD 2
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L6
+    LINENUMBER 1019 L6
+    IINC 3 1
+    GOTO L3
+   L4
+    LINENUMBER 1022 L4
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector I] []
+    RETURN
+   L7
+    LOCALVARIABLE j I L3 L4 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE i I L0 L7 1
+    LOCALVARIABLE row Lorg/la4j/Vector; L0 L7 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public setColumn(ILorg/la4j/Vector;)V
+   L0
+    LINENUMBER 1031 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    IF_ICMPEQ L1
+   L2
+    LINENUMBER 1032 L2
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Wrong vector length: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ". Should be: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L1
+    LINENUMBER 1035 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ICONST_0
+    ISTORE 3
+   L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector I] []
+    ILOAD 3
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 1036 L5
+    ALOAD 0
+    ILOAD 3
+    ILOAD 1
+    ALOAD 2
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L6
+    LINENUMBER 1035 L6
+    IINC 3 1
+    GOTO L3
+   L4
+    LINENUMBER 1038 L4
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector I] []
+    RETURN
+   L7
+    LOCALVARIABLE i I L3 L4 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE j I L0 L7 1
+    LOCALVARIABLE column Lorg/la4j/Vector; L0 L7 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public insertRow(ILorg/la4j/Vector;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1046 L0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGT L1
+    ILOAD 1
+    IFGE L2
+   L1
+    LINENUMBER 1047 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Illegal row number, must be 0.."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 1051 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IFNE L3
+   L4
+    LINENUMBER 1052 L4
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    IADD
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 3
+   L5
+    GOTO L6
+   L3
+    LINENUMBER 1054 L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 3
+   L6
+    LINENUMBER 1057 L6
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix] []
+    ICONST_0
+    ISTORE 4
+   L7
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ILOAD 4
+    ILOAD 1
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 1058 L9
+    ALOAD 3
+    ILOAD 4
+    ALOAD 0
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L10
+    LINENUMBER 1057 L10
+    IINC 4 1
+    GOTO L7
+   L8
+    LINENUMBER 1061 L8
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ALOAD 3
+    ILOAD 1
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L11
+    LINENUMBER 1063 L11
+    ILOAD 1
+    ISTORE 4
+   L12
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 1064 L14
+    ALOAD 3
+    ILOAD 4
+    ICONST_1
+    IADD
+    ALOAD 0
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L15
+    LINENUMBER 1063 L15
+    IINC 4 1
+    GOTO L12
+   L13
+    LINENUMBER 1067 L13
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ALOAD 3
+    ARETURN
+   L16
+    LOCALVARIABLE result Lorg/la4j/Matrix; L5 L3 3
+    LOCALVARIABLE ii I L7 L8 4
+    LOCALVARIABLE ii I L12 L13 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L16 0
+    LOCALVARIABLE i I L0 L16 1
+    LOCALVARIABLE row Lorg/la4j/Vector; L0 L16 2
+    LOCALVARIABLE result Lorg/la4j/Matrix; L6 L16 3
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public insertColumn(ILorg/la4j/Vector;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1076 L0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGT L1
+    ILOAD 1
+    IFGE L2
+   L1
+    LINENUMBER 1077 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Illegal column number, must be 0.."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 1081 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IFNE L3
+   L4
+    LINENUMBER 1082 L4
+    ALOAD 0
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.length ()I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 3
+   L5
+    GOTO L6
+   L3
+    LINENUMBER 1084 L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 3
+   L6
+    LINENUMBER 1087 L6
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix] []
+    ICONST_0
+    ISTORE 4
+   L7
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ILOAD 4
+    ILOAD 1
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 1088 L9
+    ALOAD 3
+    ILOAD 4
+    ALOAD 0
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L10
+    LINENUMBER 1087 L10
+    IINC 4 1
+    GOTO L7
+   L8
+    LINENUMBER 1091 L8
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ALOAD 3
+    ILOAD 1
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L11
+    LINENUMBER 1093 L11
+    ILOAD 1
+    ISTORE 4
+   L12
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 1094 L14
+    ALOAD 3
+    ILOAD 4
+    ICONST_1
+    IADD
+    ALOAD 0
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L15
+    LINENUMBER 1093 L15
+    IINC 4 1
+    GOTO L12
+   L13
+    LINENUMBER 1097 L13
+   FRAME FULL [org/la4j/Matrix I org/la4j/Vector org/la4j/Matrix I] []
+    ALOAD 3
+    ARETURN
+   L16
+    LOCALVARIABLE result Lorg/la4j/Matrix; L5 L3 3
+    LOCALVARIABLE jj I L7 L8 4
+    LOCALVARIABLE jj I L12 L13 4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L16 0
+    LOCALVARIABLE j I L0 L16 1
+    LOCALVARIABLE column Lorg/la4j/Vector; L0 L16 2
+    LOCALVARIABLE result Lorg/la4j/Matrix; L6 L16 3
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public removeRow(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1106 L0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L1
+    ILOAD 1
+    IFGE L2
+   L1
+    LINENUMBER 1107 L1
+   FRAME FULL [org/la4j/Matrix I] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Illegal row number, must be 0.."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 1110 L2
+   FRAME FULL [org/la4j/Matrix I] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    ISUB
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 2
+   L3
+    LINENUMBER 1112 L3
+    ICONST_0
+    ISTORE 3
+   L4
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 3
+    ILOAD 1
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 1113 L6
+    ALOAD 2
+    ILOAD 3
+    ALOAD 0
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L7
+    LINENUMBER 1112 L7
+    IINC 3 1
+    GOTO L4
+   L5
+    LINENUMBER 1116 L5
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 1
+    ICONST_1
+    IADD
+    ISTORE 3
+   L8
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L9
+   L10
+    LINENUMBER 1117 L10
+    ALOAD 2
+    ILOAD 3
+    ICONST_1
+    ISUB
+    ALOAD 0
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setRow (ILorg/la4j/Vector;)V
+   L11
+    LINENUMBER 1116 L11
+    IINC 3 1
+    GOTO L8
+   L9
+    LINENUMBER 1120 L9
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ALOAD 2
+    ARETURN
+   L12
+    LOCALVARIABLE ii I L4 L5 3
+    LOCALVARIABLE ii I L8 L9 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L12 0
+    LOCALVARIABLE i I L0 L12 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L3 L12 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public removeColumn(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1129 L0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L1
+    ILOAD 1
+    IFGE L2
+   L1
+    LINENUMBER 1130 L1
+   FRAME FULL [org/la4j/Matrix I] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Illegal column number, must be 0.."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 1133 L2
+   FRAME FULL [org/la4j/Matrix I] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 2
+   L3
+    LINENUMBER 1135 L3
+    ICONST_0
+    ISTORE 3
+   L4
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 3
+    ILOAD 1
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 1136 L6
+    ALOAD 2
+    ILOAD 3
+    ALOAD 0
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L7
+    LINENUMBER 1135 L7
+    IINC 3 1
+    GOTO L4
+   L5
+    LINENUMBER 1139 L5
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 1
+    ICONST_1
+    IADD
+    ISTORE 3
+   L8
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L9
+   L10
+    LINENUMBER 1140 L10
+    ALOAD 2
+    ILOAD 3
+    ICONST_1
+    ISUB
+    ALOAD 0
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L11
+    LINENUMBER 1139 L11
+    IINC 3 1
+    GOTO L8
+   L9
+    LINENUMBER 1143 L9
+   FRAME FULL [org/la4j/Matrix I org/la4j/Matrix I] []
+    ALOAD 2
+    ARETURN
+   L12
+    LOCALVARIABLE jj I L4 L5 3
+    LOCALVARIABLE jj I L8 L9 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L12 0
+    LOCALVARIABLE j I L0 L12 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L3 L12 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public removeFirstRow()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1151 L0
+    ALOAD 0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.removeRow (I)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public removeFirstColumn()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1159 L0
+    ALOAD 0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.removeColumn (I)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public removeLastRow()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1167 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.removeRow (I)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public removeLastColumn()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1175 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.removeColumn (I)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public blank()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1184 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public blankOfRows(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1195 L0
+    ALOAD 0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE rows I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public blankOfColumns(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1206 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public copy()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1215 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public copyOfRows(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1226 L0
+    ALOAD 0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE rows I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public copyOfColumns(I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1237 L0
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfShape (II)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public shuffle()Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1251 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.copy ()Lorg/la4j/Matrix;
+    ASTORE 1
+   L1
+    LINENUMBER 1254 L1
+    NEW java/util/Random
+    DUP
+    INVOKESPECIAL java/util/Random.<init> ()V
+    ASTORE 2
+   L2
+    LINENUMBER 1256 L2
+    ICONST_0
+    ISTORE 3
+   L3
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix java/util/Random I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 1257 L5
+    ICONST_0
+    ISTORE 4
+   L6
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix java/util/Random I I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 1258 L8
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ILOAD 3
+    ISUB
+    INVOKEVIRTUAL java/util/Random.nextInt (I)I
+    ILOAD 3
+    IADD
+    ISTORE 5
+   L9
+    LINENUMBER 1259 L9
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ILOAD 4
+    ISUB
+    INVOKEVIRTUAL java/util/Random.nextInt (I)I
+    ILOAD 4
+    IADD
+    ISTORE 6
+   L10
+    LINENUMBER 1261 L10
+    ALOAD 1
+    ILOAD 5
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 7
+   L11
+    LINENUMBER 1262 L11
+    ALOAD 1
+    ILOAD 5
+    ILOAD 6
+    ALOAD 1
+    ILOAD 3
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L12
+    LINENUMBER 1263 L12
+    ALOAD 1
+    ILOAD 3
+    ILOAD 4
+    DLOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L13
+    LINENUMBER 1257 L13
+    IINC 4 1
+    GOTO L6
+   L7
+    LINENUMBER 1256 L7
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix java/util/Random I I] []
+    IINC 3 1
+    GOTO L3
+   L4
+    LINENUMBER 1267 L4
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix java/util/Random I] []
+    ALOAD 1
+    ARETURN
+   L14
+    LOCALVARIABLE ii I L9 L13 5
+    LOCALVARIABLE jj I L10 L13 6
+    LOCALVARIABLE a D L11 L13 7
+    LOCALVARIABLE j I L6 L7 4
+    LOCALVARIABLE i I L3 L4 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L14 0
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L14 1
+    LOCALVARIABLE random Ljava/util/Random; L2 L14 2
+    MAXSTACK = 6
+    MAXLOCALS = 9
+
+  // access flags 0x1
+  public slice(IIII)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1282 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.ensureIndexArgumentsAreInBounds (II)V
+   L1
+    LINENUMBER 1283 L1
+    ALOAD 0
+    ILOAD 3
+    ICONST_1
+    ISUB
+    ILOAD 4
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.ensureIndexArgumentsAreInBounds (II)V
+   L2
+    LINENUMBER 1285 L2
+    ILOAD 3
+    ILOAD 1
+    ISUB
+    IFLT L3
+    ILOAD 4
+    ILOAD 2
+    ISUB
+    IFGE L4
+   L3
+    LINENUMBER 1286 L3
+   FRAME FULL [org/la4j/Matrix I I I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Wrong slice range: ["
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ".."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 3
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "]["
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC ".."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "]."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 1289 L4
+   FRAME FULL [org/la4j/Matrix I I I I] []
+    ALOAD 0
+    ILOAD 3
+    ILOAD 1
+    ISUB
+    ILOAD 4
+    ILOAD 2
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 5
+   L5
+    LINENUMBER 1291 L5
+    ILOAD 1
+    ISTORE 6
+   L6
+   FRAME FULL [org/la4j/Matrix I I I I org/la4j/Matrix I] []
+    ILOAD 6
+    ILOAD 3
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 1292 L8
+    ILOAD 2
+    ISTORE 7
+   L9
+   FRAME FULL [org/la4j/Matrix I I I I org/la4j/Matrix I I] []
+    ILOAD 7
+    ILOAD 4
+    IF_ICMPGE L10
+   L11
+    LINENUMBER 1293 L11
+    ALOAD 5
+    ILOAD 6
+    ILOAD 1
+    ISUB
+    ILOAD 7
+    ILOAD 2
+    ISUB
+    ALOAD 0
+    ILOAD 6
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L12
+    LINENUMBER 1292 L12
+    IINC 7 1
+    GOTO L9
+   L10
+    LINENUMBER 1291 L10
+   FRAME FULL [org/la4j/Matrix I I I I org/la4j/Matrix I I] []
+    IINC 6 1
+    GOTO L6
+   L7
+    LINENUMBER 1297 L7
+   FRAME FULL [org/la4j/Matrix I I I I org/la4j/Matrix I] []
+    ALOAD 5
+    ARETURN
+   L13
+    LOCALVARIABLE j I L9 L10 7
+    LOCALVARIABLE i I L6 L7 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L13 0
+    LOCALVARIABLE fromRow I L0 L13 1
+    LOCALVARIABLE fromColumn I L0 L13 2
+    LOCALVARIABLE untilRow I L0 L13 3
+    LOCALVARIABLE untilColumn I L0 L13 4
+    LOCALVARIABLE result Lorg/la4j/Matrix; L5 L13 5
+    MAXSTACK = 6
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public sliceTopLeft(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1311 L0
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.slice (IIII)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE untilRow I L0 L1 1
+    LOCALVARIABLE untilColumn I L0 L1 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public sliceBottomRight(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1325 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/Matrix.slice (IIII)Lorg/la4j/Matrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE fromRow I L0 L1 1
+    LOCALVARIABLE fromColumn I L0 L1 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public select([I[I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1344 L0
+    ALOAD 1
+    ARRAYLENGTH
+    ISTORE 3
+   L1
+    LINENUMBER 1345 L1
+    ALOAD 2
+    ARRAYLENGTH
+    ISTORE 4
+   L2
+    LINENUMBER 1347 L2
+    ILOAD 3
+    IFEQ L3
+    ILOAD 4
+    IFNE L4
+   L3
+    LINENUMBER 1348 L3
+   FRAME FULL [org/la4j/Matrix [I [I I I] []
+    ALOAD 0
+    LDC "No rows or columns selected."
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 1351 L4
+   FRAME FULL [org/la4j/Matrix [I [I I I] []
+    ALOAD 0
+    ILOAD 3
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.blankOfShape (II)Lorg/la4j/Matrix;
+    ASTORE 5
+   L5
+    LINENUMBER 1353 L5
+    ICONST_0
+    ISTORE 6
+   L6
+   FRAME FULL [org/la4j/Matrix [I [I I I org/la4j/Matrix I] []
+    ILOAD 6
+    ILOAD 3
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 1354 L8
+    ICONST_0
+    ISTORE 7
+   L9
+   FRAME FULL [org/la4j/Matrix [I [I I I org/la4j/Matrix I I] []
+    ILOAD 7
+    ILOAD 4
+    IF_ICMPGE L10
+   L11
+    LINENUMBER 1355 L11
+    ALOAD 5
+    ILOAD 6
+    ILOAD 7
+    ALOAD 0
+    ALOAD 1
+    ILOAD 6
+    IALOAD
+    ALOAD 2
+    ILOAD 7
+    IALOAD
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L12
+    LINENUMBER 1354 L12
+    IINC 7 1
+    GOTO L9
+   L10
+    LINENUMBER 1353 L10
+   FRAME FULL [org/la4j/Matrix [I [I I I org/la4j/Matrix I I] []
+    IINC 6 1
+    GOTO L6
+   L7
+    LINENUMBER 1359 L7
+   FRAME FULL [org/la4j/Matrix [I [I I I org/la4j/Matrix I] []
+    ALOAD 5
+    ARETURN
+   L13
+    LOCALVARIABLE j I L9 L10 7
+    LOCALVARIABLE i I L6 L7 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L13 0
+    LOCALVARIABLE rowIndices [I L0 L13 1
+    LOCALVARIABLE columnIndices [I L0 L13 2
+    LOCALVARIABLE m I L1 L13 3
+    LOCALVARIABLE n I L2 L13 4
+    LOCALVARIABLE result Lorg/la4j/Matrix; L5 L13 5
+    MAXSTACK = 7
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public each(Lorg/la4j/matrix/functor/MatrixProcedure;)V
+   L0
+    LINENUMBER 1368 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 2
+   L1
+    LINENUMBER 1370 L1
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixProcedure org/la4j/iterator/MatrixIterator] []
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1371 L3
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 3
+   L4
+    LINENUMBER 1372 L4
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 5
+   L5
+    LINENUMBER 1373 L5
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 6
+   L6
+    LINENUMBER 1374 L6
+    ALOAD 1
+    ILOAD 5
+    ILOAD 6
+    DLOAD 3
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixProcedure.apply (IID)V
+   L7
+    LINENUMBER 1375 L7
+    GOTO L1
+   L2
+    LINENUMBER 1376 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixProcedure org/la4j/iterator/MatrixIterator] []
+    RETURN
+   L8
+    LOCALVARIABLE x D L4 L7 3
+    LOCALVARIABLE i I L5 L7 5
+    LOCALVARIABLE j I L6 L7 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE procedure Lorg/la4j/matrix/functor/MatrixProcedure; L0 L8 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L8 2
+    MAXSTACK = 5
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public eachInRow(ILorg/la4j/vector/functor/VectorProcedure;)V
+   L0
+    LINENUMBER 1385 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfRow (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 1387 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorProcedure org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1388 L3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L4
+    LINENUMBER 1389 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 6
+   L5
+    LINENUMBER 1390 L5
+    ALOAD 2
+    ILOAD 6
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/vector/functor/VectorProcedure.apply (ID)V
+   L6
+    LINENUMBER 1391 L6
+    GOTO L1
+   L2
+    LINENUMBER 1392 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorProcedure org/la4j/iterator/VectorIterator] []
+    RETURN
+   L7
+    LOCALVARIABLE x D L4 L6 4
+    LOCALVARIABLE j I L5 L6 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE i I L0 L7 1
+    LOCALVARIABLE procedure Lorg/la4j/vector/functor/VectorProcedure; L0 L7 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L7 3
+    MAXSTACK = 4
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public eachInColumn(ILorg/la4j/vector/functor/VectorProcedure;)V
+   L0
+    LINENUMBER 1401 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfColumn (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 1403 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorProcedure org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1404 L3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L4
+    LINENUMBER 1405 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 6
+   L5
+    LINENUMBER 1406 L5
+    ALOAD 2
+    ILOAD 6
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/vector/functor/VectorProcedure.apply (ID)V
+   L6
+    LINENUMBER 1407 L6
+    GOTO L1
+   L2
+    LINENUMBER 1408 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorProcedure org/la4j/iterator/VectorIterator] []
+    RETURN
+   L7
+    LOCALVARIABLE x D L4 L6 4
+    LOCALVARIABLE i I L5 L6 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE j I L0 L7 1
+    LOCALVARIABLE procedure Lorg/la4j/vector/functor/VectorProcedure; L0 L7 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L7 3
+    MAXSTACK = 4
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public max()D
+   L0
+    LINENUMBER 1416 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrices.mkMaxAccumulator ()Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public min()D
+   L0
+    LINENUMBER 1425 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrices.mkMinAccumulator ()Lorg/la4j/matrix/functor/MatrixAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.fold (Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public maxInRow(I)D
+   L0
+    LINENUMBER 1436 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/Vectors.mkMaxAccumulator ()Lorg/la4j/vector/functor/VectorAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.foldRow (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE i I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public minInRow(I)D
+   L0
+    LINENUMBER 1447 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/Vectors.mkMinAccumulator ()Lorg/la4j/vector/functor/VectorAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.foldRow (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE i I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public maxInColumn(I)D
+   L0
+    LINENUMBER 1458 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/Vectors.mkMaxAccumulator ()Lorg/la4j/vector/functor/VectorAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.foldColumn (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE j I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public minInColumn(I)D
+   L0
+    LINENUMBER 1469 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/Vectors.mkMinAccumulator ()Lorg/la4j/vector/functor/VectorAccumulator;
+    INVOKEVIRTUAL org/la4j/Matrix.foldColumn (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE j I L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public transform(Lorg/la4j/matrix/functor/MatrixFunction;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1480 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.blank ()Lorg/la4j/Matrix;
+    ASTORE 2
+   L1
+    LINENUMBER 1481 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 3
+   L2
+    LINENUMBER 1483 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixFunction org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 1484 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L5
+    LINENUMBER 1485 L5
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 6
+   L6
+    LINENUMBER 1486 L6
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 7
+   L7
+    LINENUMBER 1487 L7
+    ALOAD 2
+    ILOAD 6
+    ILOAD 7
+    ALOAD 1
+    ILOAD 6
+    ILOAD 7
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixFunction.evaluate (IID)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L8
+    LINENUMBER 1488 L8
+    GOTO L2
+   L3
+    LINENUMBER 1490 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixFunction org/la4j/Matrix org/la4j/iterator/MatrixIterator] []
+    ALOAD 2
+    ARETURN
+   L9
+    LOCALVARIABLE x D L5 L8 4
+    LOCALVARIABLE i I L6 L8 6
+    LOCALVARIABLE j I L7 L8 7
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE function Lorg/la4j/matrix/functor/MatrixFunction; L0 L9 1
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L9 2
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L2 L9 3
+    MAXSTACK = 8
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public transformRow(ILorg/la4j/vector/functor/VectorFunction;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1503 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.copy ()Lorg/la4j/Matrix;
+    ASTORE 3
+   L1
+    LINENUMBER 1504 L1
+    ALOAD 3
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfRow (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 4
+   L2
+    LINENUMBER 1506 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/Matrix org/la4j/iterator/VectorIterator] []
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 1507 L4
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 5
+   L5
+    LINENUMBER 1508 L5
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 7
+   L6
+    LINENUMBER 1509 L6
+    ALOAD 4
+    ALOAD 2
+    ILOAD 7
+    DLOAD 5
+    INVOKEINTERFACE org/la4j/vector/functor/VectorFunction.evaluate (ID)D
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+   L7
+    LINENUMBER 1510 L7
+    GOTO L2
+   L3
+    LINENUMBER 1512 L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/Matrix org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    ARETURN
+   L8
+    LOCALVARIABLE x D L5 L7 5
+    LOCALVARIABLE j I L6 L7 7
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE i I L0 L8 1
+    LOCALVARIABLE function Lorg/la4j/vector/functor/VectorFunction; L0 L8 2
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L8 3
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L2 L8 4
+    MAXSTACK = 5
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public transformColumn(ILorg/la4j/vector/functor/VectorFunction;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 1525 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.copy ()Lorg/la4j/Matrix;
+    ASTORE 3
+   L1
+    LINENUMBER 1526 L1
+    ALOAD 3
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfColumn (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 4
+   L2
+    LINENUMBER 1528 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/Matrix org/la4j/iterator/VectorIterator] []
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 1529 L4
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 5
+   L5
+    LINENUMBER 1530 L5
+    ALOAD 4
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 7
+   L6
+    LINENUMBER 1531 L6
+    ALOAD 4
+    ALOAD 2
+    ILOAD 7
+    DLOAD 5
+    INVOKEINTERFACE org/la4j/vector/functor/VectorFunction.evaluate (ID)D
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+   L7
+    LINENUMBER 1532 L7
+    GOTO L2
+   L3
+    LINENUMBER 1534 L3
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/Matrix org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    ARETURN
+   L8
+    LOCALVARIABLE x D L5 L7 5
+    LOCALVARIABLE i I L6 L7 7
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE j I L0 L8 1
+    LOCALVARIABLE function Lorg/la4j/vector/functor/VectorFunction; L0 L8 2
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L8 3
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L2 L8 4
+    MAXSTACK = 5
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public update(Lorg/la4j/matrix/functor/MatrixFunction;)V
+   L0
+    LINENUMBER 1543 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 2
+   L1
+    LINENUMBER 1545 L1
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixFunction org/la4j/iterator/MatrixIterator] []
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1546 L3
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 3
+   L4
+    LINENUMBER 1547 L4
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 5
+   L5
+    LINENUMBER 1548 L5
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 6
+   L6
+    LINENUMBER 1549 L6
+    ALOAD 2
+    ALOAD 1
+    ILOAD 5
+    ILOAD 6
+    DLOAD 3
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixFunction.evaluate (IID)D
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.set (D)V
+   L7
+    LINENUMBER 1550 L7
+    GOTO L1
+   L2
+    LINENUMBER 1551 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixFunction org/la4j/iterator/MatrixIterator] []
+    RETURN
+   L8
+    LOCALVARIABLE x D L4 L7 3
+    LOCALVARIABLE i I L5 L7 5
+    LOCALVARIABLE j I L6 L7 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE function Lorg/la4j/matrix/functor/MatrixFunction; L0 L8 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L8 2
+    MAXSTACK = 6
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public updateAt(IILorg/la4j/matrix/functor/MatrixFunction;)V
+   L0
+    LINENUMBER 1561 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    ALOAD 3
+    ILOAD 1
+    ILOAD 2
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixFunction.evaluate (IID)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L1
+    LINENUMBER 1562 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    LOCALVARIABLE j I L0 L2 2
+    LOCALVARIABLE function Lorg/la4j/matrix/functor/MatrixFunction; L0 L2 3
+    MAXSTACK = 9
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public updateRow(ILorg/la4j/vector/functor/VectorFunction;)V
+   L0
+    LINENUMBER 1571 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfRow (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 1573 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1574 L3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L4
+    LINENUMBER 1575 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 6
+   L5
+    LINENUMBER 1576 L5
+    ALOAD 3
+    ALOAD 2
+    ILOAD 6
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/vector/functor/VectorFunction.evaluate (ID)D
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+   L6
+    LINENUMBER 1577 L6
+    GOTO L1
+   L2
+    LINENUMBER 1578 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/iterator/VectorIterator] []
+    RETURN
+   L7
+    LOCALVARIABLE x D L4 L6 4
+    LOCALVARIABLE j I L5 L6 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE i I L0 L7 1
+    LOCALVARIABLE function Lorg/la4j/vector/functor/VectorFunction; L0 L7 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L7 3
+    MAXSTACK = 5
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public updateColumn(ILorg/la4j/vector/functor/VectorFunction;)V
+   L0
+    LINENUMBER 1587 L0
+    ALOAD 0
+    ILOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.iteratorOfColumn (I)Lorg/la4j/iterator/VectorIterator;
+    ASTORE 3
+   L1
+    LINENUMBER 1589 L1
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/iterator/VectorIterator] []
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.hasNext ()Z
+    IFEQ L2
+   L3
+    LINENUMBER 1590 L3
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L4
+    LINENUMBER 1591 L4
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.index ()I
+    ISTORE 6
+   L5
+    LINENUMBER 1592 L5
+    ALOAD 3
+    ALOAD 2
+    ILOAD 6
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/vector/functor/VectorFunction.evaluate (ID)D
+    INVOKEVIRTUAL org/la4j/iterator/VectorIterator.set (D)V
+   L6
+    LINENUMBER 1593 L6
+    GOTO L1
+   L2
+    LINENUMBER 1594 L2
+   FRAME FULL [org/la4j/Matrix I org/la4j/vector/functor/VectorFunction org/la4j/iterator/VectorIterator] []
+    RETURN
+   L7
+    LOCALVARIABLE x D L4 L6 4
+    LOCALVARIABLE i I L5 L6 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE j I L0 L7 1
+    LOCALVARIABLE function Lorg/la4j/vector/functor/VectorFunction; L0 L7 2
+    LOCALVARIABLE it Lorg/la4j/iterator/VectorIterator; L1 L7 3
+    MAXSTACK = 5
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public fold(Lorg/la4j/matrix/functor/MatrixAccumulator;)D
+   L0
+    LINENUMBER 1604 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESTATIC org/la4j/Matrices.asAccumulatorProcedure (Lorg/la4j/matrix/functor/MatrixAccumulator;)Lorg/la4j/matrix/functor/MatrixProcedure;
+    INVOKEVIRTUAL org/la4j/Matrix.each (Lorg/la4j/matrix/functor/MatrixProcedure;)V
+   L1
+    LINENUMBER 1605 L1
+    ALOAD 1
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixAccumulator.accumulate ()D
+    DRETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE accumulator Lorg/la4j/matrix/functor/MatrixAccumulator; L0 L2 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public foldRow(ILorg/la4j/vector/functor/VectorAccumulator;)D
+   L0
+    LINENUMBER 1617 L0
+    ALOAD 0
+    ILOAD 1
+    ALOAD 2
+    INVOKESTATIC org/la4j/Vectors.asAccumulatorProcedure (Lorg/la4j/vector/functor/VectorAccumulator;)Lorg/la4j/vector/functor/VectorProcedure;
+    INVOKEVIRTUAL org/la4j/Matrix.eachInRow (ILorg/la4j/vector/functor/VectorProcedure;)V
+   L1
+    LINENUMBER 1618 L1
+    ALOAD 2
+    INVOKEINTERFACE org/la4j/vector/functor/VectorAccumulator.accumulate ()D
+    DRETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    LOCALVARIABLE accumulator Lorg/la4j/vector/functor/VectorAccumulator; L0 L2 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public foldRows(Lorg/la4j/vector/functor/VectorAccumulator;)[D
+   L0
+    LINENUMBER 1629 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    NEWARRAY T_DOUBLE
+    ASTORE 2
+   L1
+    LINENUMBER 1631 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/Matrix org/la4j/vector/functor/VectorAccumulator [D I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 1632 L4
+    ALOAD 2
+    ILOAD 3
+    ALOAD 0
+    ILOAD 3
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.foldRow (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DASTORE
+   L5
+    LINENUMBER 1631 L5
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 1635 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/vector/functor/VectorAccumulator [D I] []
+    ALOAD 2
+    ARETURN
+   L6
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L6 0
+    LOCALVARIABLE accumulator Lorg/la4j/vector/functor/VectorAccumulator; L0 L6 1
+    LOCALVARIABLE result [D L1 L6 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public foldColumn(ILorg/la4j/vector/functor/VectorAccumulator;)D
+   L0
+    LINENUMBER 1647 L0
+    ALOAD 0
+    ILOAD 1
+    ALOAD 2
+    INVOKESTATIC org/la4j/Vectors.asAccumulatorProcedure (Lorg/la4j/vector/functor/VectorAccumulator;)Lorg/la4j/vector/functor/VectorProcedure;
+    INVOKEVIRTUAL org/la4j/Matrix.eachInColumn (ILorg/la4j/vector/functor/VectorProcedure;)V
+   L1
+    LINENUMBER 1648 L1
+    ALOAD 2
+    INVOKEINTERFACE org/la4j/vector/functor/VectorAccumulator.accumulate ()D
+    DRETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE j I L0 L2 1
+    LOCALVARIABLE accumulator Lorg/la4j/vector/functor/VectorAccumulator; L0 L2 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public foldColumns(Lorg/la4j/vector/functor/VectorAccumulator;)[D
+   L0
+    LINENUMBER 1659 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    NEWARRAY T_DOUBLE
+    ASTORE 2
+   L1
+    LINENUMBER 1661 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/Matrix org/la4j/vector/functor/VectorAccumulator [D I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 1662 L4
+    ALOAD 2
+    ILOAD 3
+    ALOAD 0
+    ILOAD 3
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.foldColumn (ILorg/la4j/vector/functor/VectorAccumulator;)D
+    DASTORE
+   L5
+    LINENUMBER 1661 L5
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 1665 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/vector/functor/VectorAccumulator [D I] []
+    ALOAD 2
+    ARETURN
+   L6
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L6 0
+    LOCALVARIABLE accumulator Lorg/la4j/vector/functor/VectorAccumulator; L0 L6 1
+    LOCALVARIABLE result [D L1 L6 2
+    MAXSTACK = 5
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public is(Lorg/la4j/matrix/functor/MatrixPredicate;)Z
+   L0
+    LINENUMBER 1676 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 2
+   L1
+    LINENUMBER 1677 L1
+    ALOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixPredicate.test (II)Z
+    ISTORE 3
+   L2
+    LINENUMBER 1679 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixPredicate org/la4j/iterator/MatrixIterator I] []
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+    ILOAD 3
+    IFEQ L3
+   L4
+    LINENUMBER 1680 L4
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DSTORE 4
+   L5
+    LINENUMBER 1681 L5
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.rowIndex ()I
+    ISTORE 6
+   L6
+    LINENUMBER 1682 L6
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.columnIndex ()I
+    ISTORE 7
+   L7
+    LINENUMBER 1683 L7
+    ALOAD 1
+    ILOAD 6
+    ILOAD 7
+    DLOAD 4
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixPredicate.test (IID)Z
+    ISTORE 3
+   L8
+    LINENUMBER 1684 L8
+    GOTO L2
+   L3
+    LINENUMBER 1686 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixPredicate org/la4j/iterator/MatrixIterator I] []
+    ILOAD 3
+    IRETURN
+   L9
+    LOCALVARIABLE x D L5 L8 4
+    LOCALVARIABLE i I L6 L8 6
+    LOCALVARIABLE j I L7 L8 7
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L9 0
+    LOCALVARIABLE predicate Lorg/la4j/matrix/functor/MatrixPredicate; L0 L9 1
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L9 2
+    LOCALVARIABLE result Z L2 L9 3
+    MAXSTACK = 5
+    MAXLOCALS = 8
+
+  // access flags 0x1
+  public is(Lorg/la4j/matrix/functor/AdvancedMatrixPredicate;)Z
+   L0
+    LINENUMBER 1697 L0
+    ALOAD 1
+    ALOAD 0
+    INVOKEINTERFACE org/la4j/matrix/functor/AdvancedMatrixPredicate.test (Lorg/la4j/Matrix;)Z
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE predicate Lorg/la4j/matrix/functor/AdvancedMatrixPredicate; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public non(Lorg/la4j/matrix/functor/MatrixPredicate;)Z
+   L0
+    LINENUMBER 1708 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.is (Lorg/la4j/matrix/functor/MatrixPredicate;)Z
+    IFNE L1
+    ICONST_1
+    GOTO L2
+   L1
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixPredicate] []
+    ICONST_0
+   L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/MatrixPredicate] [I]
+    IRETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L3 0
+    LOCALVARIABLE predicate Lorg/la4j/matrix/functor/MatrixPredicate; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public non(Lorg/la4j/matrix/functor/AdvancedMatrixPredicate;)Z
+   L0
+    LINENUMBER 1719 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.is (Lorg/la4j/matrix/functor/AdvancedMatrixPredicate;)Z
+    IFNE L1
+    ICONST_1
+    GOTO L2
+   L1
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/AdvancedMatrixPredicate] []
+    ICONST_0
+   L2
+   FRAME FULL [org/la4j/Matrix org/la4j/matrix/functor/AdvancedMatrixPredicate] [I]
+    IRETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L3 0
+    LOCALVARIABLE predicate Lorg/la4j/matrix/functor/AdvancedMatrixPredicate; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public toRowVector()Lorg/la4j/Vector;
+   L0
+    LINENUMBER 1728 L0
+    ALOAD 0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.getRow (I)Lorg/la4j/Vector;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toColumnVector()Lorg/la4j/Vector;
+   L0
+    LINENUMBER 1737 L0
+    ALOAD 0
+    ICONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.getColumn (I)Lorg/la4j/Vector;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public withSolver(Lorg/la4j/LinearAlgebra$SolverFactory;)Lorg/la4j/linear/LinearSystemSolver;
+   L0
+    LINENUMBER 1748 L0
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/LinearAlgebra$SolverFactory.create (Lorg/la4j/Matrix;)Lorg/la4j/linear/LinearSystemSolver;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE factory Lorg/la4j/LinearAlgebra$SolverFactory; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public withInverter(Lorg/la4j/LinearAlgebra$InverterFactory;)Lorg/la4j/inversion/MatrixInverter;
+   L0
+    LINENUMBER 1759 L0
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/LinearAlgebra$InverterFactory.create (Lorg/la4j/Matrix;)Lorg/la4j/inversion/MatrixInverter;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE factory Lorg/la4j/LinearAlgebra$InverterFactory; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public withDecompositor(Lorg/la4j/LinearAlgebra$DecompositorFactory;)Lorg/la4j/decomposition/MatrixDecompositor;
+   L0
+    LINENUMBER 1770 L0
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/LinearAlgebra$DecompositorFactory.create (Lorg/la4j/Matrix;)Lorg/la4j/decomposition/MatrixDecompositor;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE factory Lorg/la4j/LinearAlgebra$DecompositorFactory; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public equals(Lorg/la4j/Matrix;D)Z
+   L0
+    LINENUMBER 1782 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPNE L1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPEQ L2
+   L1
+    LINENUMBER 1783 L1
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D] []
+    ICONST_0
+    IRETURN
+   L2
+    LINENUMBER 1786 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D] []
+    ICONST_1
+    ISTORE 4
+   L3
+    LINENUMBER 1788 L3
+    ICONST_0
+    ISTORE 5
+   L4
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I] []
+    ILOAD 4
+    IFEQ L5
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 1789 L6
+    ICONST_0
+    ISTORE 6
+   L7
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I I] []
+    ILOAD 4
+    IFEQ L8
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 1790 L9
+    ALOAD 0
+    ILOAD 5
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 7
+   L10
+    LINENUMBER 1791 L10
+    ALOAD 1
+    ILOAD 5
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 9
+   L11
+    LINENUMBER 1792 L11
+    DLOAD 7
+    DLOAD 9
+    DSUB
+    INVOKESTATIC java/lang/Math.abs (D)D
+    DSTORE 11
+   L12
+    LINENUMBER 1794 L12
+    DLOAD 7
+    DLOAD 9
+    DCMPL
+    IFEQ L13
+    DLOAD 11
+    DLOAD 2
+    DCMPG
+    IFLT L13
+    DLOAD 11
+    DLOAD 7
+    INVOKESTATIC java/lang/Math.abs (D)D
+    DLOAD 9
+    INVOKESTATIC java/lang/Math.abs (D)D
+    INVOKESTATIC java/lang/Math.max (DD)D
+    DDIV
+    DLOAD 2
+    DCMPG
+    IFGE L14
+   L13
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I I D D D] []
+    ICONST_1
+    GOTO L15
+   L14
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I I D D D] []
+    ICONST_0
+   L15
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I I D D D] [I]
+    ISTORE 4
+   L16
+    LINENUMBER 1789 L16
+    IINC 6 1
+    GOTO L7
+   L8
+    LINENUMBER 1788 L8
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I I] []
+    IINC 5 1
+    GOTO L4
+   L5
+    LINENUMBER 1798 L5
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix D I I] []
+    ILOAD 4
+    IRETURN
+   L17
+    LOCALVARIABLE a D L10 L16 7
+    LOCALVARIABLE b D L11 L16 9
+    LOCALVARIABLE diff D L12 L16 11
+    LOCALVARIABLE j I L7 L8 6
+    LOCALVARIABLE i I L4 L5 5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L17 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L17 1
+    LOCALVARIABLE precision D L0 L17 2
+    LOCALVARIABLE result Z L3 L17 4
+    MAXSTACK = 6
+    MAXLOCALS = 13
+
+  // access flags 0x1
+  public mkString(Ljava/text/NumberFormat;)Ljava/lang/String;
+   L0
+    LINENUMBER 1809 L0
+    ALOAD 0
+    ALOAD 1
+    LDC "\n"
+    LDC " "
+    INVOKEVIRTUAL org/la4j/Matrix.mkString (Ljava/text/NumberFormat;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE formatter Ljava/text/NumberFormat; L0 L1 1
+    MAXSTACK = 4
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public mkString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   L0
+    LINENUMBER 1821 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrix.DEFAULT_FORMATTER : Ljava/text/NumberFormat;
+    ALOAD 1
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.mkString (Ljava/text/NumberFormat;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE rowsDelimiter Ljava/lang/String; L0 L1 1
+    LOCALVARIABLE columnsDelimiter Ljava/lang/String; L0 L1 2
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public mkString(Ljava/text/NumberFormat;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   L0
+    LINENUMBER 1835 L0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    NEWARRAY T_INT
+    ASTORE 4
+   L1
+    LINENUMBER 1837 L1
+    ICONST_0
+    ISTORE 5
+   L2
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I] []
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 1838 L4
+    ICONST_0
+    ISTORE 6
+   L5
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I I] []
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 1839 L7
+    ALOAD 0
+    ILOAD 5
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 7
+   L8
+    LINENUMBER 1840 L8
+    ALOAD 1
+    DLOAD 7
+    INVOKEVIRTUAL java/text/NumberFormat.format (D)Ljava/lang/String;
+    ASTORE 9
+   L9
+    LINENUMBER 1841 L9
+    ALOAD 9
+    INVOKEVIRTUAL java/lang/String.length ()I
+    ISTORE 10
+   L10
+    LINENUMBER 1842 L10
+    ALOAD 4
+    ILOAD 6
+    ILOAD 10
+    ALOAD 4
+    ILOAD 6
+    IALOAD
+    IF_ICMPLE L11
+    ILOAD 10
+    GOTO L12
+   L11
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I I D java/lang/String I] [[I I]
+    ALOAD 4
+    ILOAD 6
+    IALOAD
+   L12
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I I D java/lang/String I] [[I I I]
+    IASTORE
+   L13
+    LINENUMBER 1838 L13
+    IINC 6 1
+    GOTO L5
+   L6
+    LINENUMBER 1837 L6
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I I] []
+    IINC 5 1
+    GOTO L2
+   L3
+    LINENUMBER 1846 L3
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I I] []
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    ASTORE 5
+   L14
+    LINENUMBER 1848 L14
+    ICONST_0
+    ISTORE 6
+   L15
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I] []
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPGE L16
+   L17
+    LINENUMBER 1849 L17
+    ICONST_0
+    ISTORE 7
+   L18
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I] []
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPGE L19
+   L20
+    LINENUMBER 1850 L20
+    ALOAD 1
+    ALOAD 0
+    ILOAD 6
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKEVIRTUAL java/text/NumberFormat.format (D)Ljava/lang/String;
+    ASTORE 8
+   L21
+    LINENUMBER 1851 L21
+    ALOAD 8
+    INVOKEVIRTUAL java/lang/String.length ()I
+    ISTORE 9
+   L22
+    LINENUMBER 1853 L22
+    ILOAD 9
+    ALOAD 4
+    ILOAD 7
+    IALOAD
+    IF_ICMPGE L23
+   L24
+    LINENUMBER 1854 L24
+    ALOAD 4
+    ILOAD 7
+    IALOAD
+    ILOAD 9
+    ISUB
+    ISTORE 10
+   L25
+    LINENUMBER 1855 L25
+    ILOAD 10
+    GETSTATIC org/la4j/Matrix.INDENTS : [Ljava/lang/String;
+    ARRAYLENGTH
+    ICONST_1
+    ISUB
+    IF_ICMPLE L26
+   L27
+    LINENUMBER 1856 L27
+    ALOAD 0
+    ALOAD 5
+    ILOAD 10
+    INVOKESPECIAL org/la4j/Matrix.indent (Ljava/lang/StringBuilder;I)V
+    GOTO L23
+   L26
+    LINENUMBER 1858 L26
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I java/lang/String I I] []
+    ALOAD 5
+    GETSTATIC org/la4j/Matrix.INDENTS : [Ljava/lang/String;
+    ILOAD 10
+    ICONST_1
+    ISUB
+    AALOAD
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    POP
+   L23
+    LINENUMBER 1862 L23
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I java/lang/String I] []
+    ALOAD 5
+    ALOAD 8
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ICONST_1
+    ISUB
+    IF_ICMPGE L28
+    ALOAD 3
+    GOTO L29
+   L28
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I java/lang/String I] [java/lang/StringBuilder]
+    LDC ""
+   L29
+    LINENUMBER 1863 L29
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I java/lang/String I] [java/lang/StringBuilder java/lang/String]
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    POP
+   L30
+    LINENUMBER 1849 L30
+    IINC 7 1
+    GOTO L18
+   L19
+    LINENUMBER 1865 L19
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I I] []
+    ALOAD 5
+    ALOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    POP
+   L31
+    LINENUMBER 1848 L31
+    IINC 6 1
+    GOTO L15
+   L16
+    LINENUMBER 1868 L16
+   FRAME FULL [org/la4j/Matrix java/text/NumberFormat java/lang/String java/lang/String [I java/lang/StringBuilder I] []
+    ALOAD 5
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    ARETURN
+   L32
+    LOCALVARIABLE value D L8 L13 7
+    LOCALVARIABLE output Ljava/lang/String; L9 L13 9
+    LOCALVARIABLE size I L10 L13 10
+    LOCALVARIABLE j I L5 L6 6
+    LOCALVARIABLE i I L2 L3 5
+    LOCALVARIABLE align I L25 L23 10
+    LOCALVARIABLE output Ljava/lang/String; L21 L30 8
+    LOCALVARIABLE outputLength I L22 L30 9
+    LOCALVARIABLE j I L18 L19 7
+    LOCALVARIABLE i I L15 L16 6
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L32 0
+    LOCALVARIABLE formatter Ljava/text/NumberFormat; L0 L32 1
+    LOCALVARIABLE rowsDelimiter Ljava/lang/String; L0 L32 2
+    LOCALVARIABLE columnsDelimiter Ljava/lang/String; L0 L32 3
+    LOCALVARIABLE formats [I L1 L32 4
+    LOCALVARIABLE sb Ljava/lang/StringBuilder; L14 L32 5
+    MAXSTACK = 5
+    MAXLOCALS = 11
+
+  // access flags 0x1
+  public toString()Ljava/lang/String;
+   L0
+    LINENUMBER 1873 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrix.DEFAULT_FORMATTER : Ljava/text/NumberFormat;
+    LDC "\n"
+    LDC " "
+    INVOKEVIRTUAL org/la4j/Matrix.mkString (Ljava/text/NumberFormat;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 4
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public iterator()Lorg/la4j/iterator/MatrixIterator;
+   L0
+    LINENUMBER 1883 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rowMajorIterator ()Lorg/la4j/iterator/RowMajorMatrixIterator;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public rowMajorIterator()Lorg/la4j/iterator/RowMajorMatrixIterator;
+   L0
+    LINENUMBER 1892 L0
+    NEW org/la4j/Matrix$1
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKESPECIAL org/la4j/Matrix$1.<init> (Lorg/la4j/Matrix;II)V
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 5
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public columnMajorIterator()Lorg/la4j/iterator/ColumnMajorMatrixIterator;
+   L0
+    LINENUMBER 1939 L0
+    NEW org/la4j/Matrix$2
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKESPECIAL org/la4j/Matrix$2.<init> (Lorg/la4j/Matrix;II)V
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 5
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public iteratorOfRow(I)Lorg/la4j/iterator/VectorIterator;
+   L0
+    LINENUMBER 1985 L0
+    ILOAD 1
+    ISTORE 2
+   L1
+    LINENUMBER 1986 L1
+    NEW org/la4j/Matrix$3
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    ILOAD 2
+    INVOKESPECIAL org/la4j/Matrix$3.<init> (Lorg/la4j/Matrix;II)V
+    ARETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    LOCALVARIABLE ii I L1 L2 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public iteratorOfColumn(I)Lorg/la4j/iterator/VectorIterator;
+   L0
+    LINENUMBER 2026 L0
+    ILOAD 1
+    ISTORE 2
+   L1
+    LINENUMBER 2027 L1
+    NEW org/la4j/Matrix$4
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ILOAD 2
+    INVOKESPECIAL org/la4j/Matrix$4.<init> (Lorg/la4j/Matrix;II)V
+    ARETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L2 0
+    LOCALVARIABLE j I L0 L2 1
+    LOCALVARIABLE jj I L1 L2 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public hashCode()I
+   L0
+    LINENUMBER 2062 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ASTORE 1
+   L1
+    LINENUMBER 2063 L1
+    BIPUSH 17
+    ISTORE 2
+   L2
+    LINENUMBER 2065 L2
+   FRAME FULL [org/la4j/Matrix org/la4j/iterator/MatrixIterator I] []
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.hasNext ()Z
+    IFEQ L3
+   L4
+    LINENUMBER 2066 L4
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/iterator/MatrixIterator.next ()Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.longValue ()J
+    LSTORE 3
+   L5
+    LINENUMBER 2067 L5
+    BIPUSH 37
+    ILOAD 2
+    IMUL
+    LLOAD 3
+    LLOAD 3
+    BIPUSH 32
+    LUSHR
+    LXOR
+    L2I
+    IADD
+    ISTORE 2
+   L6
+    LINENUMBER 2068 L6
+    GOTO L2
+   L3
+    LINENUMBER 2070 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/iterator/MatrixIterator I] []
+    ILOAD 2
+    IRETURN
+   L7
+    LOCALVARIABLE value J L5 L6 3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L7 0
+    LOCALVARIABLE it Lorg/la4j/iterator/MatrixIterator; L1 L7 1
+    LOCALVARIABLE result I L2 L7 2
+    MAXSTACK = 6
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public equals(Ljava/lang/Object;)Z
+   L0
+    LINENUMBER 2075 L0
+    ALOAD 0
+    ALOAD 1
+    IF_ACMPNE L1
+   L2
+    LINENUMBER 2076 L2
+    ICONST_1
+    IRETURN
+   L1
+    LINENUMBER 2078 L1
+   FRAME FULL [org/la4j/Matrix java/lang/Object] []
+    ALOAD 1
+    IFNONNULL L3
+   L4
+    LINENUMBER 2079 L4
+    ICONST_0
+    IRETURN
+   L3
+    LINENUMBER 2082 L3
+   FRAME FULL [org/la4j/Matrix java/lang/Object] []
+    ALOAD 1
+    INSTANCEOF org/la4j/Matrix
+    IFNE L5
+   L6
+    LINENUMBER 2083 L6
+    ICONST_0
+    IRETURN
+   L5
+    LINENUMBER 2086 L5
+   FRAME FULL [org/la4j/Matrix java/lang/Object] []
+    ALOAD 1
+    CHECKCAST org/la4j/Matrix
+    ASTORE 2
+   L7
+    LINENUMBER 2088 L7
+    ALOAD 0
+    ALOAD 2
+    GETSTATIC org/la4j/Matrices.EPS : D
+    INVOKEVIRTUAL org/la4j/Matrix.equals (Lorg/la4j/Matrix;D)Z
+    IRETURN
+   L8
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L8 0
+    LOCALVARIABLE o Ljava/lang/Object; L0 L8 1
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L7 L8 2
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  // signature <T:Lorg/la4j/Matrix;>(Lorg/la4j/matrix/MatrixFactory<TT;>;)TT;
+  // declaration: T to<T extends org.la4j.Matrix>(org.la4j.matrix.MatrixFactory<T>)
+  public to(Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 2100 L0
+    ALOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    INVOKEVIRTUAL org/la4j/matrix/MatrixFactory.apply (II)Lorg/la4j/Matrix;
+    ASTORE 2
+   L1
+    LINENUMBER 2101 L1
+    ALOAD 0
+    GETSTATIC org/la4j/LinearAlgebra.IN_PLACE_COPY_MATRIX_TO_MATRIX : Lorg/la4j/operation/MatrixMatrixOperation;
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.apply (Lorg/la4j/operation/MatrixMatrixOperation;Lorg/la4j/Matrix;)Ljava/lang/Object;
+    POP
+   L2
+    LINENUMBER 2102 L2
+    ALOAD 2
+    ARETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L3 0
+    LOCALVARIABLE factory Lorg/la4j/matrix/MatrixFactory; L0 L3 1
+    // signature Lorg/la4j/matrix/MatrixFactory<TT;>;
+    // declaration: org.la4j.matrix.MatrixFactory<T>
+    LOCALVARIABLE result Lorg/la4j/Matrix; L1 L3 2
+    // signature TT;
+    // declaration: T
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public toSparseMatrix()Lorg/la4j/matrix/SparseMatrix;
+   L0
+    LINENUMBER 2111 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrices.SPARSE : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/SparseMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toDenseMatrix()Lorg/la4j/matrix/DenseMatrix;
+   L0
+    LINENUMBER 2120 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrices.DENSE : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/DenseMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toRowMajorSparseMatrix()Lorg/la4j/matrix/RowMajorSparseMatrix;
+   L0
+    LINENUMBER 2129 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrices.SPARSE_ROW_MAJOR : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/RowMajorSparseMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toColumnMajorSparseMatrix()Lorg/la4j/matrix/ColumnMajorSparseMatrix;
+   L0
+    LINENUMBER 2138 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrices.SPARSE_COLUMN_MAJOR : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/ColumnMajorSparseMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toCSV()Ljava/lang/String;
+   L0
+    LINENUMBER 2147 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrix.DEFAULT_FORMATTER : Ljava/text/NumberFormat;
+    INVOKEVIRTUAL org/la4j/Matrix.toCSV (Ljava/text/NumberFormat;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toMatrixMarket()Ljava/lang/String;
+   L0
+    LINENUMBER 2156 L0
+    ALOAD 0
+    GETSTATIC org/la4j/Matrix.DEFAULT_FORMATTER : Ljava/text/NumberFormat;
+    INVOKEVIRTUAL org/la4j/Matrix.toMatrixMarket (Ljava/text/NumberFormat;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toCSV(Ljava/text/NumberFormat;)Ljava/lang/String;
+   L0
+    LINENUMBER 2168 L0
+    ALOAD 0
+    ALOAD 1
+    LDC "\n"
+    LDC ", "
+    INVOKEVIRTUAL org/la4j/Matrix.mkString (Ljava/text/NumberFormat;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE formatter Ljava/text/NumberFormat; L0 L1 1
+    MAXSTACK = 4
+    MAXLOCALS = 2
+
+  // access flags 0x4
+  protected ensureDimensionsAreCorrect(II)V
+   L0
+    LINENUMBER 2172 L0
+    ILOAD 1
+    IFLT L1
+    ILOAD 2
+    IFGE L2
+   L1
+    LINENUMBER 2173 L1
+   FRAME FULL [org/la4j/Matrix I I] []
+    ALOAD 0
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Wrong matrix dimensions: "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "x"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L2
+    LINENUMBER 2175 L2
+   FRAME FULL [org/la4j/Matrix I I] []
+    ILOAD 1
+    LDC 2147483647
+    IF_ICMPEQ L3
+    ILOAD 2
+    LDC 2147483647
+    IF_ICMPNE L4
+   L3
+    LINENUMBER 2176 L3
+   FRAME FULL [org/la4j/Matrix I I] []
+    ALOAD 0
+    LDC "Wrong matrix dimensions: use 'Integer.MAX_VALUE - 1' instead."
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 2178 L4
+   FRAME FULL [org/la4j/Matrix I I] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE rows I L0 L5 1
+    LOCALVARIABLE columns I L0 L5 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x4
+  protected ensureIndexArgumentsAreInBounds(II)V
+   L0
+    LINENUMBER 2181 L0
+    ILOAD 1
+    IFLT L1
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPLT L2
+   L1
+    LINENUMBER 2182 L1
+   FRAME FULL [org/la4j/Matrix I I] []
+    ALOAD 0
+    LDC "Bad row argument %d; out of bounds"
+    ICONST_1
+    ANEWARRAY java/lang/Object
+    DUP
+    ICONST_0
+    ILOAD 1
+    INVOKESTATIC java/lang/Integer.valueOf (I)Ljava/lang/Integer;
+    AASTORE
+    INVOKESTATIC java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L2
+    LINENUMBER 2185 L2
+   FRAME FULL [org/la4j/Matrix I I] []
+    ILOAD 2
+    IFLT L3
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLT L4
+   L3
+    LINENUMBER 2186 L3
+   FRAME FULL [org/la4j/Matrix I I] []
+    ALOAD 0
+    LDC "Bad column argument %d; out of bounds"
+    ICONST_1
+    ANEWARRAY java/lang/Object
+    DUP
+    ICONST_0
+    ILOAD 2
+    INVOKESTATIC java/lang/Integer.valueOf (I)Ljava/lang/Integer;
+    AASTORE
+    INVOKESTATIC java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    INVOKEVIRTUAL org/la4j/Matrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 2188 L4
+   FRAME FULL [org/la4j/Matrix I I] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    LOCALVARIABLE j I L0 L5 2
+    MAXSTACK = 6
+    MAXLOCALS = 3
+
+  // access flags 0x4
+  protected ensureIndexesAreInBounds(II)V
+   L0
+    LINENUMBER 2191 L0
+    ILOAD 1
+    IFLT L1
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.rows : I
+    IF_ICMPLT L2
+   L1
+    LINENUMBER 2192 L1
+   FRAME FULL [org/la4j/Matrix I I] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Row '"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "' is invalid."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 2195 L2
+   FRAME FULL [org/la4j/Matrix I I] []
+    ILOAD 2
+    IFLT L3
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/Matrix.columns : I
+    IF_ICMPLT L4
+   L3
+    LINENUMBER 2196 L3
+   FRAME FULL [org/la4j/Matrix I I] []
+    NEW java/lang/IndexOutOfBoundsException
+    DUP
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "Column '"
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 2
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    LDC "' is invalid."
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKESPECIAL java/lang/IndexOutOfBoundsException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L4
+    LINENUMBER 2198 L4
+   FRAME FULL [org/la4j/Matrix I I] []
+    RETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    LOCALVARIABLE j I L0 L5 2
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x4
+  protected fail(Ljava/lang/String;)V
+   L0
+    LINENUMBER 2201 L0
+    NEW java/lang/IllegalArgumentException
+    DUP
+    ALOAD 1
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    LOCALVARIABLE message Ljava/lang/String; L0 L1 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x2
+  private indent(Ljava/lang/StringBuilder;I)V
+   L0
+    LINENUMBER 2205 L0
+   FRAME FULL [org/la4j/Matrix java/lang/StringBuilder I] []
+    ILOAD 2
+    IFLE L1
+   L2
+    LINENUMBER 2206 L2
+    ALOAD 1
+    LDC " "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    POP
+   L3
+    LINENUMBER 2207 L3
+    IINC 2 -1
+    GOTO L0
+   L1
+    LINENUMBER 2209 L1
+   FRAME FULL [org/la4j/Matrix java/lang/StringBuilder I] []
+    RETURN
+   L4
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L4 0
+    LOCALVARIABLE sb Ljava/lang/StringBuilder; L0 L4 1
+    LOCALVARIABLE howMany I L0 L4 2
+    MAXSTACK = 2
+    MAXLOCALS = 3
+
+  // access flags 0x1041
+  public synthetic bridge iterator()Ljava/util/Iterator;
+   L0
+    LINENUMBER 72 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.iterator ()Lorg/la4j/iterator/MatrixIterator;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/Matrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 76 L0
+    NEW java/text/DecimalFormat
+    DUP
+    LDC "0.000"
+    INVOKESPECIAL java/text/DecimalFormat.<init> (Ljava/lang/String;)V
+    PUTSTATIC org/la4j/Matrix.DEFAULT_FORMATTER : Ljava/text/NumberFormat;
+   L1
+    LINENUMBER 77 L1
+    BIPUSH 10
+    ANEWARRAY java/lang/String
+    DUP
+    ICONST_0
+    LDC " "
+    AASTORE
+    DUP
+    ICONST_1
+    LDC "  "
+    AASTORE
+    DUP
+    ICONST_2
+    LDC "   "
+    AASTORE
+    DUP
+    ICONST_3
+    LDC "    "
+    AASTORE
+    DUP
+    ICONST_4
+    LDC "     "
+    AASTORE
+    DUP
+    ICONST_5
+    LDC "      "
+    AASTORE
+    DUP
+    BIPUSH 6
+    LDC "       "
+    AASTORE
+    DUP
+    BIPUSH 7
+    LDC "        "
+    AASTORE
+    DUP
+    BIPUSH 8
+    LDC "         "
+    AASTORE
+    DUP
+    BIPUSH 9
+    LDC "          "
+    AASTORE
+    PUTSTATIC org/la4j/Matrix.INDENTS : [Ljava/lang/String;
+    RETURN
+    MAXSTACK = 4
+    MAXLOCALS = 0
+}
+

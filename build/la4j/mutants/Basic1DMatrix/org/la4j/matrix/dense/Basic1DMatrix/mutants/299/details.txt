@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.dense.Basic1DMatrix, method=toBinary, methodDesc=()[B], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator], filename=Basic1DMatrix.java, block=76, lineNumber=344, description=Substituted 8 with 9, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

@@ -1,0 +1,2 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.linear.LeastSquaresSolver, method=solve, methodDesc=(Lorg/la4j/Vector;)Lorg/la4j/Vector;], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=LeastSquaresSolver.java, block=1, lineNumber=58, description=changed conditional boundary, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]
+L]

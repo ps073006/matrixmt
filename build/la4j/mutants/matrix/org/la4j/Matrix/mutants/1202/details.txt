@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=slice, methodDesc=(IIII)Lorg/la4j/Matrix;], indexes=[97], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=Matrix.java, block=218, lineNumber=1293, description=removed call to org/la4j/Matrix::set, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

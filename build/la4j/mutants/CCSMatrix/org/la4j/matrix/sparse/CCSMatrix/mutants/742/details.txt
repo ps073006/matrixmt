@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.sparse.CCSMatrix, method=max, methodDesc=()D], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=CCSMatrix.java, block=166, lineNumber=655, description=negated conditional, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

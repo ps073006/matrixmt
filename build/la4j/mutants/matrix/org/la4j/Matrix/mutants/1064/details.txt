@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=removeColumn, methodDesc=(I)Lorg/la4j/Matrix;], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator], filename=Matrix.java, block=194, lineNumber=1135, description=Substituted 0 with 1, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

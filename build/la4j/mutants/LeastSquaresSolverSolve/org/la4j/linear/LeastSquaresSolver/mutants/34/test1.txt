@@ -1,0 +1,2 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.linear.LeastSquaresSolver, method=applicableTo, methodDesc=(Lorg/la4j/Matrix;)Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=LeastSquaresSolver.java, block=15, lineNumber=93, description=negated conditional, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]
+on=NORMAL]

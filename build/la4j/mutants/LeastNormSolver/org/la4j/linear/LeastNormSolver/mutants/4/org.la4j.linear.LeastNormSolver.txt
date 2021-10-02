@@ -1,0 +1,100 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/linear/LeastNormSolver extends org/la4j/linear/AbstractSolver  implements org/la4j/linear/LinearSystemSolver  {
+
+  // compiled from: LeastNormSolver.java
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$InverterFactory org/la4j/LinearAlgebra InverterFactory
+
+  // access flags 0x4
+  protected <init>(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 40 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/linear/AbstractSolver.<init> (Lorg/la4j/Matrix;)V
+   L1
+    LINENUMBER 41 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/linear/LeastNormSolver; L0 L2 0
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L2 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public solve(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 45 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/linear/LeastNormSolver.ensureRHSIsCorrect (Lorg/la4j/Vector;)V
+   L1
+    LINENUMBER 47 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/LeastNormSolver.self ()Lorg/la4j/Matrix;
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/LeastNormSolver.self ()Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.rotate ()Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+    ASTORE 2
+   L2
+    LINENUMBER 48 L2
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/LeastNormSolver.self ()Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.rotate ()Lorg/la4j/Matrix;
+    ALOAD 2
+    GETSTATIC org/la4j/LinearAlgebra$InverterFactory.GAUSS_JORDAN : Lorg/la4j/LinearAlgebra$InverterFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.withInverter (Lorg/la4j/LinearAlgebra$InverterFactory;)Lorg/la4j/inversion/MatrixInverter;
+    INVOKEINTERFACE org/la4j/inversion/MatrixInverter.inverse ()Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (Lorg/la4j/Matrix;)Lorg/la4j/Matrix;
+    ASTORE 3
+   L3
+    LINENUMBER 50 L3
+    ALOAD 3
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.multiply (Lorg/la4j/Vector;)Lorg/la4j/Vector;
+    ARETURN
+   L4
+    LOCALVARIABLE this Lorg/la4j/linear/LeastNormSolver; L0 L4 0
+    LOCALVARIABLE b Lorg/la4j/Vector; L0 L4 1
+    LOCALVARIABLE temp Lorg/la4j/Matrix; L2 L4 2
+    LOCALVARIABLE pseudoInverse Lorg/la4j/Matrix; L3 L4 3
+    MAXSTACK = 3
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public applicableTo(Lorg/la4j/Matrix;)Z
+   L0
+    LINENUMBER 57 L0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rank ()I
+    ISTORE 2
+   L1
+    LINENUMBER 58 L1
+    ILOAD 2
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPEQ L2
+    ILOAD 2
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPEQ L3
+   L2
+   FRAME FULL [org/la4j/linear/LeastNormSolver org/la4j/Matrix I] []
+    ICONST_1
+    GOTO L4
+   L3
+   FRAME FULL [org/la4j/linear/LeastNormSolver org/la4j/Matrix I] []
+    ICONST_0
+   L4
+   FRAME FULL [org/la4j/linear/LeastNormSolver org/la4j/Matrix I] [I]
+    IRETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/linear/LeastNormSolver; L0 L5 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L5 1
+    LOCALVARIABLE r I L1 L5 2
+    MAXSTACK = 2
+    MAXLOCALS = 3
+}
+

@@ -1,0 +1,2 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.linear.LeastSquaresSolver, method=solve, methodDesc=(Lorg/la4j/Vector;)Lorg/la4j/Vector;], indexes=[189], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=LeastSquaresSolver.java, block=13, lineNumber=80, description=Changed increment from -1 to 1, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]
+FinallyBlock=false, poison=NORMAL]

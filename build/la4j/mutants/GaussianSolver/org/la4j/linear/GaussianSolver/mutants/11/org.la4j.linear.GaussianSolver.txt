@@ -1,0 +1,396 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/linear/GaussianSolver extends org/la4j/linear/AbstractSolver  implements org/la4j/linear/LinearSystemSolver  {
+
+  // compiled from: GaussianSolver.java
+
+  // access flags 0x1A
+  private final static J serialVersionUID = 4071505
+
+  // access flags 0x12
+  private final Lorg/la4j/Matrix; aa
+
+  // access flags 0x1
+  public <init>(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 42 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/linear/AbstractSolver.<init> (Lorg/la4j/Matrix;)V
+   L1
+    LINENUMBER 44 L1
+    ALOAD 0
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/GaussianSolver.unknowns ()I
+    ICONST_1
+    IADD
+    INVOKEVIRTUAL org/la4j/Matrix.copyOfColumns (I)Lorg/la4j/Matrix;
+    PUTFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+   L2
+    LINENUMBER 45 L2
+    RETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/linear/GaussianSolver; L0 L3 0
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L3 1
+    MAXSTACK = 4
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public solve(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 49 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/linear/GaussianSolver.ensureRHSIsCorrect (Lorg/la4j/Vector;)V
+   L1
+    LINENUMBER 52 L1
+    ALOAD 0
+    GETFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/GaussianSolver.unknowns ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.setColumn (ILorg/la4j/Vector;)V
+   L2
+    LINENUMBER 55 L2
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+    INVOKESPECIAL org/la4j/linear/GaussianSolver.triangularizeWithPivoting (Lorg/la4j/Matrix;)V
+   L3
+    LINENUMBER 57 L3
+    ALOAD 0
+    GETFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.diagonalProduct ()D
+    INVOKESTATIC java/lang/Math.abs (D)D
+    GETSTATIC org/la4j/Matrices.EPS : D
+    DCMPG
+    IFGE L4
+   L5
+    LINENUMBER 58 L5
+    ALOAD 0
+    LDC "This system is singular."
+    INVOKEVIRTUAL org/la4j/linear/GaussianSolver.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 62 L4
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Vector] []
+    ALOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Vector.blankOfLength (I)Lorg/la4j/Vector;
+    ASTORE 2
+   L6
+    LINENUMBER 63 L6
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/linear/GaussianSolver.aa : Lorg/la4j/Matrix;
+    ALOAD 2
+    INVOKESPECIAL org/la4j/linear/GaussianSolver.backSubstitution (Lorg/la4j/Matrix;Lorg/la4j/Vector;)V
+   L7
+    LINENUMBER 65 L7
+    ALOAD 2
+    ARETURN
+   L8
+    LOCALVARIABLE this Lorg/la4j/linear/GaussianSolver; L0 L8 0
+    LOCALVARIABLE b Lorg/la4j/Vector; L0 L8 1
+    LOCALVARIABLE x Lorg/la4j/Vector; L6 L8 2
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x2
+  private triangularizeWithPivoting(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 70 L0
+    ICONST_0
+    ISTORE 2
+   L1
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I] []
+    ILOAD 2
+    ICONST_1
+    ISUB
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L2
+   L3
+    LINENUMBER 72 L3
+    ILOAD 2
+    ISTORE 3
+   L4
+    LINENUMBER 73 L4
+    ALOAD 1
+    ILOAD 2
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKESTATIC java/lang/Math.abs (D)D
+    DSTORE 4
+   L5
+    LINENUMBER 75 L5
+    ILOAD 2
+    ICONST_1
+    IADD
+    ISTORE 6
+   L6
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    ILOAD 6
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 76 L8
+    ALOAD 1
+    ILOAD 6
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKESTATIC java/lang/Math.abs (D)D
+    DSTORE 7
+   L9
+    LINENUMBER 77 L9
+    DLOAD 7
+    DLOAD 4
+    DCMPL
+    IFLE L10
+   L11
+    LINENUMBER 78 L11
+    DLOAD 7
+    DSTORE 4
+   L12
+    LINENUMBER 79 L12
+    ILOAD 6
+    ISTORE 3
+   L10
+    LINENUMBER 75 L10
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I D] []
+    IINC 6 1
+    GOTO L6
+   L7
+    LINENUMBER 83 L7
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    DLOAD 4
+    DCONST_0
+    DCMPL
+    IFNE L13
+   L14
+    LINENUMBER 84 L14
+    NEW java/lang/IllegalArgumentException
+    DUP
+    LDC "This system can't be solved."
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L13
+    LINENUMBER 87 L13
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    ILOAD 3
+    ILOAD 2
+    IF_ICMPLE L15
+   L16
+    LINENUMBER 88 L16
+    ALOAD 1
+    ILOAD 3
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.swapRows (II)V
+   L15
+    LINENUMBER 91 L15
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    ILOAD 2
+    ICONST_1
+    IADD
+    ISTORE 6
+   L17
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    ILOAD 6
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L18
+   L19
+    LINENUMBER 93 L19
+    ALOAD 1
+    ILOAD 6
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 1
+    ILOAD 2
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+    DSTORE 7
+   L20
+    LINENUMBER 94 L20
+    ALOAD 1
+    ILOAD 6
+    ILOAD 2
+    DCONST_0
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L21
+    LINENUMBER 96 L21
+    ILOAD 2
+    ICONST_1
+    IADD
+    ISTORE 9
+   L22
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I D I] []
+    ILOAD 9
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPGE L23
+   L24
+    LINENUMBER 97 L24
+    ALOAD 1
+    ILOAD 6
+    ILOAD 9
+    ALOAD 1
+    ILOAD 2
+    ILOAD 9
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 7
+    DMUL
+    INVOKESTATIC org/la4j/Matrices.asMinusFunction (D)Lorg/la4j/matrix/functor/MatrixFunction;
+    INVOKEVIRTUAL org/la4j/Matrix.updateAt (IILorg/la4j/matrix/functor/MatrixFunction;)V
+   L25
+    LINENUMBER 96 L25
+    IINC 9 1
+    GOTO L22
+   L23
+    LINENUMBER 91 L23
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I D I] []
+    IINC 6 1
+    GOTO L17
+   L18
+    LINENUMBER 70 L18
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I I D I] []
+    IINC 2 1
+    GOTO L1
+   L2
+    LINENUMBER 101 L2
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix I] []
+    RETURN
+   L26
+    LOCALVARIABLE value D L9 L10 7
+    LOCALVARIABLE k I L6 L7 6
+    LOCALVARIABLE k I L22 L23 9
+    LOCALVARIABLE c D L20 L23 7
+    LOCALVARIABLE j I L17 L18 6
+    LOCALVARIABLE maxIndex I L4 L18 3
+    LOCALVARIABLE maxItem D L5 L18 4
+    LOCALVARIABLE i I L1 L2 2
+    LOCALVARIABLE this Lorg/la4j/linear/GaussianSolver; L0 L26 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L26 1
+    MAXSTACK = 7
+    MAXLOCALS = 10
+
+  // access flags 0x2
+  private backSubstitution(Lorg/la4j/Matrix;Lorg/la4j/Vector;)V
+   L0
+    LINENUMBER 105 L0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ICONST_1
+    ISUB
+    ISTORE 3
+   L1
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix org/la4j/Vector I] []
+    ILOAD 3
+    IFLT L2
+   L3
+    LINENUMBER 107 L3
+    DCONST_0
+    DSTORE 4
+   L4
+    LINENUMBER 108 L4
+    ILOAD 3
+    ICONST_1
+    IADD
+    ISTORE 6
+   L5
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix org/la4j/Vector I D I] []
+    ILOAD 6
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ICONST_1
+    ISUB
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 109 L7
+    DLOAD 4
+    ALOAD 2
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 1
+    ILOAD 3
+    ILOAD 6
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    DSTORE 4
+   L8
+    LINENUMBER 108 L8
+    IINC 6 1
+    GOTO L5
+   L6
+    LINENUMBER 112 L6
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix org/la4j/Vector I D I] []
+    ALOAD 2
+    ILOAD 3
+    ALOAD 1
+    ILOAD 3
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ICONST_1
+    ISUB
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 4
+    DSUB
+    ALOAD 1
+    ILOAD 3
+    ILOAD 3
+   L9
+    LINENUMBER 113 L9
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+   L10
+    LINENUMBER 112 L10
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L11
+    LINENUMBER 105 L11
+    IINC 3 -1
+    GOTO L1
+   L2
+    LINENUMBER 115 L2
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix org/la4j/Vector I] []
+    RETURN
+   L12
+    LOCALVARIABLE j I L5 L6 6
+    LOCALVARIABLE acc D L4 L11 4
+    LOCALVARIABLE i I L1 L2 3
+    LOCALVARIABLE this Lorg/la4j/linear/GaussianSolver; L0 L12 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L12 1
+    LOCALVARIABLE result Lorg/la4j/Vector; L0 L12 2
+    MAXSTACK = 7
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public applicableTo(Lorg/la4j/Matrix;)Z
+   L0
+    LINENUMBER 119 L0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPNE L1
+    ICONST_1
+    GOTO L2
+   L1
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix] []
+    ICONST_0
+   L2
+   FRAME FULL [org/la4j/linear/GaussianSolver org/la4j/Matrix] [I]
+    IRETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/linear/GaussianSolver; L0 L3 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=hashCode, methodDesc=()I], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator], filename=Matrix.java, block=328, lineNumber=2066, description=removed call to java/lang/Double::longValue, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

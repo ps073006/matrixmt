@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=min, methodDesc=()D], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator], filename=Matrix.java, block=240, lineNumber=1425, description=removed call to org/la4j/Matrices::mkMinAccumulator, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

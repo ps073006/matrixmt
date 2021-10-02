@@ -1,0 +1,301 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/linear/LeastSquaresSolver extends org/la4j/linear/AbstractSolver  implements org/la4j/linear/LinearSystemSolver  {
+
+  // compiled from: LeastSquaresSolver.java
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$DecompositorFactory org/la4j/LinearAlgebra DecompositorFactory
+
+  // access flags 0x1A
+  private final static J serialVersionUID = 4071505
+
+  // access flags 0x12
+  private final Lorg/la4j/Matrix; qr
+
+  // access flags 0x12
+  private final Lorg/la4j/Matrix; r
+
+  // access flags 0x1
+  public <init>(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 39 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/linear/AbstractSolver.<init> (Lorg/la4j/Matrix;)V
+   L1
+    LINENUMBER 42 L1
+    ALOAD 1
+    GETSTATIC org/la4j/LinearAlgebra.RAW_QR : Lorg/la4j/LinearAlgebra$DecompositorFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.withDecompositor (Lorg/la4j/LinearAlgebra$DecompositorFactory;)Lorg/la4j/decomposition/MatrixDecompositor;
+    ASTORE 2
+   L2
+    LINENUMBER 43 L2
+    ALOAD 2
+    INVOKEINTERFACE org/la4j/decomposition/MatrixDecompositor.decompose ()[Lorg/la4j/Matrix;
+    ASTORE 3
+   L3
+    LINENUMBER 46 L3
+    ALOAD 0
+    ALOAD 3
+    ICONST_0
+    AALOAD
+    PUTFIELD org/la4j/linear/LeastSquaresSolver.qr : Lorg/la4j/Matrix;
+   L4
+    LINENUMBER 47 L4
+    ALOAD 0
+    ALOAD 3
+    ICONST_1
+    AALOAD
+    PUTFIELD org/la4j/linear/LeastSquaresSolver.r : Lorg/la4j/Matrix;
+   L5
+    LINENUMBER 48 L5
+    RETURN
+   L6
+    LOCALVARIABLE this Lorg/la4j/linear/LeastSquaresSolver; L0 L6 0
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L6 1
+    LOCALVARIABLE decompositor Lorg/la4j/decomposition/MatrixDecompositor; L2 L6 2
+    LOCALVARIABLE qrr [Lorg/la4j/Matrix; L3 L6 3
+    MAXSTACK = 3
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public solve(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 52 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/linear/LeastSquaresSolver.ensureRHSIsCorrect (Lorg/la4j/Vector;)V
+   L1
+    LINENUMBER 54 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/LeastSquaresSolver.unknowns ()I
+    ISTORE 2
+   L2
+    LINENUMBER 55 L2
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/LeastSquaresSolver.equations ()I
+    ISTORE 3
+   L3
+    LINENUMBER 58 L3
+    ICONST_0
+    ISTORE 4
+   L4
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.r : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 59 L6
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.r : Lorg/la4j/Matrix;
+    ILOAD 4
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFNE L7
+   L8
+    LINENUMBER 60 L8
+    ALOAD 0
+    LDC "This system can not be solved: coefficient matrix is rank deficient."
+    INVOKEVIRTUAL org/la4j/linear/LeastSquaresSolver.fail (Ljava/lang/String;)V
+   L7
+    LINENUMBER 58 L7
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I I] []
+    IINC 4 1
+    GOTO L4
+   L5
+    LINENUMBER 64 L5
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I I] []
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Vector.copy ()Lorg/la4j/Vector;
+    ASTORE 4
+   L9
+    LINENUMBER 66 L9
+    ICONST_0
+    ISTORE 5
+   L10
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I] []
+    ILOAD 5
+    ILOAD 2
+    IF_ICMPGE L11
+   L12
+    LINENUMBER 68 L12
+    DCONST_0
+    DSTORE 6
+   L13
+    LINENUMBER 70 L13
+    ILOAD 5
+    ISTORE 8
+   L14
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I D I] []
+    ILOAD 8
+    ILOAD 3
+    IF_ICMPGE L15
+   L16
+    LINENUMBER 71 L16
+    DLOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.qr : Lorg/la4j/Matrix;
+    ILOAD 8
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 4
+    ILOAD 8
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    DMUL
+    DADD
+    DSTORE 6
+   L17
+    LINENUMBER 70 L17
+    IINC 8 1
+    GOTO L14
+   L15
+    LINENUMBER 74 L15
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I D I] []
+    DLOAD 6
+    DNEG
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.qr : Lorg/la4j/Matrix;
+    ILOAD 5
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+    DSTORE 6
+   L18
+    LINENUMBER 75 L18
+    ILOAD 5
+    ISTORE 8
+   L19
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I D I] []
+    ILOAD 8
+    ILOAD 3
+    IF_ICMPGE L20
+   L21
+    LINENUMBER 76 L21
+    ALOAD 4
+    ILOAD 8
+    DLOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.qr : Lorg/la4j/Matrix;
+    ILOAD 8
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    INVOKESTATIC org/la4j/Vectors.asPlusFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L22
+    LINENUMBER 75 L22
+    IINC 8 1
+    GOTO L19
+   L20
+    LINENUMBER 66 L20
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I D I] []
+    IINC 5 1
+    GOTO L10
+   L11
+    LINENUMBER 80 L11
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I] []
+    ILOAD 2
+    ICONST_1
+    ISUB
+    ISTORE 5
+   L23
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I] []
+    ILOAD 5
+    IFLT L24
+   L25
+    LINENUMBER 81 L25
+    ALOAD 4
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.r : Lorg/la4j/Matrix;
+    ILOAD 5
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKESTATIC org/la4j/Vectors.asDivFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L26
+    LINENUMBER 83 L26
+    ICONST_0
+    ISTORE 6
+   L27
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I I] []
+    ILOAD 6
+    ILOAD 5
+    IF_ICMPGE L28
+   L29
+    LINENUMBER 84 L29
+    ALOAD 4
+    ILOAD 6
+    ALOAD 4
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 0
+    GETFIELD org/la4j/linear/LeastSquaresSolver.qr : Lorg/la4j/Matrix;
+    ILOAD 6
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    INVOKESTATIC org/la4j/Vectors.asMinusFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L30
+    LINENUMBER 83 L30
+    IINC 6 1
+    GOTO L27
+   L28
+    LINENUMBER 80 L28
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I I] []
+    IINC 5 -1
+    GOTO L23
+   L24
+    LINENUMBER 88 L24
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Vector I I org/la4j/Vector I] []
+    ALOAD 4
+    ICONST_0
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.slice (II)Lorg/la4j/Vector;
+    ARETURN
+   L31
+    LOCALVARIABLE i I L4 L5 4
+    LOCALVARIABLE i I L14 L15 8
+    LOCALVARIABLE i I L19 L20 8
+    LOCALVARIABLE acc D L13 L20 6
+    LOCALVARIABLE j I L10 L11 5
+    LOCALVARIABLE i I L27 L28 6
+    LOCALVARIABLE j I L23 L24 5
+    LOCALVARIABLE this Lorg/la4j/linear/LeastSquaresSolver; L0 L31 0
+    LOCALVARIABLE b Lorg/la4j/Vector; L0 L31 1
+    LOCALVARIABLE n I L2 L31 2
+    LOCALVARIABLE m I L3 L31 3
+    LOCALVARIABLE x Lorg/la4j/Vector; L9 L31 4
+    MAXSTACK = 7
+    MAXLOCALS = 9
+
+  // access flags 0x1
+  public applicableTo(Lorg/la4j/Matrix;)Z
+   L0
+    LINENUMBER 93 L0
+    ALOAD 1
+    POP
+    ICONST_0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPLT L1
+    ICONST_1
+    GOTO L2
+   L1
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Matrix] []
+    ICONST_0
+   L2
+   FRAME FULL [org/la4j/linear/LeastSquaresSolver org/la4j/Matrix] [I]
+    IRETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/linear/LeastSquaresSolver; L0 L3 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

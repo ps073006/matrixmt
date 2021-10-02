@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.sparse.CRSMatrix, method=minInRow, methodDesc=(I)D], indexes=[54], mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator], filename=CRSMatrix.java, block=189, lineNumber=698, description=Substituted 0.0 with 1.0, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=max, methodDesc=()D], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator], filename=Matrix.java, block=239, lineNumber=1416, description=removed call to org/la4j/Matrices::mkMaxAccumulator, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

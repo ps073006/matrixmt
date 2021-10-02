@@ -1,0 +1,3 @@
+::java -jar evosuite-1.0.6.jar -class org.la4j.Matrix -Dassertion_strategy=all -DTARGET_CLASS=org.la4j.Matrix  -projectCP C:\Users\p66n633\workspace\la4j\src -criterion weakmutation
+java -jar evosuite-1.0.6.jar -class org.la4j.linear.SquareRootSolver -Dassertion_strategy=UNIT -Dsearch_budget=120 -DTARGET_CLASS=org.la4j.linear.SquareRootSolver  -projectCP C:\Users\p66n633\workspace\la4j\src -criterion weakmutation
+pause;

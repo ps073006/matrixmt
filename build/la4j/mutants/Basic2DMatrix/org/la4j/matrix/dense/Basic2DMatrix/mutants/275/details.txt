@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.dense.Basic2DMatrix, method=toBinary, methodDesc=()[B], indexes=[47], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=Basic2DMatrix.java, block=77, lineNumber=339, description=negated conditional, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

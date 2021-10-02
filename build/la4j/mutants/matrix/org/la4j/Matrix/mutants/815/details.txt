@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=determinant, methodDesc=()D], indexes=[306], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=Matrix.java, block=145, lineNumber=965, description=Replaced integer multiplication with division, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

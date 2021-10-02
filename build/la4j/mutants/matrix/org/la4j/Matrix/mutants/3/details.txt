@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=<init>, methodDesc=(II)V], indexes=[15], mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator], filename=Matrix.java, block=1, lineNumber=105, description=Removed assignment to member variable rows, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

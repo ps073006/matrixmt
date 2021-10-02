@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=diagonalProduct, methodDesc=()D], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=Matrix.java, block=116, lineNumber=836, description=negated conditional, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

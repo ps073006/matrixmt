@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=minInColumn, methodDesc=(I)D], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator], filename=Matrix.java, block=244, lineNumber=1469, description=removed call to org/la4j/Matrix::foldColumn, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

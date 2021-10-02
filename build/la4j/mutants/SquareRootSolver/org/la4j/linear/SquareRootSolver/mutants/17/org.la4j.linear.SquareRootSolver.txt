@@ -1,0 +1,419 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/linear/SquareRootSolver extends org/la4j/linear/AbstractSolver  implements org/la4j/linear/LinearSystemSolver  {
+
+  // compiled from: SquareRootSolver.java
+
+  // access flags 0x1A
+  private final static J serialVersionUID = 4071505
+
+  // access flags 0x1
+  public <init>(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 38 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/linear/AbstractSolver.<init> (Lorg/la4j/Matrix;)V
+   L1
+    LINENUMBER 39 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/linear/SquareRootSolver; L0 L2 0
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L2 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public solve(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 43 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/linear/SquareRootSolver.ensureRHSIsCorrect (Lorg/la4j/Vector;)V
+   L1
+    LINENUMBER 45 L1
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.blank ()Lorg/la4j/Matrix;
+    ASTORE 2
+   L2
+    LINENUMBER 46 L2
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.blank ()Lorg/la4j/Matrix;
+    ASTORE 3
+   L3
+    LINENUMBER 48 L3
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/SquareRootSolver.unknowns ()I
+    INVOKEVIRTUAL org/la4j/Vector.blankOfLength (I)Lorg/la4j/Vector;
+    ASTORE 4
+   L4
+    LINENUMBER 49 L4
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/SquareRootSolver.unknowns ()I
+    INVOKEVIRTUAL org/la4j/Vector.blankOfLength (I)Lorg/la4j/Vector;
+    ASTORE 5
+   L5
+    LINENUMBER 50 L5
+    ALOAD 1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/SquareRootSolver.unknowns ()I
+    INVOKEVIRTUAL org/la4j/Vector.blankOfLength (I)Lorg/la4j/Vector;
+    ASTORE 6
+   L6
+    LINENUMBER 52 L6
+    ICONST_0
+    ISTORE 7
+   L7
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I] []
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 54 L9
+    DCONST_0
+    DSTORE 8
+   L10
+    LINENUMBER 55 L10
+    ICONST_0
+    ISTORE 10
+   L11
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ILOAD 10
+    ILOAD 7
+    IF_ICMPGE L12
+   L13
+    LINENUMBER 56 L13
+    ALOAD 2
+    ILOAD 10
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 11
+   L14
+    LINENUMBER 57 L14
+    DLOAD 8
+    DLOAD 11
+    DLOAD 11
+    DMUL
+    ALOAD 3
+    ILOAD 10
+    ILOAD 10
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    DSTORE 8
+   L15
+    LINENUMBER 55 L15
+    IINC 10 1
+    GOTO L11
+   L12
+    LINENUMBER 60 L12
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ALOAD 3
+    ILOAD 7
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 8
+    DSUB
+    INVOKESTATIC java/lang/Math.signum (D)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L16
+    LINENUMBER 61 L16
+    ALOAD 2
+    ILOAD 7
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 8
+    DSUB
+    INVOKESTATIC java/lang/Math.abs (D)D
+    INVOKESTATIC java/lang/Math.sqrt (D)D
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L17
+    LINENUMBER 63 L17
+    ALOAD 2
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFNE L18
+   L19
+    LINENUMBER 65 L19
+    ALOAD 0
+    LDC "This matrix is singular. We can't solve it."
+    INVOKEVIRTUAL org/la4j/linear/SquareRootSolver.fail (Ljava/lang/String;)V
+   L18
+    LINENUMBER 68 L18
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ILOAD 7
+    ICONST_1
+    IADD
+    ISTORE 10
+   L20
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ILOAD 10
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPLT L21
+   L22
+    LINENUMBER 70 L22
+    DCONST_0
+    DSTORE 11
+   L23
+    LINENUMBER 71 L23
+    ICONST_0
+    ISTORE 13
+   L24
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I D I] []
+    ILOAD 13
+    ILOAD 7
+    IF_ICMPGE L25
+   L26
+    LINENUMBER 72 L26
+    ALOAD 2
+    ILOAD 13
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 14
+   L27
+    LINENUMBER 73 L27
+    ALOAD 2
+    ILOAD 13
+    ILOAD 10
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 16
+   L28
+    LINENUMBER 74 L28
+    DLOAD 11
+    DLOAD 14
+    DLOAD 16
+    DMUL
+    ALOAD 3
+    ILOAD 13
+    ILOAD 13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    DSTORE 11
+   L29
+    LINENUMBER 71 L29
+    IINC 13 1
+    GOTO L24
+   L25
+    LINENUMBER 77 L25
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I D I] []
+    ALOAD 2
+    ILOAD 7
+    ILOAD 10
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    ILOAD 7
+    ILOAD 10
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DLOAD 11
+    DSUB
+    ALOAD 2
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    ALOAD 3
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DDIV
+    INVOKEVIRTUAL org/la4j/Matrix.set (IID)V
+   L30
+    LINENUMBER 68 L30
+    IINC 10 1
+    GOTO L20
+   L21
+    LINENUMBER 80 L21
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    DCONST_0
+    DSTORE 10
+   L31
+    LINENUMBER 81 L31
+    ICONST_0
+    ISTORE 12
+   L32
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D D I] []
+    ILOAD 12
+    ILOAD 7
+    IF_ICMPGE L33
+   L34
+    LINENUMBER 82 L34
+    DLOAD 10
+    ALOAD 6
+    ILOAD 12
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 2
+    ILOAD 12
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    DSTORE 10
+   L35
+    LINENUMBER 81 L35
+    IINC 12 1
+    GOTO L32
+   L33
+    LINENUMBER 85 L33
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D D I] []
+    ALOAD 6
+    ILOAD 7
+    ALOAD 1
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    DLOAD 10
+    DSUB
+    ALOAD 2
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L36
+    LINENUMBER 86 L36
+    ALOAD 5
+    ILOAD 7
+    ALOAD 6
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 3
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L37
+    LINENUMBER 52 L37
+    IINC 7 1
+    GOTO L7
+   L8
+    LINENUMBER 89 L8
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I] []
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ICONST_1
+    ISUB
+    ISTORE 7
+   L38
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I] []
+    ILOAD 7
+    IFLT L39
+   L40
+    LINENUMBER 91 L40
+    DCONST_0
+    DSTORE 8
+   L41
+    LINENUMBER 92 L41
+    ILOAD 7
+    ICONST_1
+    IADD
+    ISTORE 10
+   L42
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ILOAD 10
+    ALOAD 0
+    GETFIELD org/la4j/linear/SquareRootSolver.a : Lorg/la4j/Matrix;
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPGE L43
+   L44
+    LINENUMBER 93 L44
+    DLOAD 8
+    ALOAD 4
+    ILOAD 10
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 2
+    ILOAD 7
+    ILOAD 10
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    DADD
+    DSTORE 8
+   L45
+    LINENUMBER 92 L45
+    IINC 10 1
+    GOTO L42
+   L43
+    LINENUMBER 96 L43
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I D I] []
+    ALOAD 4
+    ILOAD 7
+    ALOAD 5
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    DLOAD 8
+    DSUB
+    ALOAD 2
+    ILOAD 7
+    ILOAD 7
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DDIV
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L46
+    LINENUMBER 89 L46
+    IINC 7 -1
+    GOTO L38
+   L39
+    LINENUMBER 99 L39
+   FRAME FULL [org/la4j/linear/SquareRootSolver org/la4j/Vector org/la4j/Matrix org/la4j/Matrix org/la4j/Vector org/la4j/Vector org/la4j/Vector I] []
+    ALOAD 4
+    ARETURN
+   L47
+    LOCALVARIABLE sli D L14 L15 11
+    LOCALVARIABLE l I L11 L12 10
+    LOCALVARIABLE sli D L27 L29 14
+    LOCALVARIABLE slj D L28 L29 16
+    LOCALVARIABLE l I L24 L25 13
+    LOCALVARIABLE acc D L23 L30 11
+    LOCALVARIABLE j I L20 L21 10
+    LOCALVARIABLE l I L32 L33 12
+    LOCALVARIABLE dd D L10 L37 8
+    LOCALVARIABLE zz D L31 L37 10
+    LOCALVARIABLE i I L7 L8 7
+    LOCALVARIABLE l I L42 L43 10
+    LOCALVARIABLE acc D L41 L46 8
+    LOCALVARIABLE i I L38 L39 7
+    LOCALVARIABLE this Lorg/la4j/linear/SquareRootSolver; L0 L47 0
+    LOCALVARIABLE b Lorg/la4j/Vector; L0 L47 1
+    LOCALVARIABLE s Lorg/la4j/Matrix; L2 L47 2
+    LOCALVARIABLE d Lorg/la4j/Matrix; L3 L47 3
+    LOCALVARIABLE x Lorg/la4j/Vector; L4 L47 4
+    LOCALVARIABLE y Lorg/la4j/Vector; L5 L47 5
+    LOCALVARIABLE z Lorg/la4j/Vector; L6 L47 6
+    MAXSTACK = 10
+    MAXLOCALS = 18
+
+  // access flags 0x1
+  public applicableTo(Lorg/la4j/Matrix;)Z
+   L0
+    LINENUMBER 104 L0
+    ALOAD 1
+    GETSTATIC org/la4j/Matrices.SYMMETRIC_MATRIX : Lorg/la4j/matrix/functor/AdvancedMatrixPredicate;
+    INVOKEVIRTUAL org/la4j/Matrix.is (Lorg/la4j/matrix/functor/AdvancedMatrixPredicate;)Z
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/linear/SquareRootSolver; L0 L1 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

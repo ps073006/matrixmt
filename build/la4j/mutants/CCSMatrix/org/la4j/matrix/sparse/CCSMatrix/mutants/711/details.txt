@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.sparse.CCSMatrix, method=growUp, methodDesc=()V], indexes=[30], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=CCSMatrix.java, block=162, lineNumber=630, description=changed conditional boundary, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

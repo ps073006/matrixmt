@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=slice, methodDesc=(IIII)Lorg/la4j/Matrix;], indexes=[100], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=Matrix.java, block=218, lineNumber=1292, description=Changed increment from 1 to -1, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

@@ -1,0 +1,301 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/linear/ForwardBackSubstitutionSolver extends org/la4j/linear/AbstractSolver  implements org/la4j/linear/LinearSystemSolver  {
+
+  // compiled from: ForwardBackSubstitutionSolver.java
+  // access flags 0x4409
+  public static abstract enum INNERCLASS org/la4j/LinearAlgebra$DecompositorFactory org/la4j/LinearAlgebra DecompositorFactory
+
+  // access flags 0x1A
+  private final static J serialVersionUID = 4071505
+
+  // access flags 0x12
+  private final Lorg/la4j/Matrix; lu
+
+  // access flags 0x12
+  private final Lorg/la4j/Matrix; p
+
+  // access flags 0x1
+  public <init>(Lorg/la4j/Matrix;)V
+   L0
+    LINENUMBER 39 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/linear/AbstractSolver.<init> (Lorg/la4j/Matrix;)V
+   L1
+    LINENUMBER 42 L1
+    ALOAD 1
+    GETSTATIC org/la4j/LinearAlgebra.RAW_LU : Lorg/la4j/LinearAlgebra$DecompositorFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.withDecompositor (Lorg/la4j/LinearAlgebra$DecompositorFactory;)Lorg/la4j/decomposition/MatrixDecompositor;
+    ASTORE 2
+   L2
+    LINENUMBER 43 L2
+    ALOAD 2
+    INVOKEINTERFACE org/la4j/decomposition/MatrixDecompositor.decompose ()[Lorg/la4j/Matrix;
+    ASTORE 3
+   L3
+    LINENUMBER 46 L3
+    ALOAD 0
+    ALOAD 3
+    ICONST_0
+    AALOAD
+    PUTFIELD org/la4j/linear/ForwardBackSubstitutionSolver.lu : Lorg/la4j/Matrix;
+   L4
+    LINENUMBER 47 L4
+    ALOAD 0
+    ALOAD 3
+    ICONST_1
+    AALOAD
+    PUTFIELD org/la4j/linear/ForwardBackSubstitutionSolver.p : Lorg/la4j/Matrix;
+   L5
+    LINENUMBER 48 L5
+    RETURN
+   L6
+    LOCALVARIABLE this Lorg/la4j/linear/ForwardBackSubstitutionSolver; L0 L6 0
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L6 1
+    LOCALVARIABLE decompositor Lorg/la4j/decomposition/MatrixDecompositor; L2 L6 2
+    LOCALVARIABLE lup [Lorg/la4j/Matrix; L3 L6 3
+    MAXSTACK = 3
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public solve(Lorg/la4j/Vector;)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 52 L0
+    ALOAD 0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/linear/ForwardBackSubstitutionSolver.ensureRHSIsCorrect (Lorg/la4j/Vector;)V
+   L1
+    LINENUMBER 54 L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/linear/ForwardBackSubstitutionSolver.unknowns ()I
+    ISTORE 2
+   L2
+    LINENUMBER 57 L2
+    ICONST_0
+    ISTORE 3
+   L3
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I I] []
+    ILOAD 3
+    ILOAD 2
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 58 L5
+    ALOAD 0
+    GETFIELD org/la4j/linear/ForwardBackSubstitutionSolver.lu : Lorg/la4j/Matrix;
+    ILOAD 3
+    ILOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFNE L6
+   L7
+    LINENUMBER 59 L7
+    ALOAD 0
+    LDC "This system can not be solved: coefficient matrix is singular."
+    INVOKEVIRTUAL org/la4j/linear/ForwardBackSubstitutionSolver.fail (Ljava/lang/String;)V
+   L6
+    LINENUMBER 57 L6
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I I] []
+    IINC 3 -1
+    GOTO L3
+   L4
+    LINENUMBER 63 L4
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I I] []
+    ALOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/Vector.blankOfLength (I)Lorg/la4j/Vector;
+    ASTORE 3
+   L8
+    LINENUMBER 65 L8
+    ICONST_0
+    ISTORE 4
+   L9
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ILOAD 4
+    ILOAD 2
+    IF_ICMPGE L10
+   L11
+    LINENUMBER 66 L11
+    ICONST_0
+    ISTORE 5
+   L12
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    ILOAD 5
+    ILOAD 2
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 67 L14
+    ALOAD 0
+    GETFIELD org/la4j/linear/ForwardBackSubstitutionSolver.p : Lorg/la4j/Matrix;
+    ILOAD 4
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFEQ L15
+   L16
+    LINENUMBER 68 L16
+    ALOAD 3
+    ILOAD 4
+    ALOAD 1
+    ILOAD 5
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L17
+    LINENUMBER 69 L17
+    GOTO L13
+   L15
+    LINENUMBER 66 L15
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    IINC 5 1
+    GOTO L12
+   L13
+    LINENUMBER 65 L13
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    IINC 4 1
+    GOTO L9
+   L10
+    LINENUMBER 74 L10
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ICONST_0
+    ISTORE 4
+   L18
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ILOAD 4
+    ILOAD 2
+    IF_ICMPGE L19
+   L20
+    LINENUMBER 75 L20
+    ILOAD 4
+    ICONST_1
+    IADD
+    ISTORE 5
+   L21
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    ILOAD 5
+    ILOAD 2
+    IF_ICMPGE L22
+   L23
+    LINENUMBER 76 L23
+    ALOAD 3
+    ILOAD 5
+    ALOAD 3
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 0
+    GETFIELD org/la4j/linear/ForwardBackSubstitutionSolver.lu : Lorg/la4j/Matrix;
+    ILOAD 5
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    INVOKESTATIC org/la4j/Vectors.asMinusFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L24
+    LINENUMBER 75 L24
+    IINC 5 1
+    GOTO L21
+   L22
+    LINENUMBER 74 L22
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    IINC 4 1
+    GOTO L18
+   L19
+    LINENUMBER 80 L19
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ILOAD 2
+    ICONST_1
+    ISUB
+    ISTORE 4
+   L25
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ILOAD 4
+    IFLT L26
+   L27
+    LINENUMBER 81 L27
+    ALOAD 3
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/linear/ForwardBackSubstitutionSolver.lu : Lorg/la4j/Matrix;
+    ILOAD 4
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    INVOKESTATIC org/la4j/Vectors.asDivFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L28
+    LINENUMBER 83 L28
+    ICONST_0
+    ISTORE 5
+   L29
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    ILOAD 5
+    ILOAD 4
+    IF_ICMPGE L30
+   L31
+    LINENUMBER 84 L31
+    ALOAD 3
+    ILOAD 5
+    ALOAD 3
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Vector.get (I)D
+    ALOAD 0
+    GETFIELD org/la4j/linear/ForwardBackSubstitutionSolver.lu : Lorg/la4j/Matrix;
+    ILOAD 5
+    ILOAD 4
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DMUL
+    INVOKESTATIC org/la4j/Vectors.asMinusFunction (D)Lorg/la4j/vector/functor/VectorFunction;
+    INVOKEVIRTUAL org/la4j/Vector.updateAt (ILorg/la4j/vector/functor/VectorFunction;)V
+   L32
+    LINENUMBER 83 L32
+    IINC 5 1
+    GOTO L29
+   L30
+    LINENUMBER 80 L30
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I I] []
+    IINC 4 -1
+    GOTO L25
+   L26
+    LINENUMBER 88 L26
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Vector I org/la4j/Vector I] []
+    ALOAD 3
+    ARETURN
+   L33
+    LOCALVARIABLE i I L3 L4 3
+    LOCALVARIABLE j I L12 L13 5
+    LOCALVARIABLE i I L9 L10 4
+    LOCALVARIABLE i I L21 L22 5
+    LOCALVARIABLE j I L18 L19 4
+    LOCALVARIABLE i I L29 L30 5
+    LOCALVARIABLE j I L25 L26 4
+    LOCALVARIABLE this Lorg/la4j/linear/ForwardBackSubstitutionSolver; L0 L33 0
+    LOCALVARIABLE b Lorg/la4j/Vector; L0 L33 1
+    LOCALVARIABLE n I L2 L33 2
+    LOCALVARIABLE x Lorg/la4j/Vector; L8 L33 3
+    MAXSTACK = 7
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public applicableTo(Lorg/la4j/Matrix;)Z
+   L0
+    LINENUMBER 93 L0
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPNE L1
+    ICONST_1
+    GOTO L2
+   L1
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Matrix] []
+    ICONST_0
+   L2
+   FRAME FULL [org/la4j/linear/ForwardBackSubstitutionSolver org/la4j/Matrix] [I]
+    IRETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/linear/ForwardBackSubstitutionSolver; L0 L3 0
+    LOCALVARIABLE matrix Lorg/la4j/Matrix; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

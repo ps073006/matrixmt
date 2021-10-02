@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.matrix.dense.Basic2DMatrix, method=setAll, methodDesc=(D)V], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=Basic2DMatrix.java, block=58, lineNumber=257, description=Changed increment from 1 to -1, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

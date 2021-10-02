@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.Matrix, method=add, methodDesc=(D)Lorg/la4j/Matrix;], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=Matrix.java, block=86, lineNumber=675, description=Replaced double addition with subtraction, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

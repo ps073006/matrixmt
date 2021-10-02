@@ -1,0 +1,1 @@
+MutationDetails [id=MutationIdentifier [location=Location [clazz=org.la4j.linear.JacobiSolver, method=<init>, methodDesc=(Lorg/la4j/Matrix;)V], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=JacobiSolver.java, block=1, lineNumber=49, description=negated conditional, testsInOrder=[], isInFinallyBlock=false, poison=NORMAL]

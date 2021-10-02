@@ -1,0 +1,3653 @@
+// class version 52.0 (52)
+// access flags 0x21
+public class org/la4j/matrix/sparse/CRSMatrix extends org/la4j/matrix/RowMajorSparseMatrix  {
+
+  // compiled from: CRSMatrix.java
+  // access flags 0x0
+  INNERCLASS org/la4j/matrix/sparse/CRSMatrix$5 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/matrix/sparse/CRSMatrix$4 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/matrix/sparse/CRSMatrix$3 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/matrix/sparse/CRSMatrix$2 null null
+  // access flags 0x0
+  INNERCLASS org/la4j/matrix/sparse/CRSMatrix$1 null null
+
+  // access flags 0x1A
+  private final static B MATRIX_TAG = 32
+
+  // access flags 0x1A
+  private final static I MINIMUM_SIZE = 32
+
+  // access flags 0x2
+  private [D values
+
+  // access flags 0x2
+  private [I columnIndices
+
+  // access flags 0x2
+  private [I rowPointers
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 58 L0
+    ALOAD 0
+    ICONST_0
+    ICONST_0
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (II)V
+   L1
+    LINENUMBER 59 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L2 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public <init>(II)V
+   L0
+    LINENUMBER 62 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    ICONST_0
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III)V
+   L1
+    LINENUMBER 63 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L2 0
+    LOCALVARIABLE rows I L0 L2 1
+    LOCALVARIABLE columns I L0 L2 2
+    MAXSTACK = 4
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public <init>(III)V
+   L0
+    LINENUMBER 66 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKESPECIAL org/la4j/matrix/RowMajorSparseMatrix.<init> (II)V
+   L1
+    LINENUMBER 67 L1
+    ALOAD 0
+    ILOAD 1
+    I2L
+    ILOAD 2
+    I2L
+    ILOAD 3
+    I2L
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.ensureCardinalityIsCorrect (JJJ)V
+   L2
+    LINENUMBER 69 L2
+    ALOAD 0
+    ILOAD 3
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.align (I)I
+    ISTORE 4
+   L3
+    LINENUMBER 70 L3
+    ALOAD 0
+    ILOAD 4
+    NEWARRAY T_DOUBLE
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+   L4
+    LINENUMBER 71 L4
+    ALOAD 0
+    ILOAD 4
+    NEWARRAY T_INT
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+   L5
+    LINENUMBER 72 L5
+    ALOAD 0
+    ILOAD 1
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+   L6
+    LINENUMBER 73 L6
+    RETURN
+   L7
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L7 0
+    LOCALVARIABLE rows I L0 L7 1
+    LOCALVARIABLE columns I L0 L7 2
+    LOCALVARIABLE capacity I L0 L7 3
+    LOCALVARIABLE alignedSize I L3 L7 4
+    MAXSTACK = 7
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public <init>(III[D[I[I)V
+   L0
+    LINENUMBER 76 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    ILOAD 3
+    INVOKESPECIAL org/la4j/matrix/RowMajorSparseMatrix.<init> (III)V
+   L1
+    LINENUMBER 77 L1
+    ALOAD 0
+    ILOAD 1
+    I2L
+    ILOAD 2
+    I2L
+    ILOAD 3
+    I2L
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.ensureCardinalityIsCorrect (JJJ)V
+   L2
+    LINENUMBER 79 L2
+    ALOAD 0
+    ALOAD 4
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+   L3
+    LINENUMBER 80 L3
+    ALOAD 0
+    ALOAD 5
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+   L4
+    LINENUMBER 81 L4
+    ALOAD 0
+    ALOAD 6
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+   L5
+    LINENUMBER 82 L5
+    RETURN
+   L6
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L6 0
+    LOCALVARIABLE rows I L0 L6 1
+    LOCALVARIABLE columns I L0 L6 2
+    LOCALVARIABLE cardinality I L0 L6 3
+    LOCALVARIABLE values [D L0 L6 4
+    LOCALVARIABLE columnIndices [I L0 L6 5
+    LOCALVARIABLE rowPointers [I L0 L6 6
+    MAXSTACK = 7
+    MAXLOCALS = 7
+
+  // access flags 0x9
+  public static zero(II)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 89 L0
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 0
+    ILOAD 1
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (II)V
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    MAXSTACK = 4
+    MAXLOCALS = 2
+
+  // access flags 0x9
+  public static zero(III)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 97 L0
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III)V
+    ARETURN
+   L1
+    LOCALVARIABLE rows I L0 L1 0
+    LOCALVARIABLE columns I L0 L1 1
+    LOCALVARIABLE capacity I L0 L1 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x9
+  public static diagonal(ID)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 105 L0
+    ILOAD 0
+    NEWARRAY T_DOUBLE
+    ASTORE 3
+   L1
+    LINENUMBER 106 L1
+    ILOAD 0
+    NEWARRAY T_INT
+    ASTORE 4
+   L2
+    LINENUMBER 107 L2
+    ILOAD 0
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 5
+   L3
+    LINENUMBER 109 L3
+    ICONST_0
+    ISTORE 6
+   L4
+   FRAME FULL [I D [D [I [I I] []
+    ILOAD 6
+    ILOAD 0
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 110 L6
+    ALOAD 4
+    ILOAD 6
+    ILOAD 6
+    IASTORE
+   L7
+    LINENUMBER 111 L7
+    ALOAD 5
+    ILOAD 6
+    ILOAD 6
+    IASTORE
+   L8
+    LINENUMBER 112 L8
+    ALOAD 3
+    ILOAD 6
+    DLOAD 1
+    DASTORE
+   L9
+    LINENUMBER 109 L9
+    IINC 6 1
+    GOTO L4
+   L5
+    LINENUMBER 115 L5
+   FRAME FULL [I D [D [I [I I] []
+    ALOAD 5
+    ILOAD 0
+    ILOAD 0
+    IASTORE
+   L10
+    LINENUMBER 117 L10
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 0
+    ILOAD 0
+    ILOAD 0
+    ALOAD 3
+    ALOAD 4
+    ALOAD 5
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L11
+    LOCALVARIABLE i I L4 L5 6
+    LOCALVARIABLE size I L0 L11 0
+    LOCALVARIABLE diagonal D L0 L11 1
+    LOCALVARIABLE values [D L1 L11 3
+    LOCALVARIABLE columnIndices [I L2 L11 4
+    LOCALVARIABLE rowPointers [I L3 L11 5
+    MAXSTACK = 8
+    MAXLOCALS = 7
+
+  // access flags 0x9
+  public static identity(I)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 124 L0
+    ILOAD 0
+    DCONST_1
+    INVOKESTATIC org/la4j/matrix/sparse/CRSMatrix.diagonal (ID)Lorg/la4j/matrix/sparse/CRSMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE size I L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static random(IIDLjava/util/Random;)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 132 L0
+    DLOAD 2
+    DCONST_0
+    DCMPG
+    IFLT L1
+    DLOAD 2
+    DCONST_1
+    DCMPL
+    IFLE L2
+   L1
+    LINENUMBER 133 L1
+   FRAME FULL [I I D java/util/Random] []
+    NEW java/lang/IllegalArgumentException
+    DUP
+    LDC "The density value should be between 0 and 1.0"
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 136 L2
+   FRAME FULL [I I D java/util/Random] []
+    ILOAD 0
+    ILOAD 1
+    IMUL
+    I2D
+    DLOAD 2
+    DMUL
+    D2I
+    ILOAD 0
+    INVOKESTATIC java/lang/Math.max (II)I
+    ISTORE 5
+   L3
+    LINENUMBER 138 L3
+    ILOAD 5
+    NEWARRAY T_DOUBLE
+    ASTORE 6
+   L4
+    LINENUMBER 139 L4
+    ILOAD 5
+    NEWARRAY T_INT
+    ASTORE 7
+   L5
+    LINENUMBER 140 L5
+    ILOAD 0
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 8
+   L6
+    LINENUMBER 142 L6
+    ILOAD 5
+    ILOAD 0
+    IDIV
+    ISTORE 9
+   L7
+    LINENUMBER 143 L7
+    ILOAD 9
+    NEWARRAY T_INT
+    ASTORE 10
+   L8
+    LINENUMBER 145 L8
+    ICONST_0
+    ISTORE 11
+   L9
+    LINENUMBER 146 L9
+    ICONST_0
+    ISTORE 12
+   L10
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I] []
+    ILOAD 12
+    ILOAD 0
+    IF_ICMPGE L11
+   L12
+    LINENUMBER 148 L12
+    ALOAD 8
+    ILOAD 12
+    ILOAD 11
+    IASTORE
+   L13
+    LINENUMBER 150 L13
+    ICONST_0
+    ISTORE 13
+   L14
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I] []
+    ILOAD 13
+    ILOAD 9
+    IF_ICMPGE L15
+   L16
+    LINENUMBER 151 L16
+    ALOAD 10
+    ILOAD 13
+    ALOAD 4
+    ILOAD 1
+    INVOKEVIRTUAL java/util/Random.nextInt (I)I
+    IASTORE
+   L17
+    LINENUMBER 150 L17
+    IINC 13 1
+    GOTO L14
+   L15
+    LINENUMBER 154 L15
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I] []
+    ALOAD 10
+    INVOKESTATIC java/util/Arrays.sort ([I)V
+   L18
+    LINENUMBER 156 L18
+    ICONST_M1
+    ISTORE 13
+   L19
+    LINENUMBER 157 L19
+    ICONST_0
+    ISTORE 14
+   L20
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I I] []
+    ILOAD 14
+    ILOAD 9
+    IF_ICMPGE L21
+   L22
+    LINENUMBER 159 L22
+    ALOAD 10
+    ILOAD 14
+    IALOAD
+    ILOAD 13
+    IF_ICMPNE L23
+   L24
+    LINENUMBER 160 L24
+    GOTO L25
+   L23
+    LINENUMBER 163 L23
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I I] []
+    ALOAD 6
+    ILOAD 11
+    ALOAD 4
+    INVOKEVIRTUAL java/util/Random.nextDouble ()D
+    DASTORE
+   L26
+    LINENUMBER 164 L26
+    ALOAD 7
+    ILOAD 11
+    IINC 11 1
+    ALOAD 10
+    ILOAD 14
+    IALOAD
+    IASTORE
+   L27
+    LINENUMBER 165 L27
+    ALOAD 10
+    ILOAD 14
+    IALOAD
+    ISTORE 13
+   L25
+    LINENUMBER 157 L25
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I I] []
+    IINC 14 1
+    GOTO L20
+   L21
+    LINENUMBER 146 L21
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I I I] []
+    IINC 12 1
+    GOTO L10
+   L11
+    LINENUMBER 169 L11
+   FRAME FULL [I I D java/util/Random I [D [I [I I [I I I] []
+    ALOAD 8
+    ILOAD 0
+    ILOAD 5
+    IASTORE
+   L28
+    LINENUMBER 171 L28
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 0
+    ILOAD 1
+    ILOAD 5
+    ALOAD 6
+    ALOAD 7
+    ALOAD 8
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L29
+    LOCALVARIABLE ii I L14 L15 13
+    LOCALVARIABLE ii I L20 L21 14
+    LOCALVARIABLE previous I L19 L21 13
+    LOCALVARIABLE i I L10 L11 12
+    LOCALVARIABLE rows I L0 L29 0
+    LOCALVARIABLE columns I L0 L29 1
+    LOCALVARIABLE density D L0 L29 2
+    LOCALVARIABLE random Ljava/util/Random; L0 L29 4
+    LOCALVARIABLE cardinality I L3 L29 5
+    LOCALVARIABLE values [D L4 L29 6
+    LOCALVARIABLE columnIndices [I L5 L29 7
+    LOCALVARIABLE rowPointers [I L6 L29 8
+    LOCALVARIABLE kk I L7 L29 9
+    LOCALVARIABLE indices [I L8 L29 10
+    LOCALVARIABLE k I L9 L29 11
+    MAXSTACK = 8
+    MAXLOCALS = 15
+
+  // access flags 0x9
+  public static randomSymmetric(IDLjava/util/Random;)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 179 L0
+    ILOAD 0
+    ILOAD 0
+    IMUL
+    I2D
+    DLOAD 1
+    DMUL
+    D2I
+    ISTORE 4
+   L1
+    LINENUMBER 187 L1
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 0
+    ILOAD 0
+    ILOAD 4
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III)V
+    ASTORE 5
+   L2
+    LINENUMBER 189 L2
+    ICONST_0
+    ISTORE 6
+   L3
+   FRAME FULL [I D java/util/Random I org/la4j/matrix/sparse/CRSMatrix I] []
+    ILOAD 6
+    ILOAD 4
+    ICONST_2
+    IDIV
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 190 L5
+    ALOAD 3
+    ILOAD 0
+    INVOKEVIRTUAL java/util/Random.nextInt (I)I
+    ISTORE 7
+   L6
+    LINENUMBER 191 L6
+    ALOAD 3
+    ILOAD 0
+    INVOKEVIRTUAL java/util/Random.nextInt (I)I
+    ISTORE 8
+   L7
+    LINENUMBER 192 L7
+    ALOAD 3
+    INVOKEVIRTUAL java/util/Random.nextDouble ()D
+    DSTORE 9
+   L8
+    LINENUMBER 194 L8
+    ALOAD 5
+    ILOAD 7
+    ILOAD 8
+    DLOAD 9
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.set (IID)V
+   L9
+    LINENUMBER 195 L9
+    ALOAD 5
+    ILOAD 8
+    ILOAD 7
+    DLOAD 9
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.set (IID)V
+   L10
+    LINENUMBER 189 L10
+    IINC 6 1
+    GOTO L3
+   L4
+    LINENUMBER 198 L4
+   FRAME FULL [I D java/util/Random I org/la4j/matrix/sparse/CRSMatrix I] []
+    ALOAD 5
+    ARETURN
+   L11
+    LOCALVARIABLE i I L6 L10 7
+    LOCALVARIABLE j I L7 L10 8
+    LOCALVARIABLE value D L8 L10 9
+    LOCALVARIABLE k I L3 L4 6
+    LOCALVARIABLE size I L0 L11 0
+    LOCALVARIABLE density D L0 L11 1
+    LOCALVARIABLE random Ljava/util/Random; L0 L11 3
+    LOCALVARIABLE cardinality I L1 L11 4
+    LOCALVARIABLE matrix Lorg/la4j/matrix/sparse/CRSMatrix; L2 L11 5
+    MAXSTACK = 5
+    MAXLOCALS = 11
+
+  // access flags 0x9
+  public static from1DArray(II[D)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 206 L0
+    ILOAD 0
+    ILOAD 1
+    INVOKESTATIC org/la4j/matrix/sparse/CRSMatrix.zero (II)Lorg/la4j/matrix/sparse/CRSMatrix;
+    ASTORE 3
+   L1
+    LINENUMBER 208 L1
+    ICONST_0
+    ISTORE 4
+   L2
+   FRAME FULL [I I [D org/la4j/matrix/sparse/CRSMatrix I] []
+    ILOAD 4
+    ILOAD 0
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 209 L4
+    ICONST_0
+    ISTORE 5
+   L5
+   FRAME FULL [I I [D org/la4j/matrix/sparse/CRSMatrix I I] []
+    ILOAD 5
+    ILOAD 1
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 210 L7
+    ILOAD 4
+    ILOAD 1
+    IMUL
+    ILOAD 5
+    IADD
+    ISTORE 6
+   L8
+    LINENUMBER 211 L8
+    ALOAD 2
+    ILOAD 6
+    DALOAD
+    DCONST_0
+    DCMPL
+    IFEQ L9
+   L10
+    LINENUMBER 212 L10
+    ALOAD 3
+    ILOAD 4
+    ILOAD 5
+    ALOAD 2
+    ILOAD 6
+    DALOAD
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.set (IID)V
+   L9
+    LINENUMBER 209 L9
+   FRAME FULL [I I [D org/la4j/matrix/sparse/CRSMatrix I I I] []
+    IINC 5 1
+    GOTO L5
+   L6
+    LINENUMBER 208 L6
+   FRAME FULL [I I [D org/la4j/matrix/sparse/CRSMatrix I I] []
+    IINC 4 1
+    GOTO L2
+   L3
+    LINENUMBER 217 L3
+   FRAME FULL [I I [D org/la4j/matrix/sparse/CRSMatrix I] []
+    ALOAD 3
+    ARETURN
+   L11
+    LOCALVARIABLE k I L8 L9 6
+    LOCALVARIABLE j I L5 L6 5
+    LOCALVARIABLE i I L2 L3 4
+    LOCALVARIABLE rows I L0 L11 0
+    LOCALVARIABLE columns I L0 L11 1
+    LOCALVARIABLE array [D L0 L11 2
+    LOCALVARIABLE result Lorg/la4j/matrix/sparse/CRSMatrix; L1 L11 3
+    MAXSTACK = 5
+    MAXLOCALS = 7
+
+  // access flags 0x9
+  public static from2DArray([[D)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 225 L0
+    ALOAD 0
+    ARRAYLENGTH
+    ISTORE 1
+   L1
+    LINENUMBER 226 L1
+    ALOAD 0
+    ICONST_0
+    AALOAD
+    ARRAYLENGTH
+    ISTORE 2
+   L2
+    LINENUMBER 227 L2
+    ILOAD 1
+    ILOAD 2
+    INVOKESTATIC org/la4j/matrix/sparse/CRSMatrix.zero (II)Lorg/la4j/matrix/sparse/CRSMatrix;
+    ASTORE 3
+   L3
+    LINENUMBER 229 L3
+    ICONST_0
+    ISTORE 4
+   L4
+   FRAME FULL [[[D I I org/la4j/matrix/sparse/CRSMatrix I] []
+    ILOAD 4
+    ILOAD 1
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 230 L6
+    ICONST_0
+    ISTORE 5
+   L7
+   FRAME FULL [[[D I I org/la4j/matrix/sparse/CRSMatrix I I] []
+    ILOAD 5
+    ILOAD 2
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 231 L9
+    ALOAD 0
+    ILOAD 4
+    AALOAD
+    ILOAD 5
+    DALOAD
+    DCONST_0
+    DCMPL
+    IFEQ L10
+   L11
+    LINENUMBER 232 L11
+    ALOAD 3
+    ILOAD 4
+    ILOAD 5
+    ALOAD 0
+    ILOAD 4
+    AALOAD
+    ILOAD 5
+    DALOAD
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.set (IID)V
+   L10
+    LINENUMBER 230 L10
+   FRAME FULL [[[D I I org/la4j/matrix/sparse/CRSMatrix I I] []
+    IINC 5 1
+    GOTO L7
+   L8
+    LINENUMBER 229 L8
+   FRAME FULL [[[D I I org/la4j/matrix/sparse/CRSMatrix I I] []
+    IINC 4 1
+    GOTO L4
+   L5
+    LINENUMBER 237 L5
+   FRAME FULL [[[D I I org/la4j/matrix/sparse/CRSMatrix I] []
+    ALOAD 3
+    ARETURN
+   L12
+    LOCALVARIABLE j I L7 L8 5
+    LOCALVARIABLE i I L4 L5 4
+    LOCALVARIABLE array [[D L0 L12 0
+    LOCALVARIABLE rows I L1 L12 1
+    LOCALVARIABLE columns I L2 L12 2
+    LOCALVARIABLE result Lorg/la4j/matrix/sparse/CRSMatrix; L3 L12 3
+    MAXSTACK = 5
+    MAXLOCALS = 6
+
+  // access flags 0x9
+  public static block(Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;Lorg/la4j/Matrix;)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 245 L0
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPNE L1
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPNE L1
+    ALOAD 2
+   L2
+    LINENUMBER 246 L2
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPNE L1
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ALOAD 3
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPEQ L3
+   L1
+    LINENUMBER 247 L1
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix] []
+    NEW java/lang/IllegalArgumentException
+    DUP
+    LDC "Sides of blocks are incompatible!"
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L3
+    LINENUMBER 250 L3
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix] []
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    ALOAD 2
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IADD
+    ISTORE 4
+   L4
+    LINENUMBER 251 L4
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    ALOAD 1
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IADD
+    ISTORE 5
+   L5
+    LINENUMBER 252 L5
+    NEW java/util/ArrayList
+    DUP
+    INVOKESPECIAL java/util/ArrayList.<init> ()V
+    ASTORE 6
+   L6
+    LINENUMBER 253 L6
+    NEW java/util/ArrayList
+    DUP
+    INVOKESPECIAL java/util/ArrayList.<init> ()V
+    ASTORE 7
+   L7
+    LINENUMBER 254 L7
+    ILOAD 4
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 8
+   L8
+    LINENUMBER 256 L8
+    ICONST_0
+    ISTORE 9
+   L9
+    LINENUMBER 257 L9
+    ALOAD 8
+    ICONST_0
+    ICONST_0
+    IASTORE
+   L10
+    LINENUMBER 258 L10
+    DCONST_0
+    DSTORE 10
+   L11
+    LINENUMBER 259 L11
+    ICONST_0
+    ISTORE 12
+   L12
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I] []
+    ILOAD 12
+    ILOAD 4
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 260 L14
+    ICONST_0
+    ISTORE 13
+   L15
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    ILOAD 13
+    ILOAD 5
+    IF_ICMPGE L16
+   L17
+    LINENUMBER 261 L17
+    ILOAD 12
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L18
+    ILOAD 13
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPGE L18
+   L19
+    LINENUMBER 262 L19
+    ALOAD 0
+    ILOAD 12
+    ILOAD 13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 10
+   L18
+    LINENUMBER 264 L18
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    ILOAD 12
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPGE L20
+    ILOAD 13
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPLE L20
+   L21
+    LINENUMBER 265 L21
+    ALOAD 1
+    ILOAD 12
+    ILOAD 13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 10
+   L20
+    LINENUMBER 267 L20
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    ILOAD 12
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPLE L22
+    ILOAD 13
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPGE L22
+   L23
+    LINENUMBER 268 L23
+    ALOAD 2
+    ILOAD 12
+    ILOAD 13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 10
+   L22
+    LINENUMBER 270 L22
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    ILOAD 12
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.rows ()I
+    IF_ICMPLE L24
+    ILOAD 13
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/Matrix.columns ()I
+    IF_ICMPLE L24
+   L25
+    LINENUMBER 271 L25
+    ALOAD 3
+    ILOAD 12
+    ILOAD 13
+    INVOKEVIRTUAL org/la4j/Matrix.get (II)D
+    DSTORE 10
+   L24
+    LINENUMBER 273 L24
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    DLOAD 10
+    INVOKESTATIC java/lang/Math.abs (D)D
+    GETSTATIC org/la4j/Matrices.EPS : D
+    DCMPL
+    IFLE L26
+   L27
+    LINENUMBER 274 L27
+    ALOAD 6
+    DLOAD 10
+    INVOKESTATIC java/lang/Double.valueOf (D)Ljava/lang/Double;
+    INVOKEVIRTUAL java/util/ArrayList.add (Ljava/lang/Object;)Z
+    POP
+   L28
+    LINENUMBER 275 L28
+    ALOAD 7
+    ILOAD 13
+    INVOKESTATIC java/lang/Integer.valueOf (I)Ljava/lang/Integer;
+    INVOKEVIRTUAL java/util/ArrayList.add (Ljava/lang/Object;)Z
+    POP
+   L29
+    LINENUMBER 276 L29
+    IINC 9 1
+   L26
+    LINENUMBER 260 L26
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    IINC 13 1
+    GOTO L15
+   L16
+    LINENUMBER 279 L16
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I I] []
+    ALOAD 8
+    ILOAD 12
+    ICONST_1
+    IADD
+    ILOAD 9
+    IASTORE
+   L30
+    LINENUMBER 259 L30
+    IINC 12 1
+    GOTO L12
+   L13
+    LINENUMBER 281 L13
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D I] []
+    ALOAD 6
+    INVOKEVIRTUAL java/util/ArrayList.size ()I
+    NEWARRAY T_DOUBLE
+    ASTORE 12
+   L31
+    LINENUMBER 282 L31
+    ALOAD 7
+    INVOKEVIRTUAL java/util/ArrayList.size ()I
+    NEWARRAY T_INT
+    ASTORE 13
+   L32
+    LINENUMBER 283 L32
+    ICONST_0
+    ISTORE 14
+   L33
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D [D [I I] []
+    ILOAD 14
+    ALOAD 6
+    INVOKEVIRTUAL java/util/ArrayList.size ()I
+    IF_ICMPGE L34
+   L35
+    LINENUMBER 284 L35
+    ALOAD 12
+    ILOAD 14
+    ALOAD 6
+    ILOAD 14
+    INVOKEVIRTUAL java/util/ArrayList.get (I)Ljava/lang/Object;
+    CHECKCAST java/lang/Double
+    INVOKEVIRTUAL java/lang/Double.doubleValue ()D
+    DASTORE
+   L36
+    LINENUMBER 285 L36
+    ALOAD 13
+    ILOAD 14
+    ALOAD 7
+    ILOAD 14
+    INVOKEVIRTUAL java/util/ArrayList.get (I)Ljava/lang/Object;
+    CHECKCAST java/lang/Integer
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    IASTORE
+   L37
+    LINENUMBER 283 L37
+    IINC 14 1
+    GOTO L33
+   L34
+    LINENUMBER 288 L34
+   FRAME FULL [org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix org/la4j/Matrix I I java/util/ArrayList java/util/ArrayList [I I D [D [I I] []
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 4
+    ILOAD 5
+    ILOAD 9
+    ALOAD 12
+    ALOAD 13
+    ALOAD 8
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L38
+    LOCALVARIABLE j I L15 L16 13
+    LOCALVARIABLE i I L12 L13 12
+    LOCALVARIABLE i I L33 L34 14
+    LOCALVARIABLE a Lorg/la4j/Matrix; L0 L38 0
+    LOCALVARIABLE b Lorg/la4j/Matrix; L0 L38 1
+    LOCALVARIABLE c Lorg/la4j/Matrix; L0 L38 2
+    LOCALVARIABLE d Lorg/la4j/Matrix; L0 L38 3
+    LOCALVARIABLE rows I L4 L38 4
+    LOCALVARIABLE columns I L5 L38 5
+    LOCALVARIABLE values Ljava/util/ArrayList; L6 L38 6
+    // signature Ljava/util/ArrayList<Ljava/lang/Double;>;
+    // declaration: java.util.ArrayList<java.lang.Double>
+    LOCALVARIABLE columnIndices Ljava/util/ArrayList; L7 L38 7
+    // signature Ljava/util/ArrayList<Ljava/lang/Integer;>;
+    // declaration: java.util.ArrayList<java.lang.Integer>
+    LOCALVARIABLE rowPointers [I L8 L38 8
+    LOCALVARIABLE k I L9 L38 9
+    LOCALVARIABLE current D L11 L38 10
+    LOCALVARIABLE valuesArray [D L31 L38 12
+    LOCALVARIABLE colIndArray [I L32 L38 13
+    MAXSTACK = 8
+    MAXLOCALS = 15
+
+  // access flags 0x9
+  public static fromBinary([B)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 299 L0
+    ALOAD 0
+    INVOKESTATIC java/nio/ByteBuffer.wrap ([B)Ljava/nio/ByteBuffer;
+    ASTORE 1
+   L1
+    LINENUMBER 301 L1
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.get ()B
+    LDC 32
+    IF_ICMPEQ L2
+   L3
+    LINENUMBER 302 L3
+    NEW java/lang/IllegalArgumentException
+    DUP
+    LDC "Can not decode CRSMatrix from the given byte array."
+    INVOKESPECIAL java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L2
+    LINENUMBER 305 L2
+   FRAME FULL [[B java/nio/ByteBuffer] []
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getInt ()I
+    ISTORE 2
+   L4
+    LINENUMBER 306 L4
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getInt ()I
+    ISTORE 3
+   L5
+    LINENUMBER 307 L5
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getInt ()I
+    ISTORE 4
+   L6
+    LINENUMBER 309 L6
+    ILOAD 4
+    NEWARRAY T_INT
+    ASTORE 5
+   L7
+    LINENUMBER 310 L7
+    ILOAD 4
+    NEWARRAY T_DOUBLE
+    ASTORE 6
+   L8
+    LINENUMBER 311 L8
+    ILOAD 2
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 7
+   L9
+    LINENUMBER 313 L9
+    ICONST_0
+    ISTORE 8
+   L10
+   FRAME FULL [[B java/nio/ByteBuffer I I I [I [D [I I] []
+    ILOAD 8
+    ILOAD 4
+    IF_ICMPGE L11
+   L12
+    LINENUMBER 314 L12
+    ALOAD 5
+    ILOAD 8
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getInt ()I
+    IASTORE
+   L13
+    LINENUMBER 315 L13
+    ALOAD 6
+    ILOAD 8
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getDouble ()D
+    DASTORE
+   L14
+    LINENUMBER 313 L14
+    IINC 8 1
+    GOTO L10
+   L11
+    LINENUMBER 318 L11
+   FRAME FULL [[B java/nio/ByteBuffer I I I [I [D [I I] []
+    ICONST_0
+    ISTORE 8
+   L15
+   FRAME FULL [[B java/nio/ByteBuffer I I I [I [D [I I] []
+    ILOAD 8
+    ILOAD 2
+    ICONST_1
+    IADD
+    IF_ICMPGE L16
+   L17
+    LINENUMBER 319 L17
+    ALOAD 7
+    ILOAD 8
+    ALOAD 1
+    INVOKEVIRTUAL java/nio/ByteBuffer.getInt ()I
+    IASTORE
+   L18
+    LINENUMBER 318 L18
+    IINC 8 1
+    GOTO L15
+   L16
+    LINENUMBER 322 L16
+   FRAME FULL [[B java/nio/ByteBuffer I I I [I [D [I I] []
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 2
+    ILOAD 3
+    ILOAD 4
+    ALOAD 6
+    ALOAD 5
+    ALOAD 7
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L19
+    LOCALVARIABLE i I L10 L11 8
+    LOCALVARIABLE i I L15 L16 8
+    LOCALVARIABLE array [B L0 L19 0
+    LOCALVARIABLE buffer Ljava/nio/ByteBuffer; L1 L19 1
+    LOCALVARIABLE rows I L4 L19 2
+    LOCALVARIABLE columns I L5 L19 3
+    LOCALVARIABLE cardinality I L6 L19 4
+    LOCALVARIABLE columnIndices [I L7 L19 5
+    LOCALVARIABLE values [D L8 L19 6
+    LOCALVARIABLE rowPointers [I L9 L19 7
+    MAXSTACK = 8
+    MAXLOCALS = 9
+
+  // access flags 0x9
+  public static fromCSV(Ljava/lang/String;)Lorg/la4j/matrix/sparse/CRSMatrix;
+   L0
+    LINENUMBER 333 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrix.fromCSV (Ljava/lang/String;)Lorg/la4j/Matrix;
+    GETSTATIC org/la4j/Matrices.CRS : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/sparse/CRSMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE csv Ljava/lang/String; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static fromMatrixMarket(Ljava/io/InputStream;)Lorg/la4j/matrix/sparse/CRSMatrix; throws java/io/IOException 
+   L0
+    LINENUMBER 345 L0
+    ALOAD 0
+    INVOKESTATIC org/la4j/Matrix.fromMatrixMarket (Ljava/io/InputStream;)Lorg/la4j/Matrix;
+    GETSTATIC org/la4j/Matrices.CRS : Lorg/la4j/matrix/MatrixFactory;
+    INVOKEVIRTUAL org/la4j/Matrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    CHECKCAST org/la4j/matrix/sparse/CRSMatrix
+    ARETURN
+   L1
+    LOCALVARIABLE is Ljava/io/InputStream; L0 L1 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public getOrElse(IID)D
+   L0
+    LINENUMBER 350 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.ensureIndexesAreInBounds (II)V
+   L1
+    LINENUMBER 351 L1
+    ALOAD 0
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.searchForColumnIndex (III)I
+    ISTORE 5
+   L2
+    LINENUMBER 353 L2
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 5
+    IALOAD
+    ILOAD 2
+    IF_ICMPNE L3
+   L4
+    LINENUMBER 354 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 5
+    DALOAD
+    DRETURN
+   L3
+    LINENUMBER 357 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I D I] []
+    DLOAD 3
+    DRETURN
+   L5
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    LOCALVARIABLE j I L0 L5 2
+    LOCALVARIABLE defaultValue D L0 L5 3
+    LOCALVARIABLE k I L2 L5 5
+    MAXSTACK = 6
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public set(IID)V
+   L0
+    LINENUMBER 362 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.ensureIndexesAreInBounds (II)V
+   L1
+    LINENUMBER 363 L1
+    ALOAD 0
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.searchForColumnIndex (III)I
+    ISTORE 5
+   L2
+    LINENUMBER 365 L2
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 5
+    IALOAD
+    ILOAD 2
+    IF_ICMPNE L3
+   L4
+    LINENUMBER 367 L4
+    DLOAD 3
+    DCONST_0
+    DCMPL
+    IFNE L5
+   L6
+    LINENUMBER 368 L6
+    ALOAD 0
+    ILOAD 5
+    ILOAD 1
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.remove (II)V
+    GOTO L7
+   L5
+    LINENUMBER 370 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I D I] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 5
+    DLOAD 3
+    DASTORE
+    GOTO L7
+   L3
+    LINENUMBER 373 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I D I] []
+    ALOAD 0
+    ILOAD 5
+    ILOAD 1
+    ILOAD 2
+    DLOAD 3
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.insert (IIID)V
+   L7
+    LINENUMBER 375 L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I D I] []
+    RETURN
+   L8
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L8 0
+    LOCALVARIABLE i I L0 L8 1
+    LOCALVARIABLE j I L0 L8 2
+    LOCALVARIABLE value D L0 L8 3
+    LOCALVARIABLE k I L2 L8 5
+    MAXSTACK = 6
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public setAll(D)V
+   L0
+    LINENUMBER 379 L0
+    DLOAD 1
+    DCONST_0
+    DCMPL
+    IFNE L1
+   L2
+    LINENUMBER 380 L2
+    ALOAD 0
+    ICONST_0
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    GOTO L3
+   L1
+    LINENUMBER 382 L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D] []
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.capacity ()J
+    L2I
+    ISTORE 3
+   L4
+    LINENUMBER 384 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ARRAYLENGTH
+    ILOAD 3
+    IF_ICMPGE L5
+   L6
+    LINENUMBER 385 L6
+    ALOAD 0
+    ILOAD 3
+    NEWARRAY T_DOUBLE
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+   L7
+    LINENUMBER 386 L7
+    ALOAD 0
+    ILOAD 3
+    NEWARRAY T_INT
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+   L8
+    LINENUMBER 387 L8
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+   L5
+    LINENUMBER 390 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    ICONST_0
+    ISTORE 4
+   L9
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IF_ICMPGE L10
+   L11
+    LINENUMBER 391 L11
+    ICONST_0
+    ISTORE 5
+   L12
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I I I] []
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 392 L14
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IMUL
+    ILOAD 5
+    IADD
+    DLOAD 1
+    DASTORE
+   L15
+    LINENUMBER 393 L15
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IMUL
+    ILOAD 5
+    IADD
+    ILOAD 5
+    IASTORE
+   L16
+    LINENUMBER 391 L16
+    IINC 5 1
+    GOTO L12
+   L13
+    LINENUMBER 395 L13
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I I I] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    ILOAD 4
+    IMUL
+    IASTORE
+   L17
+    LINENUMBER 390 L17
+    IINC 4 1
+    GOTO L9
+   L10
+    LINENUMBER 398 L10
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I I] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ILOAD 3
+    IASTORE
+   L18
+    LINENUMBER 399 L18
+    ALOAD 0
+    ILOAD 3
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+   L3
+    LINENUMBER 401 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D] []
+    RETURN
+   L19
+    LOCALVARIABLE j I L12 L13 5
+    LOCALVARIABLE i I L9 L10 4
+    LOCALVARIABLE size I L4 L3 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L19 0
+    LOCALVARIABLE value D L0 L19 1
+    MAXSTACK = 4
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public getRow(I)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 405 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ISUB
+    ISTORE 2
+   L1
+    LINENUMBER 406 L1
+    ILOAD 2
+    NEWARRAY T_DOUBLE
+    ASTORE 3
+   L2
+    LINENUMBER 407 L2
+    ILOAD 2
+    NEWARRAY T_INT
+    ASTORE 4
+   L3
+    LINENUMBER 409 L3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 3
+    ICONST_0
+    ILOAD 2
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L4
+    LINENUMBER 410 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 4
+    ICONST_0
+    ILOAD 2
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L5
+    LINENUMBER 413 L5
+    NEW org/la4j/vector/sparse/CompressedVector
+    DUP
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    ILOAD 2
+    ALOAD 3
+    ALOAD 4
+    INVOKESPECIAL org/la4j/vector/sparse/CompressedVector.<init> (II[D[I)V
+    ARETURN
+   L6
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L6 0
+    LOCALVARIABLE i I L0 L6 1
+    LOCALVARIABLE rowCardinality I L1 L6 2
+    LOCALVARIABLE rowValues [D L2 L6 3
+    LOCALVARIABLE rowIndices [I L3 L6 4
+    MAXSTACK = 6
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public getColumn(I)Lorg/la4j/Vector;
+   L0
+    LINENUMBER 419 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    INVOKESTATIC org/la4j/vector/sparse/CompressedVector.zero (I)Lorg/la4j/vector/sparse/CompressedVector;
+    ASTORE 2
+   L1
+    LINENUMBER 420 L1
+    ICONST_0
+    ISTORE 3
+   L2
+    LINENUMBER 422 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/sparse/CompressedVector I] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 423 L4
+    ALOAD 0
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    ICONST_1
+    IADD
+    IALOAD
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.searchForColumnIndex (III)I
+    ISTORE 4
+   L5
+    LINENUMBER 424 L5
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    IALOAD
+    ILOAD 1
+    IF_ICMPNE L6
+   L7
+    LINENUMBER 425 L7
+    ALOAD 2
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    INVOKEVIRTUAL org/la4j/Vector.set (ID)V
+   L6
+    LINENUMBER 428 L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/sparse/CompressedVector I I] []
+    IINC 3 1
+   L8
+    LINENUMBER 429 L8
+    GOTO L2
+   L3
+    LINENUMBER 431 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/sparse/CompressedVector I] []
+    ALOAD 2
+    ARETURN
+   L9
+    LOCALVARIABLE k I L5 L8 4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE j I L0 L9 1
+    LOCALVARIABLE result Lorg/la4j/Vector; L1 L9 2
+    LOCALVARIABLE i I L2 L9 3
+    MAXSTACK = 6
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public copyOfShape(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 436 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.ensureDimensionsAreCorrect (II)V
+   L1
+    LINENUMBER 438 L1
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IF_ICMPLT L2
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IF_ICMPLT L2
+   L3
+    LINENUMBER 439 L3
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.align (I)I
+    NEWARRAY T_DOUBLE
+    ASTORE 3
+   L4
+    LINENUMBER 440 L4
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.align (I)I
+    NEWARRAY T_INT
+    ASTORE 4
+   L5
+    LINENUMBER 441 L5
+    ILOAD 1
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 5
+   L6
+    LINENUMBER 443 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ICONST_0
+    ALOAD 3
+    ICONST_0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L7
+    LINENUMBER 444 L7
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ICONST_0
+    ALOAD 4
+    ICONST_0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L8
+    LINENUMBER 445 L8
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ICONST_0
+    ALOAD 5
+    ICONST_0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L9
+    LINENUMBER 447 L9
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ISTORE 6
+   L10
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I] []
+    ILOAD 6
+    ILOAD 1
+    ICONST_1
+    IADD
+    IF_ICMPGE L11
+   L12
+    LINENUMBER 448 L12
+    ALOAD 5
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IASTORE
+   L13
+    LINENUMBER 447 L13
+    IINC 6 1
+    GOTO L10
+   L11
+    LINENUMBER 451 L11
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I] []
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 1
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ALOAD 3
+    ALOAD 4
+    ALOAD 5
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L2
+    LINENUMBER 454 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I] []
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.align (I)I
+    NEWARRAY T_DOUBLE
+    ASTORE 3
+   L14
+    LINENUMBER 455 L14
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.align (I)I
+    NEWARRAY T_INT
+    ASTORE 4
+   L15
+    LINENUMBER 456 L15
+    ILOAD 1
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 5
+   L16
+    LINENUMBER 458 L16
+    ICONST_0
+    ISTORE 6
+   L17
+    LINENUMBER 460 L17
+    ICONST_0
+    ISTORE 7
+   L18
+    LINENUMBER 461 L18
+    ICONST_0
+    ISTORE 8
+   L19
+    LINENUMBER 462 L19
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I I I] []
+    ILOAD 7
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L20
+    ILOAD 8
+    ILOAD 1
+    IF_ICMPGE L20
+   L21
+    LINENUMBER 464 L21
+    ALOAD 5
+    ILOAD 8
+    ILOAD 6
+    IASTORE
+   L22
+    LINENUMBER 466 L22
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 8
+    IALOAD
+    ISTORE 9
+   L23
+    LINENUMBER 467 L23
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I I I I] []
+    ILOAD 9
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 8
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L24
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 9
+    IALOAD
+    ILOAD 2
+    IF_ICMPGE L24
+   L25
+    LINENUMBER 469 L25
+    ALOAD 3
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 9
+    DALOAD
+    DASTORE
+   L26
+    LINENUMBER 470 L26
+    ALOAD 4
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 9
+    IALOAD
+    IASTORE
+   L27
+    LINENUMBER 471 L27
+    IINC 6 1
+   L28
+    LINENUMBER 467 L28
+    IINC 9 1
+    IINC 7 1
+    GOTO L23
+   L24
+    LINENUMBER 473 L24
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I I I I] []
+    IINC 8 1
+    GOTO L19
+   L20
+    LINENUMBER 476 L20
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I I I] []
+    ILOAD 8
+    ILOAD 1
+    ICONST_1
+    IADD
+    IF_ICMPGE L29
+   L30
+    LINENUMBER 477 L30
+    ALOAD 5
+    ILOAD 8
+    ILOAD 6
+    IASTORE
+   L31
+    LINENUMBER 476 L31
+    IINC 8 1
+    GOTO L20
+   L29
+    LINENUMBER 480 L29
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I [D [I [I I I I] []
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 1
+    ILOAD 2
+    ILOAD 6
+    ALOAD 3
+    ALOAD 4
+    ALOAD 5
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L32
+    LOCALVARIABLE i I L10 L11 6
+    LOCALVARIABLE $values [D L4 L2 3
+    LOCALVARIABLE $columnIndices [I L5 L2 4
+    LOCALVARIABLE $rowPointers [I L6 L2 5
+    LOCALVARIABLE j I L23 L24 9
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L32 0
+    LOCALVARIABLE rows I L0 L32 1
+    LOCALVARIABLE columns I L0 L32 2
+    LOCALVARIABLE $values [D L14 L32 3
+    LOCALVARIABLE $columnIndices [I L15 L32 4
+    LOCALVARIABLE $rowPointers [I L16 L32 5
+    LOCALVARIABLE $cardinality I L17 L32 6
+    LOCALVARIABLE k I L18 L32 7
+    LOCALVARIABLE i I L19 L32 8
+    MAXSTACK = 8
+    MAXLOCALS = 10
+
+  // access flags 0x1
+  public eachNonZero(Lorg/la4j/matrix/functor/MatrixProcedure;)V
+   L0
+    LINENUMBER 485 L0
+    ICONST_0
+    ISTORE 2
+   L1
+    LINENUMBER 486 L1
+    ICONST_0
+    ISTORE 3
+   L2
+    LINENUMBER 487 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I] []
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 488 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    IALOAD
+    ISTORE 4
+   L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 489 L7
+    ALOAD 1
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixProcedure.apply (IID)V
+   L8
+    LINENUMBER 488 L8
+    IINC 4 1
+    IINC 2 1
+    GOTO L5
+   L6
+    LINENUMBER 491 L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I] []
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 493 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I] []
+    RETURN
+   L9
+    LOCALVARIABLE j I L5 L6 4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE procedure Lorg/la4j/matrix/functor/MatrixProcedure; L0 L9 1
+    LOCALVARIABLE k I L1 L9 2
+    LOCALVARIABLE i I L2 L9 3
+    MAXSTACK = 5
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public each(Lorg/la4j/matrix/functor/MatrixProcedure;)V
+   L0
+    LINENUMBER 497 L0
+    ICONST_0
+    ISTORE 2
+   L1
+    LINENUMBER 498 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 499 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    ICONST_1
+    IADD
+    IALOAD
+    ISTORE 4
+   L5
+    LINENUMBER 500 L5
+    ICONST_0
+    ISTORE 5
+   L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I I] []
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 501 L8
+    ILOAD 2
+    ILOAD 4
+    IF_ICMPGE L9
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 2
+    IALOAD
+    IF_ICMPNE L9
+   L10
+    LINENUMBER 502 L10
+    ALOAD 1
+    ILOAD 3
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 2
+    IINC 2 1
+    DALOAD
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixProcedure.apply (IID)V
+    GOTO L11
+   L9
+    LINENUMBER 504 L9
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I I] []
+    ALOAD 1
+    ILOAD 3
+    ILOAD 5
+    DCONST_0
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixProcedure.apply (IID)V
+   L11
+    LINENUMBER 500 L11
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I I] []
+    IINC 5 1
+    GOTO L6
+   L7
+    LINENUMBER 498 L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I I I] []
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 508 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/functor/MatrixProcedure I I] []
+    RETURN
+   L12
+    LOCALVARIABLE j I L6 L7 5
+    LOCALVARIABLE valuesSoFar I L5 L7 4
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L12 0
+    LOCALVARIABLE procedure Lorg/la4j/matrix/functor/MatrixProcedure; L0 L12 1
+    LOCALVARIABLE k I L1 L12 2
+    MAXSTACK = 5
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public eachInRow(ILorg/la4j/vector/functor/VectorProcedure;)V
+   L0
+    LINENUMBER 512 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ISTORE 3
+   L1
+    LINENUMBER 513 L1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    ISTORE 4
+   L2
+    LINENUMBER 514 L2
+    ICONST_0
+    ISTORE 5
+   L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I I I] []
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IF_ICMPGE L4
+   L5
+    LINENUMBER 515 L5
+    ILOAD 3
+    ILOAD 4
+    IF_ICMPGE L6
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 3
+    IALOAD
+    IF_ICMPNE L6
+   L7
+    LINENUMBER 516 L7
+    ALOAD 2
+    ILOAD 5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    IINC 3 1
+    DALOAD
+    INVOKEINTERFACE org/la4j/vector/functor/VectorProcedure.apply (ID)V
+    GOTO L8
+   L6
+    LINENUMBER 518 L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I I I] []
+    ALOAD 2
+    ILOAD 5
+    DCONST_0
+    INVOKEINTERFACE org/la4j/vector/functor/VectorProcedure.apply (ID)V
+   L8
+    LINENUMBER 514 L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I I I] []
+    IINC 5 1
+    GOTO L3
+   L4
+    LINENUMBER 521 L4
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I I I] []
+    RETURN
+   L9
+    LOCALVARIABLE j I L3 L4 5
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE i I L0 L9 1
+    LOCALVARIABLE procedure Lorg/la4j/vector/functor/VectorProcedure; L0 L9 2
+    LOCALVARIABLE k I L1 L9 3
+    LOCALVARIABLE valuesSoFar I L2 L9 4
+    MAXSTACK = 4
+    MAXLOCALS = 6
+
+  // access flags 0x1
+  public eachNonZeroInRow(ILorg/la4j/vector/functor/VectorProcedure;)V
+   L0
+    LINENUMBER 525 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ISTORE 3
+   L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L2
+   L3
+    LINENUMBER 526 L3
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 3
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    INVOKEINTERFACE org/la4j/vector/functor/VectorProcedure.apply (ID)V
+   L4
+    LINENUMBER 525 L4
+    IINC 3 1
+    GOTO L1
+   L2
+    LINENUMBER 528 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I org/la4j/vector/functor/VectorProcedure I] []
+    RETURN
+   L5
+    LOCALVARIABLE j I L1 L2 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    LOCALVARIABLE procedure Lorg/la4j/vector/functor/VectorProcedure; L0 L5 2
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public updateAt(IILorg/la4j/matrix/functor/MatrixFunction;)V
+   L0
+    LINENUMBER 532 L0
+    ALOAD 0
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.searchForColumnIndex (III)I
+    ISTORE 4
+   L1
+    LINENUMBER 533 L1
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    IALOAD
+    ILOAD 2
+    IF_ICMPNE L2
+   L3
+    LINENUMBER 535 L3
+    ALOAD 3
+    ILOAD 1
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixFunction.evaluate (IID)D
+    DSTORE 5
+   L4
+    LINENUMBER 538 L4
+    DLOAD 5
+    DCONST_0
+    DCMPL
+    IFNE L5
+   L6
+    LINENUMBER 539 L6
+    ALOAD 0
+    ILOAD 4
+    ILOAD 1
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.remove (II)V
+    GOTO L7
+   L5
+    LINENUMBER 541 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I org/la4j/matrix/functor/MatrixFunction I D] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DLOAD 5
+    DASTORE
+   L7
+    LINENUMBER 543 L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I org/la4j/matrix/functor/MatrixFunction I D] []
+    GOTO L8
+   L2
+    LINENUMBER 544 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I org/la4j/matrix/functor/MatrixFunction I] []
+    ALOAD 0
+    ILOAD 4
+    ILOAD 1
+    ILOAD 2
+    ALOAD 3
+    ILOAD 1
+    ILOAD 2
+    DCONST_0
+    INVOKEINTERFACE org/la4j/matrix/functor/MatrixFunction.evaluate (IID)D
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.insert (IIID)V
+   L8
+    LINENUMBER 546 L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I org/la4j/matrix/functor/MatrixFunction I] []
+    RETURN
+   L9
+    LOCALVARIABLE value D L4 L7 5
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE i I L0 L9 1
+    LOCALVARIABLE j I L0 L9 2
+    LOCALVARIABLE function Lorg/la4j/matrix/functor/MatrixFunction; L0 L9 3
+    LOCALVARIABLE k I L1 L9 4
+    MAXSTACK = 9
+    MAXLOCALS = 7
+
+  // access flags 0x1
+  public nonZeroAt(II)Z
+   L0
+    LINENUMBER 550 L0
+    ALOAD 0
+    ILOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.searchForColumnIndex (III)I
+    ISTORE 3
+   L1
+    LINENUMBER 551 L1
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 3
+    IALOAD
+    ILOAD 2
+    IF_ICMPNE L2
+    ICONST_1
+    GOTO L3
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    ICONST_0
+   L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] [I]
+    IRETURN
+   L4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L4 0
+    LOCALVARIABLE i I L0 L4 1
+    LOCALVARIABLE j I L0 L4 2
+    LOCALVARIABLE k I L1 L4 3
+    MAXSTACK = 6
+    MAXLOCALS = 4
+
+  // access flags 0x2
+  private searchForColumnIndex(III)I
+   L0
+    LINENUMBER 555 L0
+    ILOAD 3
+    ILOAD 2
+    ISUB
+    IFEQ L1
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 3
+    ICONST_1
+    ISUB
+    IALOAD
+    IF_ICMPLE L2
+   L1
+    LINENUMBER 556 L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    ILOAD 3
+    IRETURN
+   L2
+    LINENUMBER 559 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    ILOAD 2
+    ILOAD 3
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 560 L4
+    ILOAD 2
+    ILOAD 3
+    IADD
+    ICONST_2
+    IDIV
+    ISTORE 4
+   L5
+    LINENUMBER 561 L5
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    IALOAD
+    ILOAD 1
+    IF_ICMPLE L6
+   L7
+    LINENUMBER 562 L7
+    ILOAD 4
+    ISTORE 3
+    GOTO L8
+   L6
+    LINENUMBER 563 L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I I] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 4
+    IALOAD
+    ILOAD 1
+    IF_ICMPGE L9
+   L10
+    LINENUMBER 564 L10
+    ILOAD 4
+    ICONST_1
+    IADD
+    ISTORE 2
+    GOTO L8
+   L9
+    LINENUMBER 566 L9
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I I] []
+    ILOAD 4
+    IRETURN
+   L8
+    LINENUMBER 568 L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I I] []
+    GOTO L2
+   L3
+    LINENUMBER 570 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    ILOAD 2
+    IRETURN
+   L11
+    LOCALVARIABLE p I L5 L8 4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L11 0
+    LOCALVARIABLE j I L0 L11 1
+    LOCALVARIABLE left I L0 L11 2
+    LOCALVARIABLE right I L0 L11 3
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x2
+  private insert(IIID)V
+   L0
+    LINENUMBER 575 L0
+    DLOAD 4
+    DCONST_0
+    DCMPL
+    IFNE L1
+   L2
+    LINENUMBER 576 L2
+    RETURN
+   L1
+    LINENUMBER 579 L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I D] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ARRAYLENGTH
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ICONST_1
+    IADD
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 580 L4
+    ALOAD 0
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.growUp ()V
+   L3
+    LINENUMBER 583 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I D] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    IFLE L5
+   L6
+    LINENUMBER 584 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 1
+    ICONST_1
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L7
+    LINENUMBER 585 L7
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L5
+    LINENUMBER 593 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I D] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 1
+    DLOAD 4
+    DASTORE
+   L8
+    LINENUMBER 594 L8
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 1
+    ILOAD 3
+    IASTORE
+   L9
+    LINENUMBER 596 L9
+    ILOAD 2
+    ICONST_1
+    IADD
+    ISTORE 6
+   L10
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I D I] []
+    ILOAD 6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    IF_ICMPGE L11
+   L12
+    LINENUMBER 597 L12
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 6
+    DUP2
+    IALOAD
+    ICONST_1
+    IADD
+    IASTORE
+   L13
+    LINENUMBER 596 L13
+    IINC 6 1
+    GOTO L10
+   L11
+    LINENUMBER 600 L11
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I D I] []
+    ALOAD 0
+    DUP
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ICONST_1
+    IADD
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+   L14
+    LINENUMBER 601 L14
+    RETURN
+   L15
+    LOCALVARIABLE ii I L10 L11 6
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L15 0
+    LOCALVARIABLE k I L0 L15 1
+    LOCALVARIABLE i I L0 L15 2
+    LOCALVARIABLE j I L0 L15 3
+    LOCALVARIABLE value D L0 L15 4
+    MAXSTACK = 6
+    MAXLOCALS = 7
+
+  // access flags 0x2
+  private remove(II)V
+   L0
+    LINENUMBER 604 L0
+    ALOAD 0
+    DUP
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ICONST_1
+    ISUB
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+   L1
+    LINENUMBER 606 L1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    IFLE L2
+   L3
+    LINENUMBER 607 L3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 1
+    ICONST_1
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L4
+    LINENUMBER 608 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ILOAD 1
+    ISUB
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L2
+    LINENUMBER 616 L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I] []
+    ILOAD 2
+    ICONST_1
+    IADD
+    ISTORE 3
+   L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    IF_ICMPGE L6
+   L7
+    LINENUMBER 617 L7
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    DUP2
+    IALOAD
+    ICONST_1
+    ISUB
+    IASTORE
+   L8
+    LINENUMBER 616 L8
+    IINC 3 1
+    GOTO L5
+   L6
+    LINENUMBER 619 L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I I I] []
+    RETURN
+   L9
+    LOCALVARIABLE ii I L5 L6 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE k I L0 L9 1
+    LOCALVARIABLE i I L0 L9 2
+    MAXSTACK = 6
+    MAXLOCALS = 4
+
+  // access flags 0x2
+  private growUp()V
+   L0
+    LINENUMBER 623 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ARRAYLENGTH
+    I2L
+    ALOAD 0
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.capacity ()J
+    LCMP
+    IFNE L1
+   L2
+    LINENUMBER 625 L2
+    NEW java/lang/IllegalStateException
+    DUP
+    LDC "This matrix can't grow up."
+    INVOKESPECIAL java/lang/IllegalStateException.<init> (Ljava/lang/String;)V
+    ATHROW
+   L1
+    LINENUMBER 628 L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IFEQ L3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    LDC 2147483647
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IDIV
+    IF_ICMPLE L3
+    LDC 2147483647
+    GOTO L4
+   L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix] []
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IMUL
+   L4
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix] [I]
+    ISTORE 1
+   L5
+    LINENUMBER 633 L5
+    ILOAD 1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    ICONST_3
+    IMUL
+    ICONST_2
+    IDIV
+    ICONST_1
+    IADD
+    INVOKESTATIC java/lang/Math.min (II)I
+    ISTORE 2
+   L6
+    LINENUMBER 635 L6
+    ILOAD 2
+    NEWARRAY T_DOUBLE
+    ASTORE 3
+   L7
+    LINENUMBER 636 L7
+    ILOAD 2
+    NEWARRAY T_INT
+    ASTORE 4
+   L8
+    LINENUMBER 638 L8
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ICONST_0
+    ALOAD 3
+    ICONST_0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L9
+    LINENUMBER 639 L9
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ICONST_0
+    ALOAD 4
+    ICONST_0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKESTATIC java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V
+   L10
+    LINENUMBER 641 L10
+    ALOAD 0
+    ALOAD 3
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+   L11
+    LINENUMBER 642 L11
+    ALOAD 0
+    ALOAD 4
+    PUTFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+   L12
+    LINENUMBER 643 L12
+    RETURN
+   L13
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L13 0
+    LOCALVARIABLE min I L5 L13 1
+    LOCALVARIABLE capacity I L6 L13 2
+    LOCALVARIABLE $values [D L7 L13 3
+    LOCALVARIABLE $columnIndices [I L8 L13 4
+    MAXSTACK = 5
+    MAXLOCALS = 5
+
+  // access flags 0x2
+  private align(I)I
+   L0
+    LINENUMBER 646 L0
+    ILOAD 1
+    LDC 32
+    IDIV
+    ICONST_1
+    IADD
+    LDC 32
+    IMUL
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    LOCALVARIABLE cardinality I L0 L1 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public max()D
+   L0
+    LINENUMBER 651 L0
+    LDC -Infinity
+    DSTORE 1
+   L1
+    LINENUMBER 653 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 654 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    DLOAD 1
+    DCMPL
+    IFLE L5
+   L6
+    LINENUMBER 655 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    DSTORE 1
+   L5
+    LINENUMBER 653 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 659 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    DLOAD 1
+    DCONST_0
+    DCMPL
+    IFLE L7
+    DLOAD 1
+    GOTO L8
+   L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    DCONST_0
+   L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] [D]
+    DRETURN
+   L9
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE max D L1 L9 1
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public min()D
+   L0
+    LINENUMBER 664 L0
+    LDC Infinity
+    DSTORE 1
+   L1
+    LINENUMBER 666 L1
+    ICONST_0
+    ISTORE 3
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 667 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    DLOAD 1
+    DCMPG
+    IFGE L5
+   L6
+    LINENUMBER 668 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    DSTORE 1
+   L5
+    LINENUMBER 666 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    IINC 3 1
+    GOTO L2
+   L3
+    LINENUMBER 672 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    DLOAD 1
+    DCONST_0
+    DCMPG
+    IFGE L7
+    DLOAD 1
+    GOTO L8
+   L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] []
+    DCONST_0
+   L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix D I] [D]
+    DRETURN
+   L9
+    LOCALVARIABLE i I L2 L3 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE min D L1 L9 1
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x1
+  public maxInRow(I)D
+   L0
+    LINENUMBER 677 L0
+    LDC -Infinity
+    DSTORE 2
+   L1
+    LINENUMBER 679 L1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ISTORE 4
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 680 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    DLOAD 2
+    DCMPL
+    IFLE L5
+   L6
+    LINENUMBER 681 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    DSTORE 2
+   L5
+    LINENUMBER 679 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    IINC 4 1
+    GOTO L2
+   L3
+    LINENUMBER 685 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    DLOAD 2
+    DCONST_0
+    DCMPL
+    IFLE L7
+    DLOAD 2
+    GOTO L8
+   L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    DCONST_1
+   L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] [D]
+    DRETURN
+   L9
+    LOCALVARIABLE k I L2 L3 4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE i I L0 L9 1
+    LOCALVARIABLE max D L1 L9 2
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public minInRow(I)D
+   L0
+    LINENUMBER 690 L0
+    LDC Infinity
+    DSTORE 2
+   L1
+    LINENUMBER 692 L1
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    IALOAD
+    ISTORE 4
+   L2
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    ILOAD 4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 1
+    ICONST_1
+    IADD
+    IALOAD
+    IF_ICMPGE L3
+   L4
+    LINENUMBER 693 L4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    DLOAD 2
+    DCMPG
+    IFGE L5
+   L6
+    LINENUMBER 694 L6
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 4
+    DALOAD
+    DSTORE 2
+   L5
+    LINENUMBER 692 L5
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    IINC 4 1
+    GOTO L2
+   L3
+    LINENUMBER 698 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    DLOAD 2
+    DCONST_0
+    DCMPG
+    IFGE L7
+    DLOAD 2
+    GOTO L8
+   L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] []
+    DCONST_0
+   L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I D I] [D]
+    DRETURN
+   L9
+    LOCALVARIABLE k I L2 L3 4
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L9 0
+    LOCALVARIABLE i I L0 L9 1
+    LOCALVARIABLE min D L1 L9 2
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public select([I[I)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 706 L0
+    ALOAD 1
+    ARRAYLENGTH
+    ISTORE 3
+   L1
+    LINENUMBER 707 L1
+    ALOAD 2
+    ARRAYLENGTH
+    ISTORE 4
+   L2
+    LINENUMBER 709 L2
+    ILOAD 3
+    IFEQ L3
+    ILOAD 4
+    IFNE L4
+   L3
+    LINENUMBER 710 L3
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I] []
+    ALOAD 0
+    LDC "No rows or columns selected."
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.fail (Ljava/lang/String;)V
+   L4
+    LINENUMBER 716 L4
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I] []
+    ICONST_0
+    ISTORE 5
+   L5
+    LINENUMBER 717 L5
+    ICONST_0
+    ISTORE 6
+   L6
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I I] []
+    ILOAD 6
+    ILOAD 3
+    IF_ICMPGE L7
+   L8
+    LINENUMBER 718 L8
+    ICONST_0
+    ISTORE 7
+   L9
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I I I] []
+    ILOAD 7
+    ILOAD 4
+    IF_ICMPGE L10
+   L11
+    LINENUMBER 719 L11
+    ALOAD 0
+    ALOAD 1
+    ILOAD 6
+    IALOAD
+    ALOAD 2
+    ILOAD 7
+    IALOAD
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.get (II)D
+    DCONST_0
+    DCMPL
+    IFEQ L12
+   L13
+    LINENUMBER 720 L13
+    IINC 5 1
+   L12
+    LINENUMBER 718 L12
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I I I] []
+    IINC 7 1
+    GOTO L9
+   L10
+    LINENUMBER 717 L10
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I I I] []
+    IINC 6 1
+    GOTO L6
+   L7
+    LINENUMBER 726 L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I I] []
+    ILOAD 5
+    NEWARRAY T_DOUBLE
+    ASTORE 6
+   L14
+    LINENUMBER 727 L14
+    ILOAD 5
+    NEWARRAY T_INT
+    ASTORE 7
+   L15
+    LINENUMBER 728 L15
+    ILOAD 3
+    ICONST_1
+    IADD
+    NEWARRAY T_INT
+    ASTORE 8
+   L16
+    LINENUMBER 730 L16
+    ALOAD 8
+    ICONST_0
+    ICONST_0
+    IASTORE
+   L17
+    LINENUMBER 731 L17
+    ICONST_0
+    ISTORE 9
+   L18
+    LINENUMBER 732 L18
+    ICONST_0
+    ISTORE 10
+   L19
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I [D [I [I I I] []
+    ILOAD 10
+    ILOAD 3
+    IF_ICMPGE L20
+   L21
+    LINENUMBER 733 L21
+    ALOAD 8
+    ILOAD 10
+    ICONST_1
+    IADD
+    ALOAD 8
+    ILOAD 10
+    IALOAD
+    IASTORE
+   L22
+    LINENUMBER 734 L22
+    ICONST_0
+    ISTORE 11
+   L23
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I [D [I [I I I I] []
+    ILOAD 11
+    ILOAD 4
+    IF_ICMPGE L24
+   L25
+    LINENUMBER 735 L25
+    ALOAD 0
+    ALOAD 1
+    ILOAD 10
+    IALOAD
+    ALOAD 2
+    ILOAD 11
+    IALOAD
+    INVOKEVIRTUAL org/la4j/matrix/sparse/CRSMatrix.get (II)D
+    DSTORE 12
+   L26
+    LINENUMBER 736 L26
+    DLOAD 12
+    DCONST_0
+    DCMPL
+    IFEQ L27
+   L28
+    LINENUMBER 737 L28
+    ALOAD 6
+    ILOAD 9
+    DLOAD 12
+    DASTORE
+   L29
+    LINENUMBER 738 L29
+    ALOAD 7
+    ILOAD 9
+    ILOAD 11
+    IASTORE
+   L30
+    LINENUMBER 739 L30
+    IINC 9 1
+   L31
+    LINENUMBER 740 L31
+    ALOAD 8
+    ILOAD 10
+    ICONST_1
+    IADD
+    DUP2
+    IALOAD
+    ICONST_1
+    IADD
+    IASTORE
+   L27
+    LINENUMBER 734 L27
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I [D [I [I I I I D] []
+    IINC 11 1
+    GOTO L23
+   L24
+    LINENUMBER 732 L24
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I [D [I [I I I I] []
+    IINC 10 1
+    GOTO L19
+   L20
+    LINENUMBER 746 L20
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix [I [I I I I [D [I [I I I] []
+    NEW org/la4j/matrix/sparse/CRSMatrix
+    DUP
+    ILOAD 3
+    ILOAD 4
+    ILOAD 5
+    ALOAD 6
+    ALOAD 7
+    ALOAD 8
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.<init> (III[D[I[I)V
+    ARETURN
+   L32
+    LOCALVARIABLE j I L9 L10 7
+    LOCALVARIABLE i I L6 L7 6
+    LOCALVARIABLE val D L26 L27 12
+    LOCALVARIABLE j I L23 L24 11
+    LOCALVARIABLE i I L19 L20 10
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L32 0
+    LOCALVARIABLE rowIndices [I L0 L32 1
+    LOCALVARIABLE columnIndices [I L0 L32 2
+    LOCALVARIABLE newRows I L1 L32 3
+    LOCALVARIABLE newCols I L2 L32 4
+    LOCALVARIABLE newCardinality I L5 L32 5
+    LOCALVARIABLE newValues [D L14 L32 6
+    LOCALVARIABLE newColumnIndices [I L15 L32 7
+    LOCALVARIABLE newRowPointers [I L16 L32 8
+    LOCALVARIABLE endPtr I L18 L32 9
+    MAXSTACK = 8
+    MAXLOCALS = 14
+
+  // access flags 0x1
+  // signature <T:Lorg/la4j/Matrix;>(Lorg/la4j/matrix/MatrixFactory<TT;>;)TT;
+  // declaration: T to<T extends org.la4j.Matrix>(org.la4j.matrix.MatrixFactory<T>)
+  public to(Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 752 L0
+    ALOAD 1
+    GETFIELD org/la4j/matrix/MatrixFactory.outputClass : Ljava/lang/Class;
+    LDC Lorg/la4j/matrix/sparse/CRSMatrix;.class
+    IF_ACMPNE L1
+   L2
+    LINENUMBER 753 L2
+    ALOAD 1
+    GETFIELD org/la4j/matrix/MatrixFactory.outputClass : Ljava/lang/Class;
+    ALOAD 0
+    INVOKEVIRTUAL java/lang/Class.cast (Ljava/lang/Object;)Ljava/lang/Object;
+    CHECKCAST org/la4j/Matrix
+    ARETURN
+   L1
+    LINENUMBER 756 L1
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix org/la4j/matrix/MatrixFactory] []
+    ALOAD 0
+    ALOAD 1
+    INVOKESPECIAL org/la4j/matrix/RowMajorSparseMatrix.to (Lorg/la4j/matrix/MatrixFactory;)Lorg/la4j/Matrix;
+    ARETURN
+   L3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L3 0
+    LOCALVARIABLE factory Lorg/la4j/matrix/MatrixFactory; L0 L3 1
+    // signature Lorg/la4j/matrix/MatrixFactory<TT;>;
+    // declaration: org.la4j.matrix.MatrixFactory<T>
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public blankOfShape(II)Lorg/la4j/Matrix;
+   L0
+    LINENUMBER 761 L0
+    ILOAD 1
+    ILOAD 2
+    INVOKESTATIC org/la4j/matrix/sparse/CRSMatrix.zero (II)Lorg/la4j/matrix/sparse/CRSMatrix;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    LOCALVARIABLE rows I L0 L1 1
+    LOCALVARIABLE columns I L0 L1 2
+    MAXSTACK = 2
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  // signature ()Ljava/util/Iterator<Ljava/lang/Integer;>;
+  // declaration: java.util.Iterator<java.lang.Integer> iteratorOfNonZeroRows()
+  public iteratorOfNonZeroRows()Ljava/util/Iterator;
+   L0
+    LINENUMBER 766 L0
+    NEW org/la4j/matrix/sparse/CRSMatrix$1
+    DUP
+    ALOAD 0
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix$1.<init> (Lorg/la4j/matrix/sparse/CRSMatrix;)V
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 3
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public rowMajorIterator()Lorg/la4j/iterator/RowMajorMatrixIterator;
+   L0
+    LINENUMBER 798 L0
+    NEW org/la4j/matrix/sparse/CRSMatrix$2
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix$2.<init> (Lorg/la4j/matrix/sparse/CRSMatrix;II)V
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 5
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public nonZeroRowMajorIterator()Lorg/la4j/iterator/RowMajorMatrixIterator;
+   L0
+    LINENUMBER 858 L0
+    NEW org/la4j/matrix/sparse/CRSMatrix$3
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix$3.<init> (Lorg/la4j/matrix/sparse/CRSMatrix;II)V
+    ARETURN
+   L1
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 5
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public nonZeroIteratorOfRow(I)Lorg/la4j/iterator/VectorIterator;
+   L0
+    LINENUMBER 915 L0
+    ILOAD 1
+    ISTORE 2
+   L1
+    LINENUMBER 916 L1
+    NEW org/la4j/matrix/sparse/CRSMatrix$4
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    ILOAD 2
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix$4.<init> (Lorg/la4j/matrix/sparse/CRSMatrix;II)V
+    ARETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    LOCALVARIABLE ii I L1 L2 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public iteratorOfRow(I)Lorg/la4j/iterator/VectorIterator;
+   L0
+    LINENUMBER 963 L0
+    ILOAD 1
+    ISTORE 2
+   L1
+    LINENUMBER 964 L1
+    NEW org/la4j/matrix/sparse/CRSMatrix$5
+    DUP
+    ALOAD 0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    ILOAD 2
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix$5.<init> (Lorg/la4j/matrix/sparse/CRSMatrix;II)V
+    ARETURN
+   L2
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    LOCALVARIABLE ii I L1 L2 2
+    MAXSTACK = 5
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public toBinary()[B
+   L0
+    LINENUMBER 1016 L0
+    LDC 13
+    LDC 8
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IMUL
+    IADD
+    ICONST_4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IMUL
+    IADD
+    ICONST_4
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    IMUL
+    IADD
+    ISTORE 1
+   L1
+    LINENUMBER 1024 L1
+    ILOAD 1
+    INVOKESTATIC java/nio/ByteBuffer.allocate (I)Ljava/nio/ByteBuffer;
+    ASTORE 2
+   L2
+    LINENUMBER 1026 L2
+    ALOAD 2
+    LDC 32
+    INVOKEVIRTUAL java/nio/ByteBuffer.put (B)Ljava/nio/ByteBuffer;
+    POP
+   L3
+    LINENUMBER 1027 L3
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    INVOKEVIRTUAL java/nio/ByteBuffer.putInt (I)Ljava/nio/ByteBuffer;
+    POP
+   L4
+    LINENUMBER 1028 L4
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    INVOKEVIRTUAL java/nio/ByteBuffer.putInt (I)Ljava/nio/ByteBuffer;
+    POP
+   L5
+    LINENUMBER 1029 L5
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    INVOKEVIRTUAL java/nio/ByteBuffer.putInt (I)Ljava/nio/ByteBuffer;
+    POP
+   L6
+    LINENUMBER 1031 L6
+    ICONST_0
+    ISTORE 3
+   L7
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I java/nio/ByteBuffer I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IF_ICMPGE L8
+   L9
+    LINENUMBER 1032 L9
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ILOAD 3
+    IALOAD
+    INVOKEVIRTUAL java/nio/ByteBuffer.putInt (I)Ljava/nio/ByteBuffer;
+    POP
+   L10
+    LINENUMBER 1033 L10
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ILOAD 3
+    DALOAD
+    INVOKEVIRTUAL java/nio/ByteBuffer.putDouble (D)Ljava/nio/ByteBuffer;
+    POP
+   L11
+    LINENUMBER 1031 L11
+    IINC 3 1
+    GOTO L7
+   L8
+    LINENUMBER 1036 L8
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I java/nio/ByteBuffer I] []
+    ICONST_0
+    ISTORE 3
+   L12
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I java/nio/ByteBuffer I] []
+    ILOAD 3
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    ICONST_1
+    IADD
+    IF_ICMPGE L13
+   L14
+    LINENUMBER 1037 L14
+    ALOAD 2
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ILOAD 3
+    IALOAD
+    INVOKEVIRTUAL java/nio/ByteBuffer.putInt (I)Ljava/nio/ByteBuffer;
+    POP
+   L15
+    LINENUMBER 1036 L15
+    IINC 3 1
+    GOTO L12
+   L13
+    LINENUMBER 1040 L13
+   FRAME FULL [org/la4j/matrix/sparse/CRSMatrix I java/nio/ByteBuffer I] []
+    ALOAD 2
+    INVOKEVIRTUAL java/nio/ByteBuffer.array ()[B
+    ARETURN
+   L16
+    LOCALVARIABLE i I L7 L8 3
+    LOCALVARIABLE i I L12 L13 3
+    LOCALVARIABLE this Lorg/la4j/matrix/sparse/CRSMatrix; L0 L16 0
+    LOCALVARIABLE size I L1 L16 1
+    LOCALVARIABLE buffer Ljava/nio/ByteBuffer; L2 L16 2
+    MAXSTACK = 4
+    MAXLOCALS = 4
+
+  // access flags 0x1008
+  static synthetic access$000(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$100(Lorg/la4j/matrix/sparse/CRSMatrix;)[I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rowPointers : [I
+    ARETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$200(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$300(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.rows : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$400(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$500(Lorg/la4j/matrix/sparse/CRSMatrix;)[D
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.values : [D
+    ARETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$600(Lorg/la4j/matrix/sparse/CRSMatrix;II)V
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.remove (II)V
+    RETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    LOCALVARIABLE x1 I L0 L1 1
+    LOCALVARIABLE x2 I L0 L1 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1008
+  static synthetic access$700(Lorg/la4j/matrix/sparse/CRSMatrix;IIID)V
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    ILOAD 1
+    ILOAD 2
+    ILOAD 3
+    DLOAD 4
+    INVOKESPECIAL org/la4j/matrix/sparse/CRSMatrix.insert (IIID)V
+    RETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    LOCALVARIABLE x1 I L0 L1 1
+    LOCALVARIABLE x2 I L0 L1 2
+    LOCALVARIABLE x3 I L0 L1 3
+    LOCALVARIABLE x4 D L0 L1 4
+    MAXSTACK = 6
+    MAXLOCALS = 6
+
+  // access flags 0x1008
+  static synthetic access$800(Lorg/la4j/matrix/sparse/CRSMatrix;)[I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columnIndices : [I
+    ARETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$900(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.cardinality : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1008
+  static synthetic access$1000(Lorg/la4j/matrix/sparse/CRSMatrix;)I
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD org/la4j/matrix/sparse/CRSMatrix.columns : I
+    IRETURN
+   L1
+    LOCALVARIABLE x0 Lorg/la4j/matrix/sparse/CRSMatrix; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+}
+
