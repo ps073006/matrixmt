@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/p66n633/workspace/matmt/src/lib/evosuite-1.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/p66n633/workspace/matmt/src/lib/org.jacoco.core-0.8.5.201910111838.jar"/>
-	<classpathentry kind="lib" path="C:/Users/p66n633/workspace/matmt/src/lib/org.jacoco.report-0.8.5.201910111838.jar"/>
+	<classpathentry kind="lib" path="C:/Users/psaha/Documents/GitHub.com/matrixmt/src/lib/evosuite-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/psaha/Documents/GitHub.com/matrixmt/src/lib/org.jacoco.core-0.8.5.201910111838.jar"/>
+	<classpathentry kind="lib" path="C:/Users/psaha/Documents/GitHub.com/matrixmt/src/lib/org.jacoco.report-0.8.5.201910111838.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

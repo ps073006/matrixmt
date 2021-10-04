@@ -1263,7 +1263,7 @@ for  %%x in (
 
 
 	) do (
-				for /l %%i in (1,1,1) do forward_mutation_test.bat %%x %%i
+				for /l %%i in (1,1,1) do ForwardBackSubstitutionSolver.bat %%x %%i
 				)
 
 pause;
